@@ -16,17 +16,14 @@ import javax.validation.constraints.Size;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
-@Data
-@NoArgsConstructor
+//@Data
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-//@SuperBuilder
-public class Utilisateur {
-    @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long id;
+@SuperBuilder
+public class Utilisateur extends User{
+
     @NotBlank
     @Size(max = 20)
     private String username;
@@ -39,7 +36,7 @@ public class Utilisateur {
     @NotBlank
     @Size(max = 120)
     private String password;
-
+//    private boolean active;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -47,6 +44,7 @@ public class Utilisateur {
     Set<Role> roles = new HashSet<>();
 
     public Utilisateur(String username, String email, String password) {
+//        super(id);
         this.username = username;
         this.email = email;
         this.password = password;

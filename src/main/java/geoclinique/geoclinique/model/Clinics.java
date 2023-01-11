@@ -4,25 +4,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "clinics")
-//@SuperBuilder
-//@DynamicUpdate
-//@SelectBeforeUpdate
-public class Clinics {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long idClinic;
+@SuperBuilder
+@DynamicUpdate
+@SelectBeforeUpdate
+public class Clinics extends Utilisateur{
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    private Long idClinic;
     @NotBlank
     @Size(max = 20)
     private String nomClinic;
@@ -48,6 +53,17 @@ public class Clinics {
     @Size(max = 20)
     private String agrementClinic;
     private boolean statusClinic;
+
+    public Clinics(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomClinic, String descriptionClinic, String contactClinic, String villeClinic, String adresseClinic, String longitudeClinic, String latitudeClinic) {
+        super(username, email, password);
+        this.nomClinic = nomClinic;
+        this.descriptionClinic = descriptionClinic;
+        this.contactClinic = contactClinic;
+        this.villeClinic = villeClinic;
+        this.adresseClinic = adresseClinic;
+        this.longitudeClinic = longitudeClinic;
+        this.latitudeClinic = latitudeClinic;
+    }
 
     @JsonIgnore
     @OneToMany(mappedBy = "clinics")

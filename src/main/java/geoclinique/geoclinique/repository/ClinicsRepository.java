@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ClinicsRepository extends JpaRepository<Clinics, Long> {
 //    Optional<Clinics> findByUsername(String username);
 
-//    Boolean existsByUsername(String username);
-//
+    Boolean existsBynomClinic(String name);
+
 //    Boolean existsByEmail(String email);
 }

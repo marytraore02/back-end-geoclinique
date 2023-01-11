@@ -1,9 +1,11 @@
 package geoclinique.geoclinique.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -17,23 +19,15 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "patients")
-public class Patients {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long idPatient;
+@SuperBuilder
+@AllArgsConstructor
+public class Patients extends Utilisateur{
     @NotBlank
     @Size(max = 20)
     private String nomPatient;
     @NotBlank
     @Size(max = 20)
     private String prenomPatient;
-    @NotBlank
-    @Size(max = 50)
-    @Email
-    private String emailPatient;
-    @NotBlank
-    @Size(max = 120)
-    private String passwordPatient;
     @NotBlank
     @Size(max = 20)
     private String sexePatient;

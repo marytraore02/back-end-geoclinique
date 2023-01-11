@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import geoclinique.geoclinique.model.ERole;
 import geoclinique.geoclinique.model.Role;
 import geoclinique.geoclinique.model.Utilisateur;
+import geoclinique.geoclinique.payload.request.LoginRequest;
 import geoclinique.geoclinique.payload.request.SignupRequest;
 import geoclinique.geoclinique.payload.response.JwtResponse;
 import geoclinique.geoclinique.payload.response.MessageResponse;
@@ -34,7 +35,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bezkoder.springjwt.payload.request.LoginRequest;
 
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600, allowCredentials="true")
 @RestController
@@ -62,14 +62,19 @@ public class AuthController {
 
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
+    //Connexion en fonction du type
     Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
+    //Stockage des infos du user par Spring boot
     SecurityContextHolder.getContext().setAuthentication(authentication);
+
+    //On creer le token et stocke ds le cookies
     String jwt = jwtUtils.generateJwtToken(authentication);
 
+    //creation d'instance du user en fonction de UserDetailImpl
     UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
     List<String> roles = userDetails.getAuthorities().stream()
             .map(item -> item.getAuthority())
             .collect(Collectors.toList());
@@ -96,9 +101,9 @@ public class AuthController {
     }
 
     // Create new user's account
-    Utilisateur user = new Utilisateur(signUpRequest.getUsername(),
-            signUpRequest.getEmail(),
-            encoder.encode(signUpRequest.getPassword()));
+//    Utilisateur user = new Utilisateur(signUpRequest.getUsername(),
+//            signUpRequest.getEmail(),
+//            encoder.encode(signUpRequest.getPassword()));
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();
@@ -129,9 +134,9 @@ public class AuthController {
         }
       });
     }
-
-    user.setRoles(roles);
-    userRepository.save(user);
+//
+//    user.setRoles(roles);
+//    userRepository.save(user);
 
     return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
   }

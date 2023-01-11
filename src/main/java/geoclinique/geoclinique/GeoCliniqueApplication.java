@@ -4,10 +4,12 @@ import geoclinique.geoclinique.model.ERole;
 import geoclinique.geoclinique.model.Role;
 import geoclinique.geoclinique.repository.RoleRepository;
 import geoclinique.geoclinique.repository.UserRepository;
+import geoclinique.geoclinique.service.ClinicsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import geoclinique.geoclinique.model.Utilisateur;
 import geoclinique.geoclinique.model.Utilisateur;
@@ -17,7 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class GeoCliniqueApplication implements CommandLineRunner {
+public class GeoCliniqueApplication implements CommandLineRunner{
 	@Autowired
 	PasswordEncoder encoder;
 	@Autowired
@@ -27,6 +29,43 @@ public class GeoCliniqueApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GeoCliniqueApplication.class, args);
+
+
+//		ApplicationContext ctx = SpringApplication.run(GeoCliniqueApplication.class, args);
+//		ClinicsServices utilisateurService = ctx.getBean(ClinicsServices.class);
+//
+//		Role admin = new Role();
+//		admin.setId(1L);
+//		admin.setName(ERole.ROLE_ADMIN);
+//
+//		Role clinic = new Role();
+//		clinic.setId(2L);
+//		clinic.setName(ERole.ROLE_CLINIC);
+//
+//		Role patient = new Role();
+//		patient.setId(3L);
+//		patient.setName(ERole.ROLE_PATIENT);
+//
+//		utilisateurService.create(admin);
+//		utilisateurService.create(clinic);
+//		utilisateurService.create(patient);
+//
+//
+//		if (utilisateurService.getByEmail("mary@gmail.com") == null) {
+//
+//		// creation des super administrateurs
+//		Utilisateur mary = new Utilisateur();
+////		mary.statusClinic(true);
+//		mary.setId(1L);
+//		mary.setUsername("mary");
+//		mary.setEmail("mary@gmail.com");
+//		mary.setPassword("mary123");
+//		mary.setActive(true);
+//
+//		utilisateurService.creer(mary);
+//		}
+
+
 	}
 
 	@Override
@@ -48,13 +87,14 @@ public class GeoCliniqueApplication implements CommandLineRunner {
 //					"https://png.pngtree.com/png-clipart/20190924/original/pngtree-user-vector-avatar-png-image_4830521.jpg",
 
 					"mary",
-					"mary@gmail.com",
+					"marytra292@gmail.com",
 					encoder.encode( "mary123"));
 			admin.setRoles(roles);
 			userRepository.save(admin);
 
 		}
 	}
+
 
 
 }

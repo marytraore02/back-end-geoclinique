@@ -12,6 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -33,7 +34,7 @@ public class Patients extends Utilisateur{
     private String sexePatient;
     @NotBlank
     @Size(max = 20)
-    private String naissancePatient;
+    private Date naissancePatient;
     @NotBlank
     @Size(max = 20)
     private String contactPatient;

@@ -1,5 +1,6 @@
 package geoclinique.geoclinique.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,13 +28,18 @@ public class Specialites {
 
     private String descriptionSpecialite;
 
-//    @JsonIgnore
-//    @ManyToOne
-//    @JoinColumn(name = "clinics")
-//    private Clinics clinics;
-//
-//    @JsonIgnore
-//    @ManyToOne
-//    @JoinColumn(name = "medecins")
-//    private Medecins medecins;
+    public Specialites(String libelleSpecialite, String descriptionSpecialite) {
+        this.libelleSpecialite = libelleSpecialite;
+        this.descriptionSpecialite = descriptionSpecialite;
+    }
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "clinics")
+    private Clinics clinics;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "medecins")
+    private Medecins medecins;
 }

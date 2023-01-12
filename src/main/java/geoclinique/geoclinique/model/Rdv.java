@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "rdv")
 public class Rdv {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idRdv;

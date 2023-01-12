@@ -86,7 +86,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 //					"+223 93 77 15 53",
 //					"https://png.pngtree.com/png-clipart/20190924/original/pngtree-user-vector-avatar-png-image_4830521.jpg",
 
-					"mary",
+					"marytraore",
 					"marytra292@gmail.com",
 					encoder.encode( "mary123"));
 			admin.setRoles(roles);

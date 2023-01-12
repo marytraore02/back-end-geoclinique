@@ -9,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,11 +33,9 @@ public class Medecins {
     @Email
     private String emailMedecin;
     @NotBlank
-    @Size(max = 120)
-    private String passwordMedecin;
-    @NotBlank
     @Size(max = 20)
     private String sexeMedecin;
+    private Date naissanceMedecin;
     @NotBlank
     @Size(max = 20)
     private String imageMedecin;
@@ -50,7 +49,7 @@ public class Medecins {
     private Clinics clinics;
 
     @JsonIgnore
-    @OneToMany()
+    @OneToMany(mappedBy = "medecins")
     List<Specialites> ListeSpecMedecins = new ArrayList<>();
 
     @JsonIgnore

@@ -20,7 +20,11 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "clinics")
+@Table(name = "clinics",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
 @SuperBuilder
 @DynamicUpdate
 @SelectBeforeUpdate
@@ -86,6 +90,6 @@ public class Clinics extends Utilisateur{
     List<Patients> listeEvaluation = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany()
+    @OneToMany(mappedBy = "clinics")
     List<Specialites> ListeSpecialite = new ArrayList<>();
 }

@@ -8739,3 +8739,6 @@ com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized f
 2023-01-12 17:50:34.890  INFO 4042 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
 2023-01-12 17:50:34.896  INFO 4042 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
 2023-01-12 17:50:34.925  INFO 4042 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 8.392 seconds (JVM running for 9.733)
+2023-01-12 17:54:53.709  INFO 4042 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-12 17:54:53.715  INFO 4042 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-01-12 17:54:53.730  INFO 4042 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

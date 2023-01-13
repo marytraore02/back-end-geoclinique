@@ -27,6 +27,9 @@ public class PatientSevice {
     public Optional<Patients> GetOne(Long id){
         return patientRepository.findById(id);
     }
+    public Optional<Patients> getByEmail(String email){
+        return patientRepository.findByEmail(email);
+    }
     public boolean existsByConatct(String contact){
         return patientRepository.existsByContactPatient(contact);
     }

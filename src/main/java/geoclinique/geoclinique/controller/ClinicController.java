@@ -8,9 +8,11 @@ import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.payload.request.ClinicRequest;
 import geoclinique.geoclinique.payload.request.LoginRequest;
+import geoclinique.geoclinique.payload.request.PatientRequest;
 import geoclinique.geoclinique.payload.response.JwtResponse;
 import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.ClinicsRepository;
+import geoclinique.geoclinique.repository.PatientRepository;
 import geoclinique.geoclinique.repository.RoleRepository;
 import geoclinique.geoclinique.repository.UserRepository;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
@@ -53,6 +55,8 @@ public class ClinicController {
     UserRepository userRepository;
     @Autowired
     ClinicsRepository clinicsRepository;
+    @Autowired
+    PatientRepository patientRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -80,13 +84,26 @@ public class ClinicController {
         //Conversion des donnees data en JSON
         ClinicRequest clinicsRequest = new JsonMapper().readValue(clinicsRequest1, ClinicRequest.class);
 
-        //Verification si le nom exist ds la BDD
+        //Verification si le nom exist ds la table clinics
         if (clinicsRepository.existsByNomClinic(clinicsRequest.getNomClinic())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Une clinic du même nom exist, Veuillez donnez un autre nom!"));
         }
 
+        //Verification si le username exist ds la table patient
+        PatientRequest patientRequest = new PatientRequest();
+        if (patientRepository.existsByUsername(patientRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Username non valide"));
+        }
+        //Verification si le username exist deja ds la BDD
+        if (clinicsRepository.existsByUsername(clinicsRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Username non valide"));
+        }
         //Verification si l'email exist deja ds la BDD
         if (userRepository.existsByEmail(clinicsRequest.getEmail())) {
             return ResponseEntity
@@ -135,52 +152,15 @@ public class ClinicController {
     }
 
 
-//    @PreAuthorize("hasRole('ADMIN')")
-//    @ApiOperation(value = "Creation d'une clinics")
-//    @PostMapping("/create/new")
-//    public ResponseEntity<?> create(@RequestParam(value = "data") String acti,
-//                                    @RequestParam(value = "file", required = false) MultipartFile file)
-//            throws IOException {
-//        Clinics clinics = null;
-//
-//            clinics = new JsonMapper().readValue(acti, Clinics.class);
-//
-//            if(StringUtils.isBlank(clinics.getNomClinic()))
-//                return new ResponseEntity(new Message("Le nom de la clinic est obligatoire"), HttpStatus.BAD_REQUEST);
-//
-//            if(clinicsServices.existsByName(clinics.getNomClinic()))
-//                return new ResponseEntity(new Message("Une clinic du même nom exist, Veuillez donnez un autre nom!"), HttpStatus.BAD_REQUEST);
-//
-//            if(clinicsServices.existsByUsername(clinics.getUsername()))
-//                return new ResponseEntity(new Message("Username non valide"), HttpStatus.BAD_REQUEST);
-//        //Verification si l'email exist deja ds la BDD
-//            if (userRepository.existsByEmail(clinics.getEmail())) {
-//                return ResponseEntity
-//                        .badRequest()
-//                        .body(new MessageResponse("Ce email est dejà utilisé par une clinic"));
-//            }
-//            if (file != null) {
-//                try {
-//                    clinics.setAgrementClinic(ImageConfig.save("clinic", file, clinics.getNomClinic()));
-//                    clinics.setStatusClinic(true);
-//                    clinicsServices.creer(clinics);
-//                    return new ResponseEntity(new Message("Clinics creer avec créé avec success"), HttpStatus.OK);
-//                } catch (Exception e) {
-//                    // TODO: handle exception
-//                    return new ResponseEntity(new Message("Erreur de creation"), HttpStatus.OK);
-//                }
-//            } else {
-//                return new ResponseEntity(new Message("Photo introuvable"), HttpStatus.OK);
-//            }
-//    }
-
     @ApiOperation(value = "Lister les comptes clinic")
     @PreAuthorize("hasRole('PATIENT') or hasRole('CLINIC') or hasRole('ADMIN')")
     @GetMapping("/read")
-    public List<Clinics> Afficher(){
-        return clinicsServices.read();
+    public ResponseEntity<List<Clinics>> Afficher(){
+        List<Clinics> clinics = clinicsServices.read();
+        return new ResponseEntity(clinics, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
     @ApiOperation(value = "Mise à jour de comptes clinic")
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> update(@RequestParam(value = "data") String acti,
@@ -203,6 +183,7 @@ public class ClinicController {
         }
     }
 
+    @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
     @ApiOperation(value = "Suppression de comptes clinic")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> supprimer(@PathVariable long id) {
@@ -212,11 +193,12 @@ public class ClinicController {
             clinicsServices.delete(id);
             return new ResponseEntity(new Message("Clinics supprimer avec succès"), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity(new Message("Erreur de creation"), HttpStatus.OK);
+            return new ResponseEntity(new Message("Erreur de suppression"), HttpStatus.OK);
         }
     }
 
-    @ApiOperation(value = "Affichager une clinic")
+    @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
+    @ApiOperation(value = "Afficher une clinic")
     @GetMapping("/get/{id}")
     public ResponseEntity<Clinics> getById(@PathVariable("id") Long id){
         if(!clinicsServices.existsById(id))

@@ -26,6 +26,7 @@ public class Utilisateur extends User{
 
     @NotBlank
     @Size(max = 20)
+    @Column(unique = true)
     private String username;
 
     @NotBlank

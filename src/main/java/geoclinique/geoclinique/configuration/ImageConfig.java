@@ -25,6 +25,10 @@ public class ImageConfig {
     public static String serverspecialite = localhost + "geoclinique/images/specialites/";
     public static String Specialitelocation = "/Applications/XAMPP/xamppfiles/htdocs/geoclinique/images/specialites/";
 
+    //Stockage photo patient
+    public static String serverspatient = localhost + "geoclinique/images/patients/";
+    public static String Patientlocation = "/Applications/XAMPP/xamppfiles/htdocs/geoclinique/images/patients/";
+
 
     public static String save(String typeImage, MultipartFile file, String nomFichier) {
         String src = "";
@@ -36,9 +40,12 @@ public class ImageConfig {
         } else if (typeImage == "clinic"){
             location = Cliniclocation;
             server = serverclinic;
-        } else {
+        } else if (typeImage == "specialite"){
             location = Specialitelocation;
             server = serverspecialite;
+        } else {
+            location = Patientlocation;
+            server = serverspatient;
         }
 
         /// debut de l'enregistrement

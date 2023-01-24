@@ -92,6 +92,8 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 //    http.formLogin();
 //    http.oauth2Login();
     http.authenticationProvider(authenticationProvider());
+
+    //Ajout du filtre de securiter JWT
     http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     
     return http.build();

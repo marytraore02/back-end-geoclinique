@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "medecins")
-public class Medecins {
+public class Medecins implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idMedecin;
@@ -42,7 +43,6 @@ public class Medecins {
     @NotBlank
     @Size(max = 20)
     private String contactMedecin;
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_clinics")
@@ -52,7 +52,15 @@ public class Medecins {
     @OneToMany(mappedBy = "medecins")
     List<Specialites> ListeSpecMedecins = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "medecins")
-    List<Calendrier> ListeCalendrier = new ArrayList<>();
+    public Medecins(String nomMedecin, String prenomMedecin, String emailMedecin, String sexeMedecin, Date naissanceMedecin, String imageMedecin, String contactMedecin, Clinics clinics) {
+        this.nomMedecin = nomMedecin;
+        this.prenomMedecin = prenomMedecin;
+        this.emailMedecin = emailMedecin;
+        this.sexeMedecin = sexeMedecin;
+        this.naissanceMedecin = naissanceMedecin;
+        this.imageMedecin = imageMedecin;
+        this.contactMedecin = contactMedecin;
+       // this.utilisateur = utilisateur;
+        this.clinics = clinics;
+    }
 }

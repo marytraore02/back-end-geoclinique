@@ -37,9 +37,9 @@ public class PatientRequest {
     private String sexePatient;
     @NotBlank
     @Size(max = 20)
-    private Date naissancePatient;
+    private String naissancePatient;
     @NotBlank
     @Size(max = 20)
     private String contactPatient;
-    private String image;
+    //private String image;
 }

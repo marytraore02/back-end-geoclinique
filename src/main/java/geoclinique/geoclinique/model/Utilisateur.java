@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
-//@Data
 @Getter
 @Setter
 @NoArgsConstructor

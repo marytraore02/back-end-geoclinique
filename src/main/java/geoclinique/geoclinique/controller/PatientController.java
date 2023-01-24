@@ -1,6 +1,9 @@
 package geoclinique.geoclinique.controller;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.DisponibiliteClinicRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.NewDisponibiliteRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
 import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
@@ -20,13 +23,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import javax.validation.Valid;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600, allowCredentials="true")
+@CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/" }, maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/patient")
 @Api(value = "hello", description = "CRUD PATIENT")
@@ -48,9 +52,12 @@ public class PatientController {
 
     @ApiOperation(value = "Creation de compte patient")
     @PostMapping("/signup")
-    public ResponseEntity<?> registerPatient(@RequestParam(value = "data") String patientsRequest1,
-                                          @RequestParam(value = "file", required = false) MultipartFile file)
+    public ResponseEntity<?> registerPatient(@RequestParam(value = "data") String patientsRequest1)
             throws IOException {
+
+        //@RequestParam(value = "file", required = false) MultipartFile file
+
+
         //Conversion des donnees data en JSON
         PatientRequest patientRequest = new JsonMapper().readValue(patientsRequest1, PatientRequest.class);
 
@@ -113,9 +120,9 @@ public class PatientController {
             });
         }
         patients.setRoles(roles);
-        if (file != null) {
-            patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
-        }
+//        if (file != null) {
+//            patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
+//        }
         patientRepository.save(patients);
         //mailSender.send(emailConstructor.constructNewUserEmail(clinics));
         return ResponseEntity.ok(new MessageResponse("Compte patient creer avec succes!"));
@@ -140,9 +147,9 @@ public class PatientController {
             patients = new JsonMapper().readValue(acti, Patients.class);
 //            Random e = new Random();
 //            e.nextInt(8);
-            if (file != null) {
-                patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
-            }
+//            if (file != null) {
+//                patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
+//            }
             patientSevice.modifier(id, patients);
             return new ResponseEntity(new Message("Patient modifié avec success"), HttpStatus.OK);
         } catch (Exception e) {
@@ -165,13 +172,45 @@ public class PatientController {
     }
 
     //@PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
-    @ApiOperation(value = "Afficher une clinic")
+    @ApiOperation(value = "Afficher un patient")
     @GetMapping("/get/{id}")
     public ResponseEntity<Clinics> getById(@PathVariable("id") Long id){
         if(!patientSevice.existsById(id))
             return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
         Patients patients = patientSevice.GetOne(id).get();
         return new ResponseEntity(patients, HttpStatus.OK);
+    }
+
+
+    //  Ajouter RDV
+    @ApiOperation(value = "Ajouter un rendez-vous")
+    @PostMapping("/rdv/save")
+    public ResponseEntity<?> save(@Valid @RequestBody NewDisponibiliteRequest newDisponibilite){
+        try{
+            var save = this.patientSevice.save(newDisponibilite);
+            return ResponseEntity.ok(save);
+        } catch (Exception e){
+            return new ResponseEntity(new Message("Erreur de sauvagarde"), HttpStatus.OK);
+        }
+    }
+
+    // Obtenir la liste des disponibites d'une clinic par jour
+    @PostMapping("/disponibilite")
+    public ResponseEntity<? extends Object> listClinicDisponible(@Valid @RequestBody DisponibiliteClinicRequest disponibiliteClinic){
+        var result = this.patientSevice.listAllClinicDisponible(disponibiliteClinic);
+
+        try{
+            if(result==null)
+                return new ResponseEntity<>(new ApiResponse(false,"Clinic not found.."),
+                        HttpStatus.NOT_FOUND);
+
+            return ResponseEntity.ok(result);
+
+      }catch (Exception e){
+          return new ResponseEntity(new Message("Erreur"), HttpStatus.OK);
+      }
+
+
     }
 
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.configuration.ImageConfig;
 
+import geoclinique.geoclinique.configuration.ImgConf;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.payload.request.ClinicRequest;
@@ -21,7 +22,7 @@ import geoclinique.geoclinique.security.services.UserDetailsImpl;
 import geoclinique.geoclinique.service.ClinicsServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -35,11 +36,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.util.StringUtils;
 
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.apache.commons.lang3.StringUtils.*;
 
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600, allowCredentials="true")
 @RestController
@@ -76,10 +80,11 @@ public class ClinicController {
     private JavaMailSender mailSender;
 
 
+
     @ApiOperation(value = "Creation de compte clinic")
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestParam(value = "data") String clinicsRequest1,
-                                          @RequestParam(value = "file", required = false) MultipartFile file)
+                                          @Param("agrementClinic") MultipartFile agrementClinic)
             throws IOException {
         //Conversion des donnees data en JSON
         ClinicRequest clinicsRequest = new JsonMapper().readValue(clinicsRequest1, ClinicRequest.class);
@@ -120,6 +125,14 @@ public class ClinicController {
                         clinicsRequest.getContactClinic(), clinicsRequest.getLongitudeClinic(),
                         clinicsRequest.getLatitudeClinic());
 
+
+        //Enregistrement de la photo
+        String img = StringUtils.cleanPath(agrementClinic.getOriginalFilename());
+        clinicsRequest.setAgrementClinic(img);
+        String uploaDir = "\\Users\\siby\\Desktop\\geo-clinique\\src\\ressources\\static\\images\\clinics";
+        ImgConf.saveimg(uploaDir, img, agrementClinic);
+
+
         //Creation des roles
         Set<String> strRoles = clinicsRequest.getRole();
 
@@ -143,9 +156,9 @@ public class ClinicController {
         }
         clinics.setRoles(roles);
         clinics.setStatusClinic(false);
-        if (file != null) {
-            clinics.setAgrementClinic(ImageConfig.save("clinic", file, clinics.getNomClinic()));
-        }
+//        if (file != null) {
+//            clinics.setAgrementClinic(ImageConfig.save("clinic", file, clinics.getNomClinic()));
+//        }
         clinicsRepository.save(clinics);
         //mailSender.send(emailConstructor.constructNewUserEmail(clinics));
         return ResponseEntity.ok(new MessageResponse("Compte clinic creer avec succes!"));

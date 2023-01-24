@@ -1,13 +1,15 @@
 package geoclinique.geoclinique.service;
 
+import geoclinique.geoclinique.Api.DtoMapper.RendezVousMapper;
+import geoclinique.geoclinique.model.*;
+import geoclinique.geoclinique.repository.RendezVousRepository;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteClinicResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.DisponibiliteClinicRequest;
 import geoclinique.geoclinique.configuration.EmailConstructor;
-import geoclinique.geoclinique.model.Clinics;
-import geoclinique.geoclinique.model.Specialites;
-import geoclinique.geoclinique.model.Utilisateur;
-import geoclinique.geoclinique.model.Role;
 import geoclinique.geoclinique.repository.ClinicsRepository;
 import geoclinique.geoclinique.repository.RoleRepository;
 import geoclinique.geoclinique.repository.UserRepository;
+import geoclinique.geoclinique.util.TweakResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,8 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClinicsServices {
@@ -93,7 +98,6 @@ public class ClinicsServices {
     }
 
 
-//    public Role create(Role role) {
-//        return roleRepository.save(role);
-//    }
+
+
 }

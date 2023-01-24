@@ -14,13 +14,16 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "patients")
+@Table(name = "patients",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
 @SuperBuilder
 @AllArgsConstructor
 public class Patients extends Utilisateur{
@@ -35,14 +38,14 @@ public class Patients extends Utilisateur{
     private String sexePatient;
     @NotBlank
     @Size(max = 20)
-    private Date naissancePatient;
+    private String naissancePatient;
     @NotBlank
     @Size(max = 20)
     private String contactPatient;
 
-    private String image;
+    //private String image;
 
-    public Patients(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomPatient, String prenomPatient, String sexePatient, Date naissancePatient, String contactPatient) {
+    public Patients(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomPatient, String prenomPatient, String sexePatient, String naissancePatient, String contactPatient) {
         super(username, email, password);
         this.nomPatient = nomPatient;
         this.prenomPatient = prenomPatient;
@@ -51,11 +54,25 @@ public class Patients extends Utilisateur{
         this.contactPatient = contactPatient;
     }
 
+    public Patients(String nomPatient, String prenomPatient) {
+        this.nomPatient = nomPatient;
+        this.prenomPatient = prenomPatient;
+    }
+
+    //Liste des RDV
     @JsonIgnore
-    @ManyToMany(mappedBy = "listePatients")
-    List<Clinics> listeClinics = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "patients")
+    List<RendezVous> ListeRdv = new ArrayList<>();
+
+//    @JsonIgnore
+//    @ManyToMany(mappedBy = "listePatients")
+//    List<Clinics> listeClinics = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "patients")
     List<Messages> ListeMesagePatient = new ArrayList<>();
+
+
 }

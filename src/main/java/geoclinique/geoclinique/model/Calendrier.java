@@ -1,5 +1,6 @@
 package geoclinique.geoclinique.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,12 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -18,13 +24,20 @@ import javax.validation.constraints.Size;
 public class Calendrier {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long idCalendrier;
-    private String jourCalendrier;
-    private String heureDebutCalendrier;
-    private String heureFinCalendrier;
+    private Long id;
+    private LocalTime heureDebut;
+    private LocalTime heureFin;
 
+    //Liste des RDV
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "medecins")
-    private Medecins medecins;
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "calendrier")
+    List<RendezVous> ListeRdv = new ArrayList<>();
+
+    public Calendrier(Long id, LocalTime heureDebut, LocalTime heureFin) {
+        this.id = id;
+        this.heureDebut = heureDebut;
+        this.heureFin = heureFin;
+    }
 }

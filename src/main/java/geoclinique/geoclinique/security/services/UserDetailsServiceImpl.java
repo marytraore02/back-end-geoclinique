@@ -24,4 +24,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     return UserDetailsImpl.build(user);
   }
 
+  // Cette méthode est utilisée par JWTAuthenticationFilter
+  @Transactional
+  public UserDetails loadUserById(Long userId){
+    Utilisateur user = this.userRepository.findById(userId).orElseThrow(
+            () -> new UsernameNotFoundException("User not found with id : " + userId)
+    );
+    return UserDetailsImpl.build(user);
+  }
+
 }

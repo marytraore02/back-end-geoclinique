@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class Evaluation {
     private Long idEvaluation;
     @Lob
     private String messageEvaluation;
+    private LocalDate date;
+
 
     @JsonIgnore
     @ManyToMany(mappedBy = "listeEvaluation")

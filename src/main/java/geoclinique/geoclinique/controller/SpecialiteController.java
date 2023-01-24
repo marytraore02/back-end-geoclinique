@@ -41,9 +41,6 @@ public class SpecialiteController {
 
             throws IOException {
         Specialites specialites = null;
-
-        //System.out.println(idutilisateur);
-//        Specialites NomSp = specialiteRepository.findByLibelleSpecialite(nomSp);
         try {
             specialites = new JsonMapper().readValue(acti, Specialites.class);
 
@@ -58,7 +55,6 @@ public class SpecialiteController {
             if (file != null) {
                 try {
                     specialites.setImageSpecialite(ImageConfig.save("specialite", file, specialites.getLibelleSpecialite()));
-
                     specialiteService.creer(specialites);
                     return new ResponseEntity(new Message("Specialite créé avec success"), HttpStatus.OK);
 

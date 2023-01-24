@@ -69,6 +69,15 @@ public class Clinics extends Utilisateur{
         this.latitudeClinic = latitudeClinic;
     }
 
+
+    //Liste des RDV
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "clinics")
+    List<RendezVous> ListeRdv = new ArrayList<>();
+
+
     @JsonIgnore
     @OneToMany(mappedBy = "clinics")
     List<Medecins> listeMedecins = new ArrayList<>();
@@ -77,11 +86,11 @@ public class Clinics extends Utilisateur{
     @OneToMany(mappedBy = "clinics")
     List<Messages> ListeMessages = new ArrayList<>();
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "rdv", joinColumns = { @JoinColumn(name = "id_clinics") }, inverseJoinColumns = {
-            @JoinColumn(name = "id_patients") })
-    List<Patients> listePatients = new ArrayList<>();
+//    @JsonIgnore
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "rdv", joinColumns = { @JoinColumn(name = "id_clinics") }, inverseJoinColumns = {
+//            @JoinColumn(name = "id_patients") })
+//    List<Patients> listePatients = new ArrayList<>();
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)

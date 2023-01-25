@@ -75,6 +75,9 @@ public class ClinicsServices {
     public Optional<Clinics> getByNomClinic(String name){
         return clinicsRepository.findByNomClinic(name);
     }
+    public boolean existsByEmail(String email){
+        return clinicsRepository.existsByEmail(email);
+    }
     public Clinics modifier(Long id, Clinics clinics) {
         return clinicsRepository.findById(id)
                 .map(p->{

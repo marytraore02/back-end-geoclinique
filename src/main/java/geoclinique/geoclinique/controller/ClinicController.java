@@ -10,12 +10,10 @@ import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.payload.request.ClinicRequest;
 import geoclinique.geoclinique.payload.request.LoginRequest;
 import geoclinique.geoclinique.payload.request.PatientRequest;
+import geoclinique.geoclinique.payload.request.SignupRequest;
 import geoclinique.geoclinique.payload.response.JwtResponse;
 import geoclinique.geoclinique.payload.response.MessageResponse;
-import geoclinique.geoclinique.repository.ClinicsRepository;
-import geoclinique.geoclinique.repository.PatientRepository;
-import geoclinique.geoclinique.repository.RoleRepository;
-import geoclinique.geoclinique.repository.UserRepository;
+import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
 import geoclinique.geoclinique.security.services.CrudService;
 import geoclinique.geoclinique.security.services.UserDetailsImpl;
@@ -45,7 +43,7 @@ import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
-@CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600, allowCredentials="true")
+@CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/", "http://localhost:8200/"  }, maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/clinic")
 @Api(value = "hello", description = "CRUD CLINIC")
@@ -64,6 +62,8 @@ public class ClinicController {
 
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    AdminRepository adminRepository;
 
     @Autowired
     PasswordEncoder encoder;
@@ -95,25 +95,17 @@ public class ClinicController {
                     .badRequest()
                     .body(new MessageResponse("Une clinic du même nom exist, Veuillez donnez un autre nom!"));
         }
-
-        //Verification si le username exist ds la table patient
-        PatientRequest patientRequest = new PatientRequest();
-        if (patientRepository.existsByUsername(patientRequest.getUsername())) {
+        //Verification si le USERNAME exist ds la BASE
+        if (userRepository.existsByUsername(clinicsRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Username non valide"));
         }
-        //Verification si le username exist deja ds la BDD
-        if (clinicsRepository.existsByUsername(clinicsRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Username non valide"));
-        }
-        //Verification si l'email exist deja ds la BDD
+        //Verification si EMAIL exist deja ds la BASE
         if (userRepository.existsByEmail(clinicsRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Ce email est dejà utilisé par une clinic"));
+                    .body(new MessageResponse("Ce email est dejà utilisé par un patient"));
         }
 
         // Create new user's account

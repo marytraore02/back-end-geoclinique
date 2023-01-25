@@ -4,21 +4,22 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.DisponibiliteClinicRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.NewDisponibiliteRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
+import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.payload.request.ClinicRequest;
 import geoclinique.geoclinique.payload.request.PatientRequest;
+import geoclinique.geoclinique.payload.request.SignupRequest;
 import geoclinique.geoclinique.payload.response.MessageResponse;
-import geoclinique.geoclinique.repository.ClinicsRepository;
-import geoclinique.geoclinique.repository.PatientRepository;
-import geoclinique.geoclinique.repository.RoleRepository;
+import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.service.PatientSevice;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/" }, maxAge = 3600, allowCredentials="true")
+@CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/", "http://localhost:8200/"  }, maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/patient")
 @Api(value = "hello", description = "CRUD PATIENT")
@@ -42,12 +43,21 @@ public class PatientController {
     PatientRepository patientRepository;
     @Autowired
     ClinicsRepository clinicsRepository;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    AdminRepository adminRepository;
 
     @Autowired
     PatientSevice patientSevice;
 
     @Autowired
     PasswordEncoder encoder;
+    @Autowired
+    private EmailConstructor emailConstructor;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
 
     @ApiOperation(value = "Creation de compte patient")
@@ -61,34 +71,26 @@ public class PatientController {
         //Conversion des donnees data en JSON
         PatientRequest patientRequest = new JsonMapper().readValue(patientsRequest1, PatientRequest.class);
 
-        //Verification si le nom exist ds la BDD
+        //Verification si le USERNAME exist ds la BASE
+        if (userRepository.existsByUsername(patientRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Username non valide"));
+        }
+        //Verification si EMAIL exist deja ds la BASE
+        if (userRepository.existsByEmail(patientRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Ce email est dejà utilisé par un patient"));
+        }
+        //Verification si le CONTACT exist ds la BASE
         if (patientRepository.existsByContactPatient(patientRequest.getContactPatient())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Le numero exist, veuillez donner un autre"));
         }
 
-        //Verification si l'email exist deja ds la table patient
-        if (patientRepository.existsByEmail(patientRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Ce email est dejà utilisé par un patient"));
-        }
 
-        //Verification si le username  exist deja ds la table clinic
-        if (patientRepository.existsByUsername(patientRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Username non valide"));
-        }
-
-        //Verification si le username exist ds la table clinic
-        ClinicRequest clinicRequest = new ClinicRequest();
-        if (clinicsRepository.existsByUsername(clinicRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Username non valide"));
-        }
 
         // Create new user's account
         Patients patients =
@@ -124,7 +126,7 @@ public class PatientController {
 //            patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
 //        }
         patientRepository.save(patients);
-        //mailSender.send(emailConstructor.constructNewUserEmail(clinics));
+        //mailSender.send(emailConstructor.constructNewUserEmail(patients));
         return ResponseEntity.ok(new MessageResponse("Compte patient creer avec succes!"));
     }
 
@@ -150,7 +152,7 @@ public class PatientController {
 //            if (file != null) {
 //                patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
 //            }
-            patientSevice.modifier(id, patients);
+            patientSevice.modifier(patients);
             return new ResponseEntity(new Message("Patient modifié avec success"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(new Message("Erreur de modification"), HttpStatus.OK);

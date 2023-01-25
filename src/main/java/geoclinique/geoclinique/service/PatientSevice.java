@@ -51,9 +51,12 @@ public class PatientSevice {
     public Optional<Patients> GetOne(Long id){
         return patientRepository.findById(id);
     }
-    public Optional<Patients> getByEmail(String email){
+    public Patients getByEmail( String email){
         return patientRepository.findByEmail(email);
     }
+//    public Optional<Patients> getByEmail(String email){
+//        return patientRepository.findByEmail(email);
+//    }
     public boolean existsByConatct(String contact){
         return patientRepository.existsByContactPatient(contact);
     }
@@ -66,19 +69,23 @@ public class PatientSevice {
     public boolean existsByEmail(String email){
         return patientRepository.existsByEmail(email);
     }
-    public Patients modifier(Long id, Patients patients) {
-        return patientRepository.findById(id)
-                .map(p->{
-                    p.setUsername(patients.getUsername());
-                    p.setEmail(patients.getEmail());
-                    p.setPassword(encoder.encode(patients.getPassword()));
-                    p.setNomPatient(patients.getNomPatient());
-                    p.setPrenomPatient(patients.getPrenomPatient());
-                    p.setNaissancePatient(patients.getNaissancePatient());
-                    p.setContactPatient(patients.getContactPatient());
-                    p.setSexePatient(patients.getSexePatient());
-                    return patientRepository.save(p);
-                }).orElseThrow(()-> new RuntimeException("Clinics non trouvé !"));
+    public Patients modifier(Patients patients) {
+//        return patientRepository.findById(id)
+//                .map(p->{
+//                    p.setUsername(patients.getUsername());
+//                    p.setEmail(patients.getEmail());
+//                    p.setPassword(encoder.encode(patients.getPassword()));
+//                    p.setNomPatient(patients.getNomPatient());
+//                    p.setPrenomPatient(patients.getPrenomPatient());
+//                    p.setNaissancePatient(patients.getNaissancePatient());
+//                    p.setContactPatient(patients.getContactPatient());
+//                    p.setSexePatient(patients.getSexePatient());
+//                    return patientRepository.save(p);
+//                }).orElseThrow(()-> new RuntimeException("Clinics non trouvé !"));
+        // TODO Auto-generated method stub
+
+        return patientRepository.save(patients);
+
     }
     public String delete(Long id){
         patientRepository.deleteById(id);

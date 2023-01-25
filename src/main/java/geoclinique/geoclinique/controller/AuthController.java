@@ -10,15 +10,17 @@ import java.util.stream.Collectors;
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
+import geoclinique.geoclinique.model.Admin;
 import geoclinique.geoclinique.model.ERole;
 import geoclinique.geoclinique.model.Role;
 import geoclinique.geoclinique.model.Utilisateur;
+import geoclinique.geoclinique.payload.request.ClinicRequest;
 import geoclinique.geoclinique.payload.request.LoginRequest;
+import geoclinique.geoclinique.payload.request.PatientRequest;
 import geoclinique.geoclinique.payload.request.SignupRequest;
 import geoclinique.geoclinique.payload.response.JwtResponse;
 import geoclinique.geoclinique.payload.response.MessageResponse;
-import geoclinique.geoclinique.repository.RoleRepository;
-import geoclinique.geoclinique.repository.UserRepository;
+import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
 import geoclinique.geoclinique.security.services.CrudService;
 import geoclinique.geoclinique.security.services.UserDetailsImpl;
@@ -36,7 +38,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/" }, maxAge = 3600, allowCredentials="true")
+@CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/", "http://localhost:8200/"  }, maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -51,7 +53,12 @@ public class AuthController {
 
   @Autowired
   RoleRepository roleRepository;
-
+  @Autowired
+  PatientRepository patientRepository;
+  @Autowired
+  ClinicsRepository clinicsRepository;
+  @Autowired
+  AdminRepository adminRepository;
   @Autowired
   PasswordEncoder encoder;
 
@@ -92,6 +99,27 @@ public class AuthController {
       return ResponseEntity
               .badRequest()
               .body(new MessageResponse("Error: Username is already taken!"));
+    }
+    //Verification si le username exist deja ds la table clinic
+    ClinicRequest clinicRequest = new ClinicRequest();
+    if (clinicsRepository.existsByUsername(clinicRequest.getUsername())) {
+      return ResponseEntity
+              .badRequest()
+              .body(new MessageResponse("Username non valide"));
+    }
+    //Verification si le username exist ds la table patient
+    PatientRequest patientRequest = new PatientRequest();
+    if (patientRepository.existsByUsername(patientRequest.getUsername())) {
+      return ResponseEntity
+              .badRequest()
+              .body(new MessageResponse("Username non valide"));
+    }
+    //Verification du username ds la admin
+    Admin admin = new Admin();
+    if (adminRepository.existsByUsername(admin.getUsername())) {
+      return ResponseEntity
+              .badRequest()
+              .body(new MessageResponse("Username non valide"));
     }
 
     if (userRepository.existsByEmail(signUpRequest.getEmail())) {

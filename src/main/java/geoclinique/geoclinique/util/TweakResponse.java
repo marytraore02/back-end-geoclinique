@@ -1,6 +1,6 @@
 package geoclinique.geoclinique.util;
 
-import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteClinicResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
 import geoclinique.geoclinique.repository.CalendrierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,21 +15,29 @@ public class TweakResponse {
     @Autowired
     CalendrierRepository calendrierRepository;
 
-    public List<DisponibiliteClinicResponse> listAllDisponibiliteByStatus(List<DisponibiliteClinicResponse> disponibiliteClinicList){
-        int shiftNb = this.calendrierRepository.findAll().size()+1;
+    public List<RdvMedecinResponse> listAllRdvByStatus(List<RdvMedecinResponse> rdvMedecinList){
 
+        // LA VARIABLE QUI VA RETOURNER LE NOMBRE TOTAL DES HORAIRES
+        int shiftNb = this.calendrierRepository.findAll().size()+1;
+        System.out.println(shiftNb);
+
+        // ON PARCOURS LA LISTE
         for(long i = 1 ; i < shiftNb; i++){
             Long j = Long.valueOf(i);
+            // shift PREND CHAQUE CHAMP DE LA LISTE DE MANIERE UNIQUE
             var shift = this.calendrierRepository.getOne(j);
-            DisponibiliteClinicResponse dummy = new DisponibiliteClinicResponse(shift.getId(), shift.getHeureDebut() +" - "+shift.getHeureFin(), true);
-            if (!disponibiliteClinicList.contains(dummy))
+            System.out.print(shift);
+
+            // L'OBJET dummy PREND LES DISPONIBILITES VALIDE
+            RdvMedecinResponse dummy = new RdvMedecinResponse(shift.getId(), shift.getHeureDebut() +" - "+shift.getHeureFin(), true);
+            if (!rdvMedecinList.contains(dummy))
             {
-                disponibiliteClinicList.add(dummy);
+                rdvMedecinList.add(dummy);
             }
         }
-//        return availabilityMedecinList;
-        return disponibiliteClinicList.stream()
-                .sorted(Comparator.comparing(DisponibiliteClinicResponse::getId))
+        //return rdvMedecinList;
+        return rdvMedecinList.stream()
+                .sorted(Comparator.comparing(RdvMedecinResponse::getId))
                 .collect(Collectors.toList());
     }
 

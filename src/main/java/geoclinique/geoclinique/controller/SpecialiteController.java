@@ -3,8 +3,6 @@ package geoclinique.geoclinique.controller;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
-import geoclinique.geoclinique.model.Clinics;
-import geoclinique.geoclinique.model.Utilisateur;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import geoclinique.geoclinique.model.Specialites;
@@ -20,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 @CrossOrigin(origins = "http://localhost:4200/", maxAge = 3600, allowCredentials="true")
 @RestController

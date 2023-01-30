@@ -7,17 +7,12 @@ import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.configuration.ImgConf;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
-import geoclinique.geoclinique.payload.request.ClinicRequest;
-import geoclinique.geoclinique.payload.request.LoginRequest;
-import geoclinique.geoclinique.payload.request.PatientRequest;
-import geoclinique.geoclinique.payload.request.SignupRequest;
-import geoclinique.geoclinique.payload.response.JwtResponse;
+import geoclinique.geoclinique.payload.request.CliniqueRequest;
 import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
 import geoclinique.geoclinique.security.services.CrudService;
-import geoclinique.geoclinique.security.services.UserDetailsImpl;
-import geoclinique.geoclinique.service.ClinicsServices;
+import geoclinique.geoclinique.service.CliniqueServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 //import org.apache.commons.lang3.StringUtils;
@@ -28,26 +23,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static org.apache.commons.lang3.StringUtils.*;
 
 @CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/", "http://localhost:8200/"  }, maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/clinic")
-@Api(value = "hello", description = "CRUD CLINIC")
-public class ClinicController {
+@Api(value = "hello", description = "CRUD CLINIQUE")
+public class CliniqueController {
     @Autowired
     private CrudService crudService;
     @Autowired
@@ -56,7 +44,7 @@ public class ClinicController {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    ClinicsRepository clinicsRepository;
+    CliniqueRepository clinicsRepository;
     @Autowired
     PatientRepository patientRepository;
 
@@ -72,7 +60,7 @@ public class ClinicController {
     JwtUtils jwtUtils;
 
     @Autowired
-    ClinicsServices clinicsServices;
+    CliniqueServices clinicsServices;
     @Autowired
     private EmailConstructor emailConstructor;
 
@@ -81,52 +69,52 @@ public class ClinicController {
 
 
 
-    @ApiOperation(value = "Creation de compte clinic")
+    @ApiOperation(value = "Creation de compte clinique")
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestParam(value = "data") String clinicsRequest1,
+    public ResponseEntity<?> registerUser(@RequestParam(value = "cliniqueRequest1") String cliniqueRequest1,
                                           @Param("agrementClinic") MultipartFile agrementClinic)
             throws IOException {
         //Conversion des donnees data en JSON
-        ClinicRequest clinicsRequest = new JsonMapper().readValue(clinicsRequest1, ClinicRequest.class);
+        CliniqueRequest cliniqueRequest = new JsonMapper().readValue(cliniqueRequest1, CliniqueRequest.class);
 
         //Verification si le nom exist ds la table clinics
-        if (clinicsRepository.existsByNomClinic(clinicsRequest.getNomClinic())) {
+        if (clinicsRepository.existsByNomClinique(cliniqueRequest.getNomClinique())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Une clinic du même nom exist, Veuillez donnez un autre nom!"));
+                    .body(new MessageResponse("Une clinique du même nom exist, Veuillez donnez un autre nom!"));
         }
         //Verification si le USERNAME exist ds la BASE
-        if (userRepository.existsByUsername(clinicsRequest.getUsername())) {
+        if (userRepository.existsByUsername(cliniqueRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Username non valide"));
         }
         //Verification si EMAIL exist deja ds la BASE
-        if (userRepository.existsByEmail(clinicsRequest.getEmail())) {
+        if (userRepository.existsByEmail(cliniqueRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Ce email est dejà utilisé par un patient"));
+                    .body(new MessageResponse("Ce email est dejà utilisé"));
         }
 
         // Create new user's account
-        Clinics clinics =
-                new Clinics(clinicsRequest.getUsername(), clinicsRequest.getEmail(),
-                        encoder.encode(clinicsRequest.getPassword()),
-                        clinicsRequest.getNomClinic(), clinicsRequest.getDescriptionClinic(),
-                        clinicsRequest.getAdresseClinic(), clinicsRequest.getVilleClinic(),
-                        clinicsRequest.getContactClinic(), clinicsRequest.getLongitudeClinic(),
-                        clinicsRequest.getLatitudeClinic());
+        Clinique clinics =
+                new Clinique(cliniqueRequest.getUsername(), cliniqueRequest.getEmail(),
+                        encoder.encode(cliniqueRequest.getPassword()),
+                        cliniqueRequest.getNomClinique(), cliniqueRequest.getDescriptionClinique(),
+                        cliniqueRequest.getAdresseClinique(), cliniqueRequest.getVilleClinique(),
+                        cliniqueRequest.getContactClinique(), cliniqueRequest.getLongitudeClinique(),
+                        cliniqueRequest.getLatitudeClinique());
 
 
         //Enregistrement de la photo
         String img = StringUtils.cleanPath(agrementClinic.getOriginalFilename());
-        clinicsRequest.setAgrementClinic(img);
+        cliniqueRequest.setAgrementClinique(img);
         String uploaDir = "\\Users\\siby\\Desktop\\geo-clinique\\src\\ressources\\static\\images\\clinics";
         ImgConf.saveimg(uploaDir, img, agrementClinic);
 
 
         //Creation des roles
-        Set<String> strRoles = clinicsRequest.getRole();
+        Set<String> strRoles = cliniqueRequest.getRole();
 
         //recuperer le role a l'entrer
         Set<Role> roles = new HashSet<>();
@@ -147,7 +135,7 @@ public class ClinicController {
             });
         }
         clinics.setRoles(roles);
-        clinics.setStatusClinic(false);
+        clinics.setStatusClinique(false);
 //        if (file != null) {
 //            clinics.setAgrementClinic(ImageConfig.save("clinic", file, clinics.getNomClinic()));
 //        }
@@ -157,58 +145,58 @@ public class ClinicController {
     }
 
 
-    @ApiOperation(value = "Lister les comptes clinic")
+    @ApiOperation(value = "Lister les comptes clinique")
     @PreAuthorize("hasRole('PATIENT') or hasRole('CLINIC') or hasRole('ADMIN')")
     @GetMapping("/read")
-    public ResponseEntity<List<Clinics>> Afficher(){
-        List<Clinics> clinics = clinicsServices.read();
+    public ResponseEntity<List<Clinique>> Afficher(){
+        List<Clinique> clinics = clinicsServices.read();
         return new ResponseEntity(clinics, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
-    @ApiOperation(value = "Mise à jour de comptes clinic")
+    @ApiOperation(value = "Mise à jour de comptes clinique")
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> update(@RequestParam(value = "data") String acti,
                                          @PathVariable("id") Long id,
                                          @RequestParam(value = "file", required = false) MultipartFile file)
             throws IOException {
-        Clinics clinics = null;
+        Clinique clinics = null;
 
         try {
-            clinics = new JsonMapper().readValue(acti, Clinics.class);
+            clinics = new JsonMapper().readValue(acti, Clinique.class);
 //            Random e = new Random();
 //            e.nextInt(8);
             if (file != null) {
-                clinics.setAgrementClinic(ImageConfig.save("clinic", file, clinics.getNomClinic()));
+                clinics.setAgrementClinique(ImageConfig.save("clinic", file, clinics.getNomClinique()));
             }
             clinicsServices.modifier(id, clinics);
-            return new ResponseEntity(new Message("Clinic modifié avec success"), HttpStatus.OK);
+            return new ResponseEntity(new Message("Clinique modifié avec success"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(new Message("Erreur de modification"), HttpStatus.OK);
         }
     }
 
     @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
-    @ApiOperation(value = "Suppression de comptes clinic")
+    @ApiOperation(value = "Suppression de comptes clinique")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> supprimer(@PathVariable long id) {
         try {
             if(!clinicsServices.existsById(id))
                 return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
             clinicsServices.delete(id);
-            return new ResponseEntity(new Message("Clinics supprimer avec succès"), HttpStatus.OK);
+            return new ResponseEntity(new Message("Clinique supprimer avec succès"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(new Message("Erreur de suppression"), HttpStatus.OK);
         }
     }
 
     @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
-    @ApiOperation(value = "Afficher une clinic")
+    @ApiOperation(value = "Afficher une clinique")
     @GetMapping("/get/{id}")
-    public ResponseEntity<Clinics> getById(@PathVariable("id") Long id){
+    public ResponseEntity<Clinique> getById(@PathVariable("id") Long id){
         if(!clinicsServices.existsById(id))
             return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
-        Clinics clinics = clinicsServices.GetOne(id).get();
+        Clinique clinics = clinicsServices.GetOne(id).get();
         return new ResponseEntity(clinics, HttpStatus.OK);
     }
 

@@ -11,6 +11,7 @@ import org.hibernate.annotations.SelectBeforeUpdate;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "calendrier")
-public class Calendrier {
+public class Calendrier implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

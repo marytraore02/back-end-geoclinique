@@ -1,5 +1,6 @@
 package geoclinique.geoclinique.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "medecins")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Medecins implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,7 +38,7 @@ public class Medecins implements Serializable {
     @NotBlank
     @Size(max = 20)
     private String sexeMedecin;
-    private Date naissanceMedecin;
+    private String naissanceMedecin;
     @NotBlank
     @Size(max = 20)
     private String imageMedecin;
@@ -46,13 +48,19 @@ public class Medecins implements Serializable {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_clinics")
-    private Clinics clinics;
+    private Clinique clinique;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "medecins")
+    List<RendezVous> ListeRdv = new ArrayList<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "medecins")
     List<Specialites> ListeSpecMedecins = new ArrayList<>();
 
-    public Medecins(String nomMedecin, String prenomMedecin, String emailMedecin, String sexeMedecin, Date naissanceMedecin, String imageMedecin, String contactMedecin, Clinics clinics) {
+    public Medecins(String nomMedecin, String prenomMedecin, String emailMedecin, String sexeMedecin, String naissanceMedecin, String imageMedecin, String contactMedecin, Clinique clinique) {
         this.nomMedecin = nomMedecin;
         this.prenomMedecin = prenomMedecin;
         this.emailMedecin = emailMedecin;
@@ -61,6 +69,16 @@ public class Medecins implements Serializable {
         this.imageMedecin = imageMedecin;
         this.contactMedecin = contactMedecin;
        // this.utilisateur = utilisateur;
-        this.clinics = clinics;
+        this.clinique = clinique;
+    }
+
+    public Medecins(String nomMedecin, String prenomMedecin, String emailMedecin, String sexeMedecin, String naissanceMedecin, String contactMedecin) {
+        this.nomMedecin = nomMedecin;
+        this.prenomMedecin = prenomMedecin;
+        this.emailMedecin = emailMedecin;
+        this.sexeMedecin = sexeMedecin;
+        this.naissanceMedecin = naissanceMedecin;
+        this.contactMedecin = contactMedecin;
+        //this.clinique = clinique;
     }
 }

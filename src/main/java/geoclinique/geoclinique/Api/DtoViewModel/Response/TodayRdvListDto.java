@@ -7,10 +7,10 @@ import java.time.LocalTime;
 
 @Getter
 @Setter
-public class TodayRendezVousListDto {
+public class TodayRdvListDto {
     private Long rdvId;
-    private String patientName;
-    private String patientEmail;
+    private String NomPatient;
+    private String PrenomPatient;
     private Long calendrier_id;
     private LocalTime heureDebut;
     private LocalTime heureFin;

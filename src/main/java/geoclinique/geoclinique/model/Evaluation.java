@@ -26,5 +26,5 @@ public class Evaluation {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "listeEvaluation")
-    List<Clinics> listeClinics = new ArrayList<>();
+    List<Clinique> listeClinics = new ArrayList<>();
 }

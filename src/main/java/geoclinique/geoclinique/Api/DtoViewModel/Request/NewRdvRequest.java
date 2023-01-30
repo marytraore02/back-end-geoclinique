@@ -5,11 +5,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NewDisponibiliteRequest {
+public class NewRdvRequest {
     private String nom;
     private String prenom;
     private String date;
     private Long calendrierId;
-    private Long clinicId;
+    private Long medecinId;
     private boolean isValide = false;
 }

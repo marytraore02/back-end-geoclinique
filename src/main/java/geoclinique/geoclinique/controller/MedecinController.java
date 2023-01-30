@@ -3,9 +3,12 @@ package geoclinique.geoclinique.controller;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
+import geoclinique.geoclinique.model.Clinique;
 import geoclinique.geoclinique.model.Medecins;
 import geoclinique.geoclinique.model.Specialites;
+import geoclinique.geoclinique.repository.CliniqueRepository;
 import geoclinique.geoclinique.repository.MedecinsRepository;
+import geoclinique.geoclinique.service.CliniqueServices;
 import geoclinique.geoclinique.service.MedecinsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,20 +30,28 @@ import java.util.List;
 public class MedecinController {
     @Autowired
     MedecinsRepository medecinsRepository;
+    @Autowired
+    CliniqueRepository cliniqueRepository;
+    @Autowired
+    CliniqueServices cliniqueServices;
 
     @Autowired
     MedecinsService medecinsService;
 
     //@PreAuthorize("hasRole('ADMIN') or hasRole('CLINIC')")
-    @ApiOperation(value = "Creation de specialite")
-    @PostMapping("/create/new")
+    @ApiOperation(value = "Creation d'un medecin")
+    @PostMapping("/create/new/{id}")
     public ResponseEntity<?> create(@RequestParam(value = "data") String acti,
+                                    @PathVariable("id") Long id,
                                     @RequestParam(value = "file", required = false) MultipartFile file)
 
             throws IOException {
         Medecins medecins = null;
         try {
             medecins = new JsonMapper().readValue(acti, Medecins.class);
+            System.out.println(medecins);
+
+            Clinique clinique = cliniqueServices.GetOne(id).get();
 
             if(StringUtils.isBlank(medecins.getNomMedecin()))
                 return new ResponseEntity(new Message("Le nom du medecin est obligatoire"), HttpStatus.BAD_REQUEST);
@@ -53,7 +64,11 @@ public class MedecinController {
 
             if (file != null) {
                 try {
+                    //Verification de l'existance de l'id de la clinic
+                    if(!cliniqueServices.existsById(id))
+                        return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
                     medecins.setImageMedecin(ImageConfig.save("medecin", file, medecins.getPrenomMedecin()));
+                    medecins.setClinique(clinique);
                     medecinsService.creer(medecins);
                     return new ResponseEntity(new Message("Medecins créé avec success"), HttpStatus.OK);
 
@@ -120,7 +135,7 @@ public class MedecinController {
     public ResponseEntity<Medecins> getById(@PathVariable("id") Long id){
         if(!medecinsService.existsById(id))
             return new ResponseEntity(new Message("Medecin n'existe pas"), HttpStatus.NOT_FOUND);
-        Medecins medecins = medecinsService.GetOne(id).get();
+        Medecins medecins = medecinsService.getOne(id);
         return new ResponseEntity(medecins, HttpStatus.OK);
     }
 

@@ -13,8 +13,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TodayRendezVousResponse {
+public class TodayRdvResponse {
     private LocalDate date;
     private int size;
-    private List<TodayRendezVousListDto> events = new ArrayList<>();
+    private List<TodayRdvListDto> events = new ArrayList<>();
 }

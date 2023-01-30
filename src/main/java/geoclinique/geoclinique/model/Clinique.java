@@ -20,7 +20,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "clinics",
+@Table(name = "clinique",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
@@ -28,58 +28,60 @@ import java.util.Set;
 @SuperBuilder
 @DynamicUpdate
 @SelectBeforeUpdate
-public class Clinics extends Utilisateur{
+public class Clinique extends Utilisateur{
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 //    private Long idClinic;
     @NotBlank
     @Size(max = 20)
-    private String nomClinic;
+    private String nomClinique;
     @NotBlank
     @Size(max = 500)
-    private String descriptionClinic;
+    private String descriptionClinique;
     @NotBlank
     @Size(max = 20)
-    private String contactClinic;
+    private String contactClinique;
     @NotBlank
     @Size(max = 20)
-    private String villeClinic;
+    private String villeClinique;
     @NotBlank
     @Size(max = 50)
-    private String adresseClinic;
+    private String adresseClinique;
     @NotBlank
     @Size(max = 50)
-    private String longitudeClinic;
+    private String longitudeClinique;
     @NotBlank
     @Size(max = 50)
-    private String latitudeClinic;
+    private String latitudeClinique;
     @NotBlank
     @Size(max = 20)
-    private String agrementClinic;
-    private boolean statusClinic;
+    private String agrementClinique;
+    private boolean statusClinique;
 
-    public Clinics(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomClinic, String descriptionClinic, String contactClinic, String villeClinic, String adresseClinic, String longitudeClinic, String latitudeClinic) {
+
+
+    public Clinique(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomClinique, String descriptionClinique, String contactClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique) {
         super(username, email, password);
-        this.nomClinic = nomClinic;
-        this.descriptionClinic = descriptionClinic;
-        this.contactClinic = contactClinic;
-        this.villeClinic = villeClinic;
-        this.adresseClinic = adresseClinic;
-        this.longitudeClinic = longitudeClinic;
-        this.latitudeClinic = latitudeClinic;
+        this.nomClinique = nomClinique;
+        this.descriptionClinique = descriptionClinique;
+        this.contactClinique = contactClinique;
+        this.villeClinique = villeClinique;
+        this.adresseClinique = adresseClinique;
+        this.longitudeClinique = longitudeClinique;
+        this.latitudeClinique = latitudeClinique;
     }
 
 
     //Liste des RDV
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "clinics")
-    List<RendezVous> ListeRdv = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY,
+//            mappedBy = "clinics")
+//    List<RendezVous> ListeRdv = new ArrayList<>();
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "clinics")
+    @OneToMany(mappedBy = "clinique")
     List<Medecins> listeMedecins = new ArrayList<>();
 
     @JsonIgnore

@@ -1,18 +1,15 @@
 package geoclinique.geoclinique.service;
 
 import geoclinique.geoclinique.Api.DtoMapper.RendezVousMapper;
-import geoclinique.geoclinique.Api.DtoViewModel.Request.DisponibiliteClinicRequest;
-import geoclinique.geoclinique.Api.DtoViewModel.Request.NewDisponibiliteRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
-import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteClinicResponse;
-import geoclinique.geoclinique.model.Clinics;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
 import geoclinique.geoclinique.model.Patients;
 import geoclinique.geoclinique.model.RendezVous;
-import geoclinique.geoclinique.repository.CalendrierRepository;
-import geoclinique.geoclinique.repository.ClinicsRepository;
-import geoclinique.geoclinique.repository.PatientRepository;
-import geoclinique.geoclinique.repository.RendezVousRepository;
+import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.util.TweakResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,9 +23,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class PatientSevice {
     @Autowired
-    ClinicsRepository clinicsRepository;
+    CliniqueRepository clinicsRepository;
+    @Autowired
+    MedecinsRepository medecinsRepository;
     @Autowired
     PatientRepository patientRepository;
     @Autowired
@@ -93,37 +93,54 @@ public class PatientSevice {
     }
 
 
-    //List de disponibilite d'une clinic par jour
-    public List<DisponibiliteClinicResponse> listAllClinicDisponible(DisponibiliteClinicRequest clinicDisponible){
+    // List de disponibilite d'un medecin par jour
+    public List<RdvMedecinResponse> listAllRdvMedecin(RdvMedecinRequest medecinRdv){
 
-        var clinic = this.clinicsRepository.findById(clinicDisponible.getClinicId());
-        var date = LocalDate.parse(clinicDisponible.getDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        if(clinic.isEmpty()){
+        // RECUPERER L'ID DU MEDECIN
+        var medecin = this.medecinsRepository.findById(medecinRdv.getMedecinId());
+        System.out.println(medecin);
+
+        // RECUPERER LA DATE DISPONIBILITE DU MEDECIN
+        var date = LocalDate.parse(medecinRdv.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println(date);
+
+        // VERIFIER SI L'ID DU MEDECIN EXIST
+        if(medecin.isEmpty()){
             return null;
         }
-        var clinicDisponibles = this.rendezVousRepository.findAllByClinicsAndDate(clinic.get(), date);
 
-        var clinicDisponibleList =
-                clinicDisponibles.stream().sorted((a1, a2) -> {
+        // LA VARIABLE QUI PREND EN ENTRER L"IL DU MEDECIN ET LA DATE
+        var RdvMedecin = this.rendezVousRepository.findAllByMedecinsAndDate(medecin.get(), date);
+
+        // LA VARIABLE QUI VA RETOURNER LA LISTE DES HORAIRES DE DISPONIBILITE DU JOUR
+        var MedecinRdvList =
+                RdvMedecin.stream().sorted((a1, a2) -> {
                             System.out.printf("sort: %s; %s\n", a1, a2);
                             return a1.getCalendrier().getId().compareTo(a2.getCalendrier().getId());
                         })
-                        .map(a -> this.rendezVousMapper.toDisponibiliteClinicDto(a))
+
+                        // RETOURNE LES HORAIRES INDISPONIBLE D'UNE JOURNEE
+                        .map(a -> this.rendezVousMapper.toRdvMedecinDto(a))
                         .collect(Collectors.toList());
 
-        return this.tweakResponse.listAllDisponibiliteByStatus(clinicDisponibleList);
+        // medecinRdvList VA NOUS RETOURNER LA LISTE DES HORAIRES DEJA PRISES
+        //return MedecinRdvList;
+
+
+        // LA METHODE RETOURNE LA LISTE DES HORAIRES DISPONIBLES D'UNE JOURNEE
+        return this.tweakResponse.listAllRdvByStatus(MedecinRdvList);
     }
 
 
-    // Ajouter une RDV
-    public Object save(NewDisponibiliteRequest newDisponibilite){
+     //Ajouter une RDV
+    public Object save(NewRdvRequest newRdv){
 
-        var clinic = this.clinicsRepository.findById(newDisponibilite.getClinicId());
-        var calendrier = this.calendrierRepository.findById(newDisponibilite.getCalendrierId());
-        var date = LocalDate.parse(newDisponibilite.getDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        var medecin = this.medecinsRepository.findById(newRdv.getMedecinId());
+        var calendrier = this.calendrierRepository.findById(newRdv.getCalendrierId());
+        var date = LocalDate.parse(newRdv.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        if(clinic.isEmpty()){
-            return new ResponseEntity<>(new ApiResponse(false,"Clinic non trouvé."),
+        if(medecin.isEmpty()){
+            return new ResponseEntity<>(new ApiResponse(false,"Medecin non trouvé."),
                     HttpStatus.NOT_FOUND);
         }
         if(calendrier.isEmpty()){
@@ -131,19 +148,19 @@ public class PatientSevice {
                     HttpStatus.BAD_REQUEST);
         }
 
-        var isAvailable = this.rendezVousRepository.findByClinicsAndDateAndCalendrier(clinic.get(), date, calendrier.get());
+        var isAvailable = this.rendezVousRepository.findByMedecinsAndDateAndCalendrier(medecin.get(), date, calendrier.get());
         // Check if not already take.
         if(isAvailable.isPresent()){
             return new ResponseEntity<>(new ApiResponse(false,"Time shift already taken, please choose another one."),
                     HttpStatus.BAD_REQUEST);
         }
-        var patientNom = newDisponibilite.getNom();
-        var patientPrenom = newDisponibilite.getPrenom();
+        var patientNom = newRdv.getNom();
+        var patientPrenom = newRdv.getPrenom();
 
         // Finally perform the save operation
         Patients patient = new Patients(patientNom, patientPrenom);
         Patients savedPatient = this.patientRepository.save(patient);
-        RendezVous rdv = new RendezVous(clinic.get(), savedPatient,calendrier.get(), date, false);
+        RendezVous rdv = new RendezVous(medecin.get(), savedPatient,calendrier.get(), date, false);
         this.rendezVousRepository.save(rdv);
 
         return rdv;

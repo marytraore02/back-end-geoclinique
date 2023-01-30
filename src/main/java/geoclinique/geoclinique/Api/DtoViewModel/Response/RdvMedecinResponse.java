@@ -5,11 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
-public class DisponibiliteClinicResponse {
+@AllArgsConstructor
+@NoArgsConstructor
+public class RdvMedecinResponse {
     private Long id;
     private String calendrier;
     private boolean disponible;
@@ -18,7 +19,7 @@ public class DisponibiliteClinicResponse {
         if (obj == null) {
             return false;
         }
-        final DisponibiliteClinicResponse other = (DisponibiliteClinicResponse) obj;
+        final RdvMedecinResponse other = (RdvMedecinResponse) obj;
 
         if (this.getId().intValue() == other.getId().intValue()) {
             return true;

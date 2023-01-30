@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DisponibiliteClinicRequest {
-    private Long clinicId;
+public class RdvMedecinRequest {
+    private Long medecinId;
     private String date;
 }

@@ -1,8 +1,7 @@
 package geoclinique.geoclinique.service;
 
-import geoclinique.geoclinique.model.Clinics;
+import geoclinique.geoclinique.model.Clinique;
 import geoclinique.geoclinique.model.Medecins;
-import geoclinique.geoclinique.model.Patients;
 import geoclinique.geoclinique.repository.MedecinsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,9 +22,15 @@ public class MedecinsService {
     public List<Medecins> read(){
         return medecinsRepository.findAll();
     }
-    public Optional<Medecins> GetOne(Long id){
-        return medecinsRepository.findById(id);
+    public Medecins getOne(Long id){
+        return medecinsRepository.findById(id).get();
     }
+//    public Medecins getByClinique(Clinique clinique){
+//        return medecinsRepository.findByIdClinique(clinique);
+//    }
+//    public Optional<Medecins> GetOne(Long id){
+//        return medecinsRepository.findById(id);
+//    }
     public boolean existsByName(String name){
         return medecinsRepository.existsByNomMedecin(name);
     }
@@ -43,16 +48,19 @@ public class MedecinsService {
         return medecinsRepository.findByNomMedecin(nom);
     }
     public Medecins modifier(Long id, Medecins medecins) {
-        return medecinsRepository.findById(id)
-                .map(p->{
-                    p.setNomMedecin(medecins.getNomMedecin());
-                    p.setPrenomMedecin(medecins.getPrenomMedecin());
-                    p.setEmailMedecin(medecins.getEmailMedecin());
-                    p.setNaissanceMedecin(medecins.getNaissanceMedecin());
-                    p.setSexeMedecin(medecins.getSexeMedecin());
-                    p.setContactMedecin(medecins.getContactMedecin());
-                    return medecinsRepository.save(p);
-                }).orElseThrow(()-> new RuntimeException("Medecin non trouvé !"));
+        Medecins dt = medecinsRepository.findById(id).get();
+            return medecinsRepository.save(dt);
+
+//                medecinsRepository.findById(id)
+//                .map(p->{
+//                    p.setNomMedecin(medecins.getNomMedecin());
+//                    p.setPrenomMedecin(medecins.getPrenomMedecin());
+//                    p.setEmailMedecin(medecins.getEmailMedecin());
+//                    p.setNaissanceMedecin(medecins.getNaissanceMedecin());
+//                    p.setSexeMedecin(medecins.getSexeMedecin());
+//                    p.setContactMedecin(medecins.getContactMedecin());
+//                    return medecinsRepository.save(p);
+//                }).orElseThrow(()-> new RuntimeException("Medecin non trouvé !"));
     }
     public String delete(Long id){
         medecinsRepository.deleteById(id);

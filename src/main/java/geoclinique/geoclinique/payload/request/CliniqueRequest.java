@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-public class ClinicRequest {
+public class CliniqueRequest {
     @NotBlank
     @Size(max = 20)
     private String username;
@@ -26,28 +26,29 @@ public class ClinicRequest {
     private Set<String> role;
     @NotBlank
     @Size(max = 20)
-    private String nomClinic;
+    private String nomClinique;
     @NotBlank
     @Size(max = 500)
-    private String descriptionClinic;
+    private String descriptionClinique;
     @NotBlank
     @Size(max = 20)
-    private String contactClinic;
+    private String contactClinique;
     @NotBlank
     @Size(max = 20)
-    private String villeClinic;
+    private String villeClinique;
     @NotBlank
     @Size(max = 50)
-    private String adresseClinic;
+    private String adresseClinique;
     @NotBlank
     @Size(max = 50)
-    private String longitudeClinic;
+    private String longitudeClinique;
     @NotBlank
     @Size(max = 50)
-    private String latitudeClinic;
+    private String latitudeClinique;
     @NotBlank
     @Size(max = 20)
-    private String agrementClinic;
-    private boolean statusClinic;
+    private String agrementClinique;
+    private boolean statusClinique;
+
 
 }

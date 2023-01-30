@@ -26,7 +26,7 @@ public class Messages {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "clinics")
-    Clinics clinics;
+    Clinique clinics;
 
     @JsonIgnore
     @ManyToOne

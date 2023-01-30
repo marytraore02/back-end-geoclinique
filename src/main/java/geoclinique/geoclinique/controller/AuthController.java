@@ -1,20 +1,17 @@
 package geoclinique.geoclinique.controller;
 
-import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 
 import geoclinique.geoclinique.model.Admin;
 import geoclinique.geoclinique.model.ERole;
 import geoclinique.geoclinique.model.Role;
 import geoclinique.geoclinique.model.Utilisateur;
-import geoclinique.geoclinique.payload.request.ClinicRequest;
+import geoclinique.geoclinique.payload.request.CliniqueRequest;
 import geoclinique.geoclinique.payload.request.LoginRequest;
 import geoclinique.geoclinique.payload.request.PatientRequest;
 import geoclinique.geoclinique.payload.request.SignupRequest;
@@ -56,7 +53,7 @@ public class AuthController {
   @Autowired
   PatientRepository patientRepository;
   @Autowired
-  ClinicsRepository clinicsRepository;
+  CliniqueRepository clinicsRepository;
   @Autowired
   AdminRepository adminRepository;
   @Autowired
@@ -101,7 +98,7 @@ public class AuthController {
               .body(new MessageResponse("Error: Username is already taken!"));
     }
     //Verification si le username exist deja ds la table clinic
-    ClinicRequest clinicRequest = new ClinicRequest();
+    CliniqueRequest clinicRequest = new CliniqueRequest();
     if (clinicsRepository.existsByUsername(clinicRequest.getUsername())) {
       return ResponseEntity
               .badRequest()

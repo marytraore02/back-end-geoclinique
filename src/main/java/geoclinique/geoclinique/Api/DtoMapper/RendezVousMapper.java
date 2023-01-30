@@ -1,10 +1,10 @@
 package geoclinique.geoclinique.Api.DtoMapper;
 
-import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteClinicResponse;
-import geoclinique.geoclinique.Api.DtoViewModel.Response.TodayRendezVousListDto;
-import geoclinique.geoclinique.Api.DtoViewModel.Response.TodayRendezVousResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.TodayRdvListDto;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.TodayRdvResponse;
 import geoclinique.geoclinique.model.RendezVous;
-import geoclinique.geoclinique.repository.ClinicsRepository;
+import geoclinique.geoclinique.repository.CliniqueRepository;
 import geoclinique.geoclinique.repository.RendezVousRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,13 +18,13 @@ public class RendezVousMapper {
     private RendezVousRepository rendezVousRepository;
 
     @Autowired
-    private ClinicsRepository clinicsRepository;
+    private CliniqueRepository clinicsRepository;
 
 
-    // Afficher des horaires du jour
-    public TodayRendezVousResponse toDto(List<RendezVous> rdvList, RendezVous rdv, int size){
+    // Afficher la liste total des RDV du jour
+    public TodayRdvResponse toDto(List<RendezVous> rdvList, RendezVous rdv, int size){
 
-        var TodayRendezVousResponse = new TodayRendezVousResponse();
+        var TodayRendezVousResponse = new TodayRdvResponse();
 
         TodayRendezVousResponse.setDate(rdv.getDate());
         TodayRendezVousResponse.setSize(size);
@@ -44,12 +44,12 @@ public class RendezVousMapper {
 
 
     // Liste des RDV du jour
-    public TodayRendezVousListDto test(RendezVous rdv){
+    public TodayRdvListDto test(RendezVous rdv){
 
-        var todayRendezVousListDto = new TodayRendezVousListDto();
+        var todayRendezVousListDto = new TodayRdvListDto();
         todayRendezVousListDto.setRdvId(rdv.getId());
-        todayRendezVousListDto.setPatientEmail(rdv.getPatients().getEmail());
-        todayRendezVousListDto.setPatientName(rdv.getPatients().getPrenomPatient());
+        todayRendezVousListDto.setNomPatient(rdv.getPatients().getNomPatient());
+        todayRendezVousListDto.setPrenomPatient(rdv.getPatients().getPrenomPatient());
         todayRendezVousListDto.setStatus(rdv.isActive());
         todayRendezVousListDto.setCalendrier_id(rdv.getCalendrier().getId());
         todayRendezVousListDto.setHeureDebut(rdv.getCalendrier().getHeureDebut());
@@ -58,12 +58,13 @@ public class RendezVousMapper {
     }
 
 
-    public DisponibiliteClinicResponse toDisponibiliteClinicDto(RendezVous rdv){
-        var disponibiliteClinic = new DisponibiliteClinicResponse();
-        disponibiliteClinic.setId(rdv.getCalendrier().getId());
-        disponibiliteClinic.setCalendrier(rdv.getCalendrier().getHeureDebut() +" - "+rdv.getCalendrier().getHeureFin());
-        disponibiliteClinic.setDisponible(false);
-        return disponibiliteClinic;
+    // LE CALENDRIER DU MEDECIN RETOURNER
+    public RdvMedecinResponse toRdvMedecinDto(RendezVous rdv){
+        var RdvMedecin = new RdvMedecinResponse();
+        RdvMedecin.setId(rdv.getCalendrier().getId());
+        RdvMedecin.setCalendrier(rdv.getCalendrier().getHeureDebut() +" - "+rdv.getCalendrier().getHeureFin());
+        RdvMedecin.setDisponible(false);
+        return RdvMedecin;
     }
 
 }

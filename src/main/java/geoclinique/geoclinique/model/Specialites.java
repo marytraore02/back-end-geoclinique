@@ -36,7 +36,7 @@ public class Specialites {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "clinics")
-    private Clinics clinics;
+    private Clinique clinics;
 
     @JsonIgnore
     @ManyToOne

@@ -11,11 +11,11 @@ import java.util.Optional;
 @Repository
 public interface RendezVousRepository extends JpaRepository<RendezVous, Long> {
     //Liste de RDV de la clinic
-    List<RendezVous> findAllByClinics(Clinics clinics);
+    List<RendezVous> findAllByMedecins(Medecins medecins);
 
     //Liste de RDV du patient
     List<RendezVous> findAllByPatients(Patients patients);
-    List<RendezVous> findAllByClinicsAndDate(Clinics clinics, LocalDate date);
-    Optional<RendezVous> findByClinicsAndDateAndCalendrier(Clinics clinics, LocalDate date, Calendrier calendrier);
+    List<RendezVous> findAllByMedecinsAndDate(Medecins medecins, LocalDate date);
+    Optional<RendezVous> findByMedecinsAndDateAndCalendrier(Medecins medecins, LocalDate date, Calendrier calendrier);
 
 }

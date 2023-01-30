@@ -1,26 +1,24 @@
 package geoclinique.geoclinique.controller;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
-import geoclinique.geoclinique.Api.DtoViewModel.Request.DisponibiliteClinicRequest;
-import geoclinique.geoclinique.Api.DtoViewModel.Request.NewDisponibiliteRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
 import geoclinique.geoclinique.configuration.EmailConstructor;
-import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
-import geoclinique.geoclinique.payload.request.ClinicRequest;
 import geoclinique.geoclinique.payload.request.PatientRequest;
-import geoclinique.geoclinique.payload.request.SignupRequest;
 import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.service.PatientSevice;
+import geoclinique.geoclinique.util.TweakResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +40,7 @@ public class PatientController {
     @Autowired
     PatientRepository patientRepository;
     @Autowired
-    ClinicsRepository clinicsRepository;
+    CliniqueRepository clinicsRepository;
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -58,6 +56,7 @@ public class PatientController {
 
     @Autowired
     private JavaMailSender mailSender;
+    private TweakResponse tweakResponse;
 
 
     @ApiOperation(value = "Creation de compte patient")
@@ -176,7 +175,7 @@ public class PatientController {
     //@PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
     @ApiOperation(value = "Afficher un patient")
     @GetMapping("/get/{id}")
-    public ResponseEntity<Clinics> getById(@PathVariable("id") Long id){
+    public ResponseEntity<Clinique> getById(@PathVariable("id") Long id){
         if(!patientSevice.existsById(id))
             return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
         Patients patients = patientSevice.GetOne(id).get();
@@ -187,23 +186,23 @@ public class PatientController {
     //  Ajouter RDV
     @ApiOperation(value = "Ajouter un rendez-vous")
     @PostMapping("/rdv/save")
-    public ResponseEntity<?> save(@Valid @RequestBody NewDisponibiliteRequest newDisponibilite){
+    public ResponseEntity<?> save(@Valid @RequestBody NewRdvRequest newRdv){
         try{
-            var save = this.patientSevice.save(newDisponibilite);
+            var save = this.patientSevice.save(newRdv);
             return ResponseEntity.ok(save);
         } catch (Exception e){
             return new ResponseEntity(new Message("Erreur de sauvagarde"), HttpStatus.OK);
         }
     }
 
-    // Obtenir la liste des disponibites d'une clinic par jour
-    @PostMapping("/disponibilite")
-    public ResponseEntity<? extends Object> listClinicDisponible(@Valid @RequestBody DisponibiliteClinicRequest disponibiliteClinic){
-        var result = this.patientSevice.listAllClinicDisponible(disponibiliteClinic);
+    // Obtenir la liste des disponibites d'un medecin par jour
+    @PostMapping("/rdv")
+    public ResponseEntity<? extends Object> listRdvMedecin(@Valid @RequestBody RdvMedecinRequest rdvMedecin){
+        var result = this.patientSevice.listAllRdvMedecin(rdvMedecin);
 
         try{
             if(result==null)
-                return new ResponseEntity<>(new ApiResponse(false,"Clinic not found.."),
+                return new ResponseEntity<>(new ApiResponse(false,"Clinique non trovée.."),
                         HttpStatus.NOT_FOUND);
 
             return ResponseEntity.ok(result);
@@ -215,5 +214,11 @@ public class PatientController {
 
     }
 
+
+//    @GetMapping("/test")
+//    public ResponseEntity<? extends Object> list(@Valid @RequestBody RdvMedecinRequest medecinRdv){
+//        var response = this.tweakResponse.listAllRdvByStatus(medecinRdv);
+//        return ResponseEntity.ok(response);
+//    }
 
 }

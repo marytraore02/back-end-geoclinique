@@ -8,6 +8,7 @@ import lombok.Setter;
 public class NewRdvRequest {
     private String nom;
     private String prenom;
+    private String email;
     private String date;
     private Long calendrierId;
     private Long medecinId;

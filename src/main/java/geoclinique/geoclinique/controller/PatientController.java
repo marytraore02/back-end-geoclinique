@@ -20,9 +20,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
+import javax.validation.ValidationException;
+
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -197,19 +200,24 @@ public class PatientController {
 
     // Obtenir la liste des disponibites d'un medecin par jour
     @PostMapping("/rdv")
-    public ResponseEntity<? extends Object> listRdvMedecin(@Valid @RequestBody RdvMedecinRequest rdvMedecin){
+    public ResponseEntity<? extends Object> listRdvMedecin(@Valid @RequestBody RdvMedecinRequest rdvMedecin, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            throw new ValidationException("Availabilities has errors; Can not fetch all medecin availabilities;");
+        }
+
         var result = this.patientSevice.listAllRdvMedecin(rdvMedecin);
 
-        try{
+//        try{
             if(result==null)
                 return new ResponseEntity<>(new ApiResponse(false,"Clinique non trovée.."),
                         HttpStatus.NOT_FOUND);
 
             return ResponseEntity.ok(result);
-
-      }catch (Exception e){
-          return new ResponseEntity(new Message("Erreur"), HttpStatus.OK);
-      }
+//
+//      }catch (Exception e){
+//          return new ResponseEntity(new Message("Erreur"), HttpStatus.OK);
+//      }
 
 
     }

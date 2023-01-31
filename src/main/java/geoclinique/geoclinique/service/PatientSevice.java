@@ -95,22 +95,22 @@ public class PatientSevice {
 
     // List de disponibilite d'un medecin par jour
     public List<RdvMedecinResponse> listAllRdvMedecin(RdvMedecinRequest medecinRdv){
-
+    //System.err.print(medecinRdv.getMedecinId());
         // RECUPERER L'ID DU MEDECIN
-        var medecin = this.medecinsRepository.findById(medecinRdv.getMedecinId());
-        System.out.println(medecin);
+        var medecin = this.medecinsRepository.getReferenceById(medecinRdv.getMedecinId());
+        //System.err.println(medecin);
 
         // RECUPERER LA DATE DISPONIBILITE DU MEDECIN
         var date = LocalDate.parse(medecinRdv.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        System.out.println(date);
+        //System.out.println(date);
 
         // VERIFIER SI L'ID DU MEDECIN EXIST
-        if(medecin.isEmpty()){
+        if(medecin == null){
             return null;
         }
 
         // LA VARIABLE QUI PREND EN ENTRER L"IL DU MEDECIN ET LA DATE
-        var RdvMedecin = this.rendezVousRepository.findAllByMedecinsAndDate(medecin.get(), date);
+        var RdvMedecin = this.rendezVousRepository.findAllByMedecinsAndDate(medecin, date);
 
         // LA VARIABLE QUI VA RETOURNER LA LISTE DES HORAIRES DE DISPONIBILITE DU JOUR
         var MedecinRdvList =
@@ -122,13 +122,34 @@ public class PatientSevice {
                         // RETOURNE LES HORAIRES INDISPONIBLE D'UNE JOURNEE
                         .map(a -> this.rendezVousMapper.toRdvMedecinDto(a))
                         .collect(Collectors.toList());
-
         // medecinRdvList VA NOUS RETOURNER LA LISTE DES HORAIRES DEJA PRISES
         //return MedecinRdvList;
 
 
+        // LA VARIABLE QUI VA RETOURNER LE NOMBRE TOTAL DES HORAIRES
+        int shiftNb = this.calendrierRepository.findAll().size()+1;
+        System.err.println(shiftNb);
+
+        // ON PARCOURS LA LISTE DES HORAIRES
+        for(long i = 1 ; i < shiftNb; i++){
+            Long j = Long.valueOf(i);
+            // shift PREND CHAQUE CHAMP DE LA LISTE DE MANIERE UNIQUE
+            var shift = this.calendrierRepository.getOne(j);
+            System.out.print(shift);
+
+            // L'OBJET dummy PREND LES DISPONIBILITES VALIDE
+            RdvMedecinResponse dummy = new RdvMedecinResponse(shift.getId(), shift.getHeureDebut() +" - "+shift.getHeureFin(), true);
+            if (!MedecinRdvList.contains(dummy))
+            {
+                MedecinRdvList.add(dummy);
+            }
+
+        }
+
         // LA METHODE RETOURNE LA LISTE DES HORAIRES DISPONIBLES D'UNE JOURNEE
-        return this.tweakResponse.listAllRdvByStatus(MedecinRdvList);
+        //return this.tweakResponse.listAllRdvByStatus(MedecinRdvList);
+
+        return MedecinRdvList;
     }
 
 
@@ -151,7 +172,7 @@ public class PatientSevice {
         var isAvailable = this.rendezVousRepository.findByMedecinsAndDateAndCalendrier(medecin.get(), date, calendrier.get());
         // Check if not already take.
         if(isAvailable.isPresent()){
-            return new ResponseEntity<>(new ApiResponse(false,"Time shift already taken, please choose another one."),
+            return new ResponseEntity<>(new ApiResponse(false,"Heure occupé, Veuillez choisir un autre heure."),
                     HttpStatus.BAD_REQUEST);
         }
         var patientNom = newRdv.getNom();

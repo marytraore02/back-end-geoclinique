@@ -19,7 +19,7 @@ public class TweakResponse {
 
         // LA VARIABLE QUI VA RETOURNER LE NOMBRE TOTAL DES HORAIRES
         int shiftNb = this.calendrierRepository.findAll().size()+1;
-        System.out.println(shiftNb);
+        System.err.println(shiftNb);
 
         // ON PARCOURS LA LISTE
         for(long i = 1 ; i < shiftNb; i++){

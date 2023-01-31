@@ -1,6 +1,9 @@
 package geoclinique.geoclinique.controller;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.TodayRdvRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.TodayRdvResponse;
 import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.configuration.ImageConfig;
 
@@ -10,9 +13,13 @@ import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.payload.request.CliniqueRequest;
 import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
+import geoclinique.geoclinique.security.CurrentUser;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
+import org.springframework.validation.BindingResult;
 import geoclinique.geoclinique.security.services.CrudService;
+import geoclinique.geoclinique.security.services.UserDetailsImpl;
 import geoclinique.geoclinique.service.CliniqueServices;
+import geoclinique.geoclinique.service.MedecinsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 //import org.apache.commons.lang3.StringUtils;
@@ -27,8 +34,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.StringUtils;
+import javax.validation.ValidationException;
 
+
+import javax.validation.Valid;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/", "http://localhost:8200/"  }, maxAge = 3600, allowCredentials="true")
@@ -52,7 +64,10 @@ public class CliniqueController {
     RoleRepository roleRepository;
     @Autowired
     AdminRepository adminRepository;
-
+    @Autowired
+    MedecinsService medecinsService;
+    @Autowired
+    CliniqueServices cliniqueServices;
     @Autowired
     PasswordEncoder encoder;
 
@@ -209,6 +224,44 @@ public class CliniqueController {
         clinicsServices.resetPassword(user);
         return new ResponseEntity<String>("Email envoyé!", HttpStatus.OK);
     }
+
+
+
+    // LA METHODE POUR VOIR LA LISTE DES RENDEZ-VOUS D'UN MEDECIN
+//    @PreAuthorize("hasRole('CLINIC')")
+    @PostMapping("rdv/list")
+    @ApiOperation(value = "Afficher les rendez-vous d'un medecin par date")
+    public ResponseEntity<? extends Object> today(@CurrentUser UserDetailsImpl currentUser, @Valid @RequestBody TodayRdvRequest rdvMedecinRequest, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            throw new ValidationException("Appointment has errors; Can not update the status of the appointment;");
+        }
+        var date = LocalDate.parse(rdvMedecinRequest.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        var response = this.cliniqueServices.AllRdvMedecin(currentUser, rdvMedecinRequest);
+        if(response==null)
+            return ResponseEntity.ok(new TodayRdvResponse(date, 0, null));
+        return ResponseEntity.ok(response);
+
+    }
+
+
+    // SUPPRESSION D'UN RENDEZ-VOUS
+//    @PreAuthorize("hasRole('CLINIC')")
+    @DeleteMapping("rdv/{rdvId}")
+    @ApiOperation(value = "Supprimer le rendez-vous d'un medecin par date")
+    public ResponseEntity<?> delete(@PathVariable String rdvId){
+        var response =this.cliniqueServices.deleteEvent(rdvId);
+        return ResponseEntity.ok(response);
+    }
+
+    // Change the status of an event
+//    @PreAuthorize("hasRole('CLINIC')")
+    @ApiOperation(value = "Changer le status du rendez-vous d'un medecin par date")
+    @PostMapping("rdv/status/{rdvId}")
+    public ResponseEntity<?> status(@PathVariable String rdvId){
+        var response = this.cliniqueServices.changeEventStatus(rdvId);
+        return ResponseEntity.ok(response);
+    }
+
 
 
 

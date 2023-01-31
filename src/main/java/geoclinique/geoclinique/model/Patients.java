@@ -12,8 +12,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -45,6 +45,12 @@ public class Patients extends Utilisateur{
 
     //private String image;
 
+
+    public Patients(String nomPatient, String prenomPatient) {
+        this.nomPatient = nomPatient;
+        this.prenomPatient = prenomPatient;
+    }
+
     public Patients(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomPatient, String prenomPatient, String sexePatient, String naissancePatient, String contactPatient) {
         super(username, email, password);
         this.nomPatient = nomPatient;
@@ -54,10 +60,11 @@ public class Patients extends Utilisateur{
         this.contactPatient = contactPatient;
     }
 
-    public Patients(String nomPatient, String prenomPatient) {
-        this.nomPatient = nomPatient;
-        this.prenomPatient = prenomPatient;
-    }
+//    public Patients(UtilisateurBuilder<?, ?> email, String nomPatient, String prenomPatient) {
+//        super(email);
+//        this.nomPatient = nomPatient;
+//        this.prenomPatient = prenomPatient;
+//    }
 
     //Liste des RDV
     @JsonIgnore
@@ -73,6 +80,5 @@ public class Patients extends Utilisateur{
     @JsonIgnore
     @OneToMany(mappedBy = "patients")
     List<Messages> ListeMesagePatient = new ArrayList<>();
-
 
 }

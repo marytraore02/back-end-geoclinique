@@ -2,6 +2,7 @@ package geoclinique.geoclinique.service;
 
 import geoclinique.geoclinique.Api.DtoMapper.RendezVousMapper;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.TodayRdvRequest;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.repository.*;
@@ -108,7 +109,7 @@ public class CliniqueServices {
 
 
     // Afficher la liste des RDV quotidiens d'un médecin (privé car il contient des données privées sur le patient)
-    public Object AllRdvMedecin(UserDetailsImpl currentUser, @RequestBody RdvMedecinRequest RdvMedecin){
+    public Object AllRdvMedecin(UserDetailsImpl currentUser, @RequestBody TodayRdvRequest RdvMedecin){
         var medecin = this.medecinsRepository.findById(currentUser.getId());
         var date = LocalDate.parse(RdvMedecin.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if(medecin.isEmpty()){
@@ -129,14 +130,14 @@ public class CliniqueServices {
     public Object deleteEvent(String rdvId){
         var rdv = this.rendezVousRepository.findById(Long.parseLong(rdvId));
         if(rdv.isEmpty()){
-            return new ResponseEntity<>(new ApiResponse(false,"Appointment not found."),
+            return new ResponseEntity<>(new ApiResponse(false,"Le rendez-vous n'exist pas not found."),
                     HttpStatus.NOT_FOUND);
         }
         this.rendezVousRepository.deleteById(Long.parseLong(rdvId));
         // Send Email
 //        this.mailSender.notifyPatient(false, appointment.get().getMedecin().getFullName() ,appointment.get().getPatient().getEmail(), appointment.get().getDate(), appointment.get().getShiftHoraire().getTimeStart(), appointment.get().getShiftHoraire().getTimeEnd());
 
-        return new ResponseEntity<>(new ApiResponse(true,"Rdv supprimer avec success"),
+        return new ResponseEntity<>(new ApiResponse(true,"Rendez-vous supprimer avec success"),
                 HttpStatus.OK);
     }
 

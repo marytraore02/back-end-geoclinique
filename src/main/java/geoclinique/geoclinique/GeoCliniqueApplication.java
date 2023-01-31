@@ -183,12 +183,14 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 
 
 		// CREATION DES RENDEZ-VOUS
-//		RendezVous rdv = RendezVous(
+//		RendezVous rdv = new RendezVous(
 //				medecins,
 //				patients,
 //				calendrier1,
-//				LocalDate.now(), true,
+//				LocalDate.now(),
+//				true
 //		);
+
 //		Set<RendezVous> RdvSet = new HashSet<>();
 //		RendezVous RdvSet1 = new RendezVous(medecins, patients, calendrier1, LocalDate.now(), true);
 ////		RendezVous RdvSet2 = new RendezVous(medecin, patient, calendrier3, LocalDate.now(), true);

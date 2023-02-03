@@ -32,15 +32,15 @@ public class Clinique extends Utilisateur{
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.SEQUENCE)
 //    private Long idClinic;
-    @NotBlank
-    @Size(max = 20)
-    private String nomClinique;
+//    @NotBlank
+//    @Size(max = 20)
+//    private String nomClinique;
     @NotBlank
     @Size(max = 500)
     private String descriptionClinique;
-    @NotBlank
-    @Size(max = 20)
-    private String contactClinique;
+//    @NotBlank
+//    @Size(max = 20)
+//    private String contactClinique;
     @NotBlank
     @Size(max = 20)
     private String villeClinique;
@@ -58,18 +58,25 @@ public class Clinique extends Utilisateur{
     private String agrementClinique;
     private boolean statusClinique;
 
-
-
-    public Clinique(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomClinique, String descriptionClinique, String contactClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique) {
-        super(username, email, password);
-        this.nomClinique = nomClinique;
+    public Clinique(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String descriptionClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique) {
+        super(nomEtPrenom, contact, date, username, email, password);
         this.descriptionClinique = descriptionClinique;
-        this.contactClinique = contactClinique;
         this.villeClinique = villeClinique;
         this.adresseClinique = adresseClinique;
         this.longitudeClinique = longitudeClinique;
         this.latitudeClinique = latitudeClinique;
     }
+
+//    public Clinique(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomClinique, String descriptionClinique, String contactClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique) {
+//        super(username, email, password);
+//        this.nomClinique = nomClinique;
+//        this.descriptionClinique = descriptionClinique;
+//        this.contactClinique = contactClinique;
+//        this.villeClinique = villeClinique;
+//        this.adresseClinique = adresseClinique;
+//        this.longitudeClinique = longitudeClinique;
+//        this.latitudeClinique = latitudeClinique;
+//    }
 
 
     //Liste des RDV

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import geoclinique.geoclinique.model.Admin;
 import geoclinique.geoclinique.model.ERole;
 import geoclinique.geoclinique.model.Role;
 import geoclinique.geoclinique.model.Utilisateur;
@@ -21,6 +20,8 @@ import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
 import geoclinique.geoclinique.security.services.CrudService;
 import geoclinique.geoclinique.security.services.UserDetailsImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,6 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/", "http://localhost:8200/"  }, maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/api/auth")
+@Api(value = "hello", description = "AUTHENTIFICATION")
 public class AuthController {
 
   @Autowired
@@ -54,8 +56,7 @@ public class AuthController {
   PatientRepository patientRepository;
   @Autowired
   CliniqueRepository clinicsRepository;
-  @Autowired
-  AdminRepository adminRepository;
+
   @Autowired
   PasswordEncoder encoder;
 
@@ -64,6 +65,7 @@ public class AuthController {
 //  @Autowired
 //  private OAuth2AuthorizedClientService loadAuthorizedClientService;
 
+  @ApiOperation(value = "Login")
   @PostMapping("/signin")
   public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
     //Connexion en fonction du type
@@ -85,38 +87,21 @@ public class AuthController {
 
     return ResponseEntity.ok(new JwtResponse(jwt,
             userDetails.getId(),
+            userDetails.getNomEtPrenom(),
+            userDetails.getContact(),
+            userDetails.getDate(),
             userDetails.getUsername(),
             userDetails.getEmail(),
             roles));
   }
 
+  @ApiOperation(value = "Sign up")
   @PostMapping("/signup")
   public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
     if (userRepository.existsByUsername(signUpRequest.getUsername())) {
       return ResponseEntity
               .badRequest()
               .body(new MessageResponse("Error: Username is already taken!"));
-    }
-    //Verification si le username exist deja ds la table clinic
-    CliniqueRequest clinicRequest = new CliniqueRequest();
-    if (clinicsRepository.existsByUsername(clinicRequest.getUsername())) {
-      return ResponseEntity
-              .badRequest()
-              .body(new MessageResponse("Username non valide"));
-    }
-    //Verification si le username exist ds la table patient
-    PatientRequest patientRequest = new PatientRequest();
-    if (patientRepository.existsByUsername(patientRequest.getUsername())) {
-      return ResponseEntity
-              .badRequest()
-              .body(new MessageResponse("Username non valide"));
-    }
-    //Verification du username ds la admin
-    Admin admin = new Admin();
-    if (adminRepository.existsByUsername(admin.getUsername())) {
-      return ResponseEntity
-              .badRequest()
-              .body(new MessageResponse("Username non valide"));
     }
 
     if (userRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -126,9 +111,14 @@ public class AuthController {
     }
 
      //Create new user's account
-    Utilisateur user = new Utilisateur(signUpRequest.getUsername(),
+    Utilisateur user = new Utilisateur(
+            signUpRequest.getNomEtPrenom(),
+            signUpRequest.getContact(),
+            signUpRequest.getDate(),
+            signUpRequest.getUsername(),
             signUpRequest.getEmail(),
-            encoder.encode(signUpRequest.getPassword()));
+            encoder.encode(signUpRequest.getPassword())
+    );
 
     Set<String> strRoles = signUpRequest.getRole();
     Set<Role> roles = new HashSet<>();

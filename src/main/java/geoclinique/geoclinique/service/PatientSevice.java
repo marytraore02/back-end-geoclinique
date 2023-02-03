@@ -4,13 +4,20 @@ import geoclinique.geoclinique.Api.DtoMapper.RendezVousMapper;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
-import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteMedecinResponse;
+import geoclinique.geoclinique.model.Motif;
 import geoclinique.geoclinique.model.Patients;
 import geoclinique.geoclinique.model.RendezVous;
+import geoclinique.geoclinique.model.Utilisateur;
+import geoclinique.geoclinique.payload.response.JwtResponse;
 import geoclinique.geoclinique.repository.*;
+import geoclinique.geoclinique.security.services.UserDetailsImpl;
 import geoclinique.geoclinique.util.TweakResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
@@ -36,6 +43,8 @@ public class PatientSevice {
     @Autowired
     CalendrierRepository calendrierRepository;
     @Autowired
+    MotifRepository motifRepository;
+    @Autowired
     PasswordEncoder encoder;
     @Autowired
     RendezVousMapper rendezVousMapper;
@@ -48,6 +57,9 @@ public class PatientSevice {
     public List<Patients> read(){
         return patientRepository.findAll();
     }
+    public List<Motif> readMotif(){
+        return motifRepository.findAll();
+    }
     public Optional<Patients> GetOne(Long id){
         return patientRepository.findById(id);
     }
@@ -57,9 +69,9 @@ public class PatientSevice {
 //    public Optional<Patients> getByEmail(String email){
 //        return patientRepository.findByEmail(email);
 //    }
-    public boolean existsByConatct(String contact){
-        return patientRepository.existsByContactPatient(contact);
-    }
+//    public boolean existsByConatct(String contact){
+//        return patientRepository.existsByContactPatient(contact);
+//    }
     public boolean existsByUsername(String username){
         return patientRepository.existsByUsername(username);
     }
@@ -69,22 +81,23 @@ public class PatientSevice {
     public boolean existsByEmail(String email){
         return patientRepository.existsByEmail(email);
     }
-    public Patients modifier(Patients patients) {
-//        return patientRepository.findById(id)
-//                .map(p->{
-//                    p.setUsername(patients.getUsername());
-//                    p.setEmail(patients.getEmail());
+    public Patients modifier(Long id, Patients patients) {
+//        Patients patient = patientRepository.findById(id).orElse(null);
+//        return patientRepository.save(patient);
+        return patientRepository.findById(id)
+                .map(p->{
+                    p.setNomEtPrenom((patients.getNomEtPrenom()));
+                    p.setContact(patients.getContact());
+                    p.setDate(patients.getDate());
+                    p.setUsername(patients.getUsername());
+                    p.setEmail(patients.getEmail());
 //                    p.setPassword(encoder.encode(patients.getPassword()));
-//                    p.setNomPatient(patients.getNomPatient());
-//                    p.setPrenomPatient(patients.getPrenomPatient());
-//                    p.setNaissancePatient(patients.getNaissancePatient());
-//                    p.setContactPatient(patients.getContactPatient());
-//                    p.setSexePatient(patients.getSexePatient());
-//                    return patientRepository.save(p);
-//                }).orElseThrow(()-> new RuntimeException("Clinics non trouvé !"));
+                    p.setSexePatient(patients.getSexePatient());
+                    return patientRepository.save(p);
+                }).orElseThrow(()-> new RuntimeException("Patient non trouvé !"));
         // TODO Auto-generated method stub
 
-        return patientRepository.save(patients);
+        //return patientRepository.save(patients);
 
     }
     public String delete(Long id){
@@ -94,7 +107,7 @@ public class PatientSevice {
 
 
     // List de disponibilite d'un medecin par jour
-    public List<RdvMedecinResponse> listAllRdvMedecin(RdvMedecinRequest medecinRdv){
+    public List<DisponibiliteMedecinResponse> listAllRdvMedecin(RdvMedecinRequest medecinRdv){
     //System.err.print(medecinRdv.getMedecinId());
         // RECUPERER L'ID DU MEDECIN
         var medecin = this.medecinsRepository.getReferenceById(medecinRdv.getMedecinId());
@@ -134,11 +147,11 @@ public class PatientSevice {
         for(long i = 1 ; i < shiftNb; i++){
             Long j = Long.valueOf(i);
             // shift PREND CHAQUE CHAMP DE LA LISTE DE MANIERE UNIQUE
-            var shift = this.calendrierRepository.getOne(j);
+            var shift = this.calendrierRepository.findById(j).get();
             System.out.print(shift);
 
             // L'OBJET dummy PREND LES DISPONIBILITES VALIDE
-            RdvMedecinResponse dummy = new RdvMedecinResponse(shift.getId(), shift.getHeureDebut() +" - "+shift.getHeureFin(), true);
+            DisponibiliteMedecinResponse dummy = new DisponibiliteMedecinResponse(shift.getId(), shift.getHeureDebut() +" - "+shift.getHeureFin(), true);
             if (!MedecinRdvList.contains(dummy))
             {
                 MedecinRdvList.add(dummy);
@@ -154,10 +167,11 @@ public class PatientSevice {
 
 
      //Ajouter une RDV
-    public Object save(NewRdvRequest newRdv){
+    public Object save(Utilisateur currentUser, NewRdvRequest newRdv){
 
         var medecin = this.medecinsRepository.findById(newRdv.getMedecinId());
         var calendrier = this.calendrierRepository.findById(newRdv.getCalendrierId());
+        var motif = this.motifRepository.findById(newRdv.getMotifId());
         var date = LocalDate.parse(newRdv.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         if(medecin.isEmpty()){
@@ -168,6 +182,10 @@ public class PatientSevice {
             return new ResponseEntity<>(new ApiResponse(false,"calendar does not exist, please try again."),
                     HttpStatus.BAD_REQUEST);
         }
+        if(motif.isEmpty()){
+            return new ResponseEntity<>(new ApiResponse(false,"Motif non trouvé."),
+                    HttpStatus.BAD_REQUEST);
+        }
 
         var isAvailable = this.rendezVousRepository.findByMedecinsAndDateAndCalendrier(medecin.get(), date, calendrier.get());
         // Check if not already take.
@@ -175,13 +193,22 @@ public class PatientSevice {
             return new ResponseEntity<>(new ApiResponse(false,"Heure occupé, Veuillez choisir un autre heure."),
                     HttpStatus.BAD_REQUEST);
         }
-        var patientNom = newRdv.getNom();
-        var patientPrenom = newRdv.getPrenom();
+
+        var curentPatient = this.patientRepository.findById(currentUser.getId());
+        System.err.println(currentUser);
+
+        if(curentPatient.isEmpty()){
+            return new ResponseEntity<>(new ApiResponse(false,"Patient not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+//        var patientPrenom = newRdv.getPrenom();
+//        var patientEmail = newRdv.getEmail();
 
         // Finally perform the save operation
-        Patients patient = new Patients(patientNom, patientPrenom);
-        Patients savedPatient = this.patientRepository.save(patient);
-        RendezVous rdv = new RendezVous(medecin.get(), savedPatient,calendrier.get(), date, false);
+        //Patients patient = new Patients(patientPrenom, patientEmail);
+        //Patients savedPatient = this.patientRepository.save(patient);
+        //System.out.println(patient);
+        RendezVous rdv = new RendezVous(motif.get(), medecin.get(), curentPatient.get(), calendrier.get(), date, false);
         this.rendezVousRepository.save(rdv);
 
         return rdv;

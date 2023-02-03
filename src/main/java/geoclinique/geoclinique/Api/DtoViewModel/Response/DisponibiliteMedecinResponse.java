@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RdvMedecinResponse {
+public class DisponibiliteMedecinResponse {
     private Long id;
     private String calendrier;
     private boolean disponible;
@@ -19,7 +19,7 @@ public class RdvMedecinResponse {
         if (obj == null) {
             return false;
         }
-        final RdvMedecinResponse other = (RdvMedecinResponse) obj;
+        final DisponibiliteMedecinResponse other = (DisponibiliteMedecinResponse) obj;
 
         if (this.getId().intValue() == other.getId().intValue()) {
             return true;

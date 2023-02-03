@@ -70,34 +70,33 @@ public class CliniqueServices {
     public Optional<Clinique> GetOne(Long id){
         return clinicsRepository.findById(id);
     }
-    public boolean existsByName(String name){
-        return clinicsRepository.existsByNomClinique(name);
-    }
+//    public boolean existsByName(String name){
+//        return clinicsRepository.existsByNomClinique(name);
+//    }
     public boolean existsByUsername(String username){
         return clinicsRepository.existsByUsername(username);
     }
     public boolean existsById(Long id){
         return clinicsRepository.existsById(id);
     }
-    public Optional<Clinique> getByNomClinic(String name){
-        return clinicsRepository.findByNomClinique(name);
-    }
+
     public boolean existsByEmail(String email){
         return clinicsRepository.existsByEmail(email);
     }
     public Clinique modifier(Long id, Clinique clinique) {
         return clinicsRepository.findById(id)
                 .map(p->{
+                    p.setNomEtPrenom((clinique.getNomEtPrenom()));
+                    p.setContact(clinique.getContact());
+                    p.setDate(clinique.getDate());
                     p.setUsername(clinique.getUsername());
                     p.setEmail(clinique.getEmail());
                     p.setPassword(encoder.encode(clinique.getPassword()));
-                    p.setNomClinique(clinique.getNomClinique());
                     p.setDescriptionClinique(clinique.getDescriptionClinique());
                     p.setAdresseClinique(clinique.getAdresseClinique());
                     p.setVilleClinique(clinique.getVilleClinique());
                     p.setLongitudeClinique(clinique.getLongitudeClinique());
                     p.setLatitudeClinique(clinique.getLatitudeClinique());
-                    p.setContactClinique(clinique.getContactClinique());
 //                    p.setStatusClinic(clinique.isStatusClinic());
                     return clinicsRepository.save(p);
                 }).orElseThrow(()-> new RuntimeException("Clinique non trouvé !"));

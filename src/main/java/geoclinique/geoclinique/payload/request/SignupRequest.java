@@ -2,9 +2,20 @@ package geoclinique.geoclinique.payload.request;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.validation.constraints.*;
 
 public class SignupRequest {
+  @NotBlank
+  @Size(min = 3, max = 20)
+  @Column(unique = true)
+  private String nomEtPrenom;
+  @NotBlank
+  @Size(max = 20)
+  private String contact;
+  @NotBlank
+  @Size(max = 20)
+  private String date;
   @NotBlank
   @Size(min = 3, max = 20)
   private String username;
@@ -19,6 +30,30 @@ public class SignupRequest {
   @NotBlank
   @Size(min = 6, max = 40)
   private String password;
+
+  public String getNomEtPrenom() {
+    return nomEtPrenom;
+  }
+
+  public void setNomEtPrenom(String nomEtPrenom) {
+    this.nomEtPrenom = nomEtPrenom;
+  }
+
+  public String getContact() {
+    return contact;
+  }
+
+  public void setContact(String contact) {
+    this.contact = contact;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
 
   public String getUsername() {
     return username;

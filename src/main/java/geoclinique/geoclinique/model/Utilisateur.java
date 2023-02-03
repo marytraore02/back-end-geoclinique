@@ -22,7 +22,15 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @SuperBuilder
 public class Utilisateur extends User{
-
+    @NotBlank
+    @Size(max = 20)
+    private String nomEtPrenom;
+    @NotBlank
+    @Size(max = 20)
+    private String contact;
+    @NotBlank
+    @Size(max = 20)
+    private String date;
     @NotBlank
     @Size(max = 20)
     @Column(unique = true)
@@ -31,6 +39,7 @@ public class Utilisateur extends User{
     @NotBlank
     @Size(max = 50)
     @Email
+    @Column(unique = true)
     private String email;
 
     @NotBlank
@@ -43,10 +52,20 @@ public class Utilisateur extends User{
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
 
-    public Utilisateur(String username, String email, String password) {
-//        super(id);
+    public Utilisateur(String nomEtPrenom, String contact, String date, String username, String email, String password) {
+        this.nomEtPrenom = nomEtPrenom;
+        this.contact = contact;
+        this.date = date;
         this.username = username;
         this.email = email;
         this.password = password;
     }
+
+    //    public Utilisateur(String username, String email, String password) {
+////        super(id);
+//        this.username = username;
+//        this.email = email;
+//        this.password = password;
+//    }
+
 }

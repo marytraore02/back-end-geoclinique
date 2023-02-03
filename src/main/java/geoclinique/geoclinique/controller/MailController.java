@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/api/mail")
+@RequestMapping("/patient/mail")
 @CrossOrigin
 public class MailController {
 

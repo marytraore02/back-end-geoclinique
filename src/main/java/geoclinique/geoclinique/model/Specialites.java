@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 public class Specialites {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSpecialite;
     @NotBlank
     @Size(max = 20)

@@ -1,6 +1,6 @@
 package geoclinique.geoclinique.util;
 
-import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteMedecinResponse;
 import geoclinique.geoclinique.repository.CalendrierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class TweakResponse {
     @Autowired
     CalendrierRepository calendrierRepository;
 
-    public List<RdvMedecinResponse> listAllRdvByStatus(List<RdvMedecinResponse> rdvMedecinList){
+    public List<DisponibiliteMedecinResponse> listAllRdvByStatus(List<DisponibiliteMedecinResponse> rdvMedecinList){
 
         // LA VARIABLE QUI VA RETOURNER LE NOMBRE TOTAL DES HORAIRES
         int shiftNb = this.calendrierRepository.findAll().size()+1;
@@ -29,7 +29,7 @@ public class TweakResponse {
             System.out.print(shift);
 
             // L'OBJET dummy PREND LES DISPONIBILITES VALIDE
-            RdvMedecinResponse dummy = new RdvMedecinResponse(shift.getId(), shift.getHeureDebut() +" - "+shift.getHeureFin(), true);
+            DisponibiliteMedecinResponse dummy = new DisponibiliteMedecinResponse(shift.getId(), shift.getHeureDebut() +" - "+shift.getHeureFin(), true);
             if (!rdvMedecinList.contains(dummy))
             {
                 rdvMedecinList.add(dummy);
@@ -37,7 +37,7 @@ public class TweakResponse {
         }
         //return rdvMedecinList;
         return rdvMedecinList.stream()
-                .sorted(Comparator.comparing(RdvMedecinResponse::getId))
+                .sorted(Comparator.comparing(DisponibiliteMedecinResponse::getId))
                 .collect(Collectors.toList());
     }
 

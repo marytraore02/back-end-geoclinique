@@ -27,38 +27,29 @@ import java.util.Set;
 @SuperBuilder
 @AllArgsConstructor
 public class Patients extends Utilisateur{
-    @NotBlank
-    @Size(max = 20)
-    private String nomPatient;
-    @NotBlank
-    @Size(max = 20)
-    private String prenomPatient;
+//    @NotBlank
+//    @Size(max = 20)
+//    private String nomPatient;
+//    @NotBlank
+//    @Size(max = 20)
+//    private String prenomPatient;
     @NotBlank
     @Size(max = 20)
     private String sexePatient;
-    @NotBlank
-    @Size(max = 20)
-    private String naissancePatient;
-    @NotBlank
-    @Size(max = 20)
-    private String contactPatient;
+//    @NotBlank
+//    @Size(max = 20)
+//    private String naissancePatient;
+//    @NotBlank
+//    @Size(max = 20)
+//    private String contactPatient;
 
     //private String image;
 
-
-    public Patients(String nomPatient, String prenomPatient) {
-        this.nomPatient = nomPatient;
-        this.prenomPatient = prenomPatient;
-    }
-
-    public Patients(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomPatient, String prenomPatient, String sexePatient, String naissancePatient, String contactPatient) {
-        super(username, email, password);
-        this.nomPatient = nomPatient;
-        this.prenomPatient = prenomPatient;
+    public Patients(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String sexePatient) {
+        super(nomEtPrenom, contact, date, username, email, password);
         this.sexePatient = sexePatient;
-        this.naissancePatient = naissancePatient;
-        this.contactPatient = contactPatient;
     }
+
 
 //    public Patients(UtilisateurBuilder<?, ?> email, String nomPatient, String prenomPatient) {
 //        super(email);

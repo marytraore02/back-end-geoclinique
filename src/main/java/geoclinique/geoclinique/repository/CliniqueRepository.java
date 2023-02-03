@@ -8,8 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface CliniqueRepository extends JpaRepository<Clinique, Long> {
-    Optional<Clinique> findByNomClinique(String name);
-    boolean existsByNomClinique(String name);
+//    Optional<Clinique> findByNomClinique(String name);
+//    boolean existsByNomClinique(String name);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 }

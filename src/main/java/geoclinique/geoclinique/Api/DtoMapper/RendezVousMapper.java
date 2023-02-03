@@ -1,6 +1,6 @@
 package geoclinique.geoclinique.Api.DtoMapper;
 
-import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteMedecinResponse;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.TodayRdvListDto;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.TodayRdvResponse;
 import geoclinique.geoclinique.model.RendezVous;
@@ -48,8 +48,8 @@ public class RendezVousMapper {
 
         var todayRendezVousListDto = new TodayRdvListDto();
         todayRendezVousListDto.setRdvId(rdv.getId());
-        todayRendezVousListDto.setNomPatient(rdv.getPatients().getNomPatient());
-        todayRendezVousListDto.setPrenomPatient(rdv.getPatients().getPrenomPatient());
+        todayRendezVousListDto.setPrenomPatient(rdv.getPatients().getNomEtPrenom());
+        todayRendezVousListDto.setEnailPatient(rdv.getPatients().getEmail());
         todayRendezVousListDto.setStatus(rdv.isActive());
         todayRendezVousListDto.setCalendrier_id(rdv.getCalendrier().getId());
         todayRendezVousListDto.setHeureDebut(rdv.getCalendrier().getHeureDebut());
@@ -59,8 +59,8 @@ public class RendezVousMapper {
 
 
     // LE CALENDRIER DU MEDECIN RETOURNER
-    public RdvMedecinResponse toRdvMedecinDto(RendezVous rdv){
-        var RdvMedecin = new RdvMedecinResponse();
+    public DisponibiliteMedecinResponse toRdvMedecinDto(RendezVous rdv){
+        var RdvMedecin = new DisponibiliteMedecinResponse();
         RdvMedecin.setId(rdv.getCalendrier().getId());
         RdvMedecin.setCalendrier(rdv.getCalendrier().getHeureDebut() +" - "+rdv.getCalendrier().getHeureFin());
         RdvMedecin.setDisponible(false);

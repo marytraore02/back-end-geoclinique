@@ -104,6 +104,7 @@ public class ForgetController {
                                                  @PathVariable("code") String code) throws ParseException {
 
             Patients patients1 = patientSevice.getByEmail(userVenant);
+            Patients idPatient = patientSevice.GetOne(patients1.getId()).get();
             System.out.println(patients1);
 
            // Patients patients = new JsonMapper().readValue(userVenant, Patients.class);
@@ -138,9 +139,9 @@ public class ForgetController {
 //                            historiqueService.Create(historique);
 
                             patients1.setPassword(patients1.getPassword());
-                            patientSevice.modifier(patients1);
+                            patientSevice.modifier(idPatient.getId(),patients1);
                             return ResponseMessage.generateResponse("ok", HttpStatus.OK,
-                                    patientSevice.modifier(patients1));
+                                    patientSevice.modifier(idPatient.getId(), patients1));
                         } else {
                             return ResponseMessage.generateResponse("error", HttpStatus.OK, "Code expiré !");
                         }

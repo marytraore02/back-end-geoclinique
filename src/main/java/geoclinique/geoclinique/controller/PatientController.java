@@ -1,16 +1,20 @@
 package geoclinique.geoclinique.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
-import geoclinique.geoclinique.Api.DtoViewModel.Response.RdvMedecinResponse;
 import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
+import geoclinique.geoclinique.payload.request.CliniqueRequest;
 import geoclinique.geoclinique.payload.request.PatientRequest;
 import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
+import geoclinique.geoclinique.security.CurrentUser;
+import geoclinique.geoclinique.security.services.UserDetailsImpl;
+import geoclinique.geoclinique.service.MedecinsService;
 import geoclinique.geoclinique.service.PatientSevice;
 import geoclinique.geoclinique.util.TweakResponse;
 import io.swagger.annotations.Api;
@@ -43,12 +47,13 @@ public class PatientController {
     @Autowired
     PatientRepository patientRepository;
     @Autowired
+    MedecinsService medecinsService;
+    @Autowired
     CliniqueRepository clinicsRepository;
     @Autowired
     UserRepository userRepository;
     @Autowired
-    AdminRepository adminRepository;
-
+    MotifRepository motifRepository;
     @Autowired
     PatientSevice patientSevice;
 
@@ -85,22 +90,17 @@ public class PatientController {
                     .badRequest()
                     .body(new MessageResponse("Ce email est dejà utilisé par un patient"));
         }
-        //Verification si le CONTACT exist ds la BASE
-        if (patientRepository.existsByContactPatient(patientRequest.getContactPatient())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Le numero exist, veuillez donner un autre"));
-        }
-
-
 
         // Create new user's account
-        Patients patients =
-                new Patients(patientRequest.getUsername(), patientRequest.getEmail(),
+        Patients patients = new Patients(
+                        patientRequest.getNomEtPrenom(),
+                        patientRequest.getContact(),
+                        patientRequest.getDate(),
+                        patientRequest.getUsername(),
+                        patientRequest.getEmail(),
                         encoder.encode(patientRequest.getPassword()),
-                        patientRequest.getNomPatient(), patientRequest.getPrenomPatient(),
-                        patientRequest.getSexePatient(),  patientRequest.getNaissancePatient(),
-                        patientRequest.getContactPatient());
+                        patientRequest.getSexePatient()
+                );
 
         //Creation des roles
         Set<String> strRoles =  patientRequest.getRole();
@@ -137,24 +137,40 @@ public class PatientController {
         List<Patients> patients = patientSevice.read();
         return new ResponseEntity(patients, HttpStatus.OK);
     }
+    @ApiOperation(value = "Afficher la liste des medecin")
+    @GetMapping("/readmedecin")
+    public ResponseEntity<List<Medecins>> Read(){
+        List<Medecins> medecins = medecinsService.read();
+        return new ResponseEntity(medecins, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Afficher la liste des motifs")
+    @GetMapping("/readmotif")
+    public ResponseEntity<List<Motif>> ReadMotif(){
+        List<Motif> motif = patientSevice.readMotif();
+        return new ResponseEntity(motif, HttpStatus.OK);
+    }
+
 
     //@PreAuthorize("hasRole('PATIENT') or hasRole('ADMIN')")
     @ApiOperation(value = "Mise à jour du comptes patient")
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public ResponseEntity<Object> update(@RequestParam(value = "data") String acti,
-                                         @PathVariable("id") Long id,
-                                         @RequestParam(value = "file", required = false) MultipartFile file)
+                                         @PathVariable("id") Long id)
             throws IOException {
+        //@RequestParam(value = "file", required = false) MultipartFile file
         Patients patients = null;
 
         try {
             patients = new JsonMapper().readValue(acti, Patients.class);
+            if(!patientSevice.existsById(id))
+                return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
 //            Random e = new Random();
 //            e.nextInt(8);
 //            if (file != null) {
 //                patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
 //            }
-            patientSevice.modifier(patients);
+            patientSevice.modifier(id,patients);
             return new ResponseEntity(new Message("Patient modifié avec success"), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity(new Message("Erreur de modification"), HttpStatus.OK);
@@ -188,14 +204,32 @@ public class PatientController {
 
     //  Ajouter RDV
     @ApiOperation(value = "Ajouter un rendez-vous")
-    @PostMapping("/rdv/save")
-    public ResponseEntity<?> save(@Valid @RequestBody NewRdvRequest newRdv){
-        try{
-            var save = this.patientSevice.save(newRdv);
+    @PostMapping("/rdv/save/{id}")
+//    public ResponseEntity<?> save(@CurrentUser UserDetailsImpl currentUser, @Valid @RequestBody NewRdvRequest newRdv) {
+//        System.err.println(currentUser.getEmail());
+//        try{
+//            var save = this.patientSevice.save(currentUser, newRdv);
+//            return ResponseEntity.ok(save);
+//        } catch (Exception e){
+//            return new ResponseEntity(new Message("Erreur de sauvagarde"), HttpStatus.OK);
+//        }
+//    }
+    public ResponseEntity<?> save(@PathVariable Long id,
+                                  @Valid @RequestBody NewRdvRequest newRdv)
+            {
+
+        Utilisateur currentUser = userRepository.getReferenceById(id);
+        //Motif modif = motifRepository.getReferenceById(idModif);
+//        try{
+//            UserDetailsImpl userVenant = new JsonMapper().readValue(currentUser, UserDetailsImpl.class);
+//            NewRdvRequest rdvinfos = new JsonMapper().readValue(newRdv, NewRdvRequest.class);
+//            System.err.println(currentUser.getEmail());
+
+            var save = this.patientSevice.save(currentUser, newRdv);
             return ResponseEntity.ok(save);
-        } catch (Exception e){
-            return new ResponseEntity(new Message("Erreur de sauvagarde"), HttpStatus.OK);
-        }
+//        } catch (Exception e){
+//            return new ResponseEntity(new Message("Erreur de sauvagarde"), HttpStatus.OK);
+//        }
     }
 
     // Obtenir la liste des disponibites d'un medecin par jour

@@ -11,14 +11,11 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "rdv")
-public class RendezVous implements Serializable {
+public class RendezVous {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "clinic_id", nullable = true)
-//    private Clinique clinics;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medecin_id", nullable = true)
     private Medecins medecins;
@@ -30,6 +27,9 @@ public class RendezVous implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "calendrier_id", nullable = false)
     private Calendrier calendrier;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "motif", nullable = true)
+    private Motif motif;
 
     private LocalDate date;
 
@@ -45,4 +45,14 @@ public class RendezVous implements Serializable {
         this.date = date;
         this.isActive = isActive;
     }
+
+    public RendezVous(Motif motif, Medecins medecins, Patients patients, Calendrier calendrier, LocalDate date, boolean isActive) {
+        this.motif = motif;
+        this.medecins = medecins;
+        this.patients = patients;
+        this.calendrier = calendrier;
+        this.date = date;
+        this.isActive = isActive;
+    }
+
 }

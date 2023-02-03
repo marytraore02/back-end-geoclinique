@@ -59,11 +59,8 @@ public class CliniqueController {
     CliniqueRepository clinicsRepository;
     @Autowired
     PatientRepository patientRepository;
-
     @Autowired
     RoleRepository roleRepository;
-    @Autowired
-    AdminRepository adminRepository;
     @Autowired
     MedecinsService medecinsService;
     @Autowired
@@ -93,7 +90,7 @@ public class CliniqueController {
         CliniqueRequest cliniqueRequest = new JsonMapper().readValue(cliniqueRequest1, CliniqueRequest.class);
 
         //Verification si le nom exist ds la table clinics
-        if (clinicsRepository.existsByNomClinique(cliniqueRequest.getNomClinique())) {
+        if (userRepository.findByNomEtPrenom(cliniqueRequest.getNomEtPrenom())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Une clinique du même nom exist, Veuillez donnez un autre nom!"));
@@ -112,12 +109,17 @@ public class CliniqueController {
         }
 
         // Create new user's account
-        Clinique clinics =
-                new Clinique(cliniqueRequest.getUsername(), cliniqueRequest.getEmail(),
+        Clinique clinics = new Clinique(
+                        cliniqueRequest.getNomEtPrenom(),
+                        cliniqueRequest.getContact(),
+                        cliniqueRequest.getDate(),
+                        cliniqueRequest.getUsername(),
+                        cliniqueRequest.getEmail(),
                         encoder.encode(cliniqueRequest.getPassword()),
-                        cliniqueRequest.getNomClinique(), cliniqueRequest.getDescriptionClinique(),
-                        cliniqueRequest.getAdresseClinique(), cliniqueRequest.getVilleClinique(),
-                        cliniqueRequest.getContactClinique(), cliniqueRequest.getLongitudeClinique(),
+                        cliniqueRequest.getDescriptionClinique(),
+                        cliniqueRequest.getAdresseClinique(),
+                        cliniqueRequest.getVilleClinique(),
+                        cliniqueRequest.getLongitudeClinique(),
                         cliniqueRequest.getLatitudeClinique());
 
 
@@ -182,7 +184,7 @@ public class CliniqueController {
 //            Random e = new Random();
 //            e.nextInt(8);
             if (file != null) {
-                clinics.setAgrementClinique(ImageConfig.save("clinic", file, clinics.getNomClinique()));
+                clinics.setAgrementClinique(ImageConfig.save("clinic", file, clinics.getNomEtPrenom()));
             }
             clinicsServices.modifier(id, clinics);
             return new ResponseEntity(new Message("Clinique modifié avec success"), HttpStatus.OK);

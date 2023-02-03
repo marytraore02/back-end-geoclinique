@@ -86,7 +86,23 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
        //.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeRequests().antMatchers("/**").permitAll()
+            .antMatchers("/"
+                    , "/favicon.ico"
+                    , "/**/*.png"
+                    , "/**/*.gif"
+                    , "/**/*.svg"
+                    , "/**/*.jpg"
+                    , "/**/*.ttf"
+                    , "/**/*.woff"
+                    , "/**/*.woff2"
+                    , "/**/*.html"
+                    , "/**/*.css"
+                    , "/**/*.js")
+            .permitAll()
             .antMatchers("/api/auth/**").permitAll()
+            .antMatchers("/patient/rdv/save").permitAll()
+            .antMatchers("/patient/rdv").permitAll()
+            .antMatchers("/api/mail/feedback").permitAll()
         .antMatchers("/api/test/**").permitAll()
         .anyRequest().authenticated();
 //    http.formLogin();

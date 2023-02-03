@@ -1,5 +1,6 @@
 package geoclinique.geoclinique;
 
+//import geoclinique.geoclinique.configuration.JacksonConfig;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import geoclinique.geoclinique.model.Utilisateur;
 
@@ -20,6 +22,7 @@ import java.util.Set;
 import java.util.TimeZone;
 
 @SpringBootApplication
+//@Import(JacksonConfig.class)
 public class GeoCliniqueApplication implements CommandLineRunner{
 	@Autowired
 	PasswordEncoder encoder;
@@ -28,8 +31,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 	@Autowired
 	RoleRepository roleRepository;
 	@Autowired
-	AdminRepository adminRepository;
-
+	MotifRepository motifRepository;
 	@Autowired
 	MedecinsRepository medecinsRepository;
 	@Autowired
@@ -47,22 +49,19 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 		SpringApplication.run(GeoCliniqueApplication.class, args);
 	}
-	@PostConstruct
-	void started() {
-		TimeZone.setDefault(TimeZone.getTimeZone("TimeZone"));
-	}
+
 	@Override
 	public void run(String... args) throws Exception {
 
-		adminRepository.deleteAll();
-		calendrierRepository.deleteAll();
-		clinicsRepository.deleteAll();
-		medecinsRepository.deleteAll();
-		patientRepository.deleteAll();
-		rendezVousRepository.deleteAll();
-		//roleRepository.deleteAll();
-		specialiteRepository.deleteAll();
-		userRepository.deleteAll();
+//		adminRepository.deleteAll();
+//		calendrierRepository.deleteAll();
+//		clinicsRepository.deleteAll();
+//		medecinsRepository.deleteAll();
+//		patientRepository.deleteAll();
+//		rendezVousRepository.deleteAll();
+//		//roleRepository.deleteAll();
+//		specialiteRepository.deleteAll();
+//		userRepository.deleteAll();
 
 		// CREATION DES ROLES
 		if (roleRepository.findAll().size() == 0) {
@@ -77,30 +76,17 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 			Role role = roleRepository.findByName(ERole.ROLE_ADMIN).get();
 			roles.add(role);
 			Utilisateur user = new Utilisateur(
+					"Mary TRAORE",
+					"+223 93 77 15 53",
+					"1998/02/24",
 					"mary",
-					"marytra@gmail.com",
+					"marytra292@gmail.com",
 					encoder.encode("mary123")
 			);
 			user.setRoles(roles);
 			userRepository.save(user);
 		}
 
-		// CREATION DE L'ADMINISTRATEUR
-		if (userRepository.findAll().size() == 1) {
-			Set<Role> roles = new HashSet<>();
-			Role role = roleRepository.findByName(ERole.ROLE_ADMIN).get();
-			roles.add(role);
-			Admin admin = new Admin(
-					"marytraore",
-					"marytra292@gmail.com",
-					encoder.encode("mary123"),
-					"TRAORE",
-					"Mary",
-					"+223 93 77 15 53"
-			);
-			admin.setRoles(roles);
-			userRepository.save(admin);
-		}
 
 		// CREATION D'UNE CLINIC
 		if (clinicsRepository.findAll().size() == 0) {
@@ -108,12 +94,13 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 			Role role = roleRepository.findByName(ERole.ROLE_CLINIC).get();
 			roles.add(role);
 			Clinique clinique = new Clinique(
-					"clinic",
-					"clinic@gmail.com",
-					encoder.encode("clinic123"),
-					"Pastere",
-					"Une court description de la clinic pastere",
+					"Clinique pastère",
 					"+223 93 77 15 53",
+					"1998/02/24",
+					"clinique",
+					"clinique@gmail.com",
+					encoder.encode("clinique123"),
+					"Une court description de la que pastere",
 					"Bamako",
 					"Bamako Hamdalaye ACI 2000",
 					"longitude",
@@ -124,6 +111,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 
 		}
 
+
 		// CREATION D'UN PATIENT
 		Patients patients = null;
 		if (patientRepository.findAll().size() == 0) {
@@ -131,14 +119,13 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 			Role role = roleRepository.findByName(ERole.ROLE_PATIENT).get();
 			roles.add(role);
 			patients = new Patients(
+					"patient PATIENT",
+					"+223 93 77 15 53",
+					"2000/06/24",
 					"patient",
 					"patient@gmail.com",
 					encoder.encode("patient123"),
-					"Patient",
-					"PATIENT",
-					"Homme",
-					"1998/02/24",
-					"+223 93 77 15 53"
+					"Homme"
 			);
 			patients.setRoles(roles);
 			this.patientRepository.save(patients);
@@ -181,26 +168,42 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 		calendrierSet.add(calendrier9);
 		this.calendrierRepository.saveAll(calendrierSet);
 
+//
+//		// CREATION DE MOTIFS
+		Set<Motif> Motif = new HashSet<>();
+		Motif Motif1 = new Motif(1L, "Consultation");
+		Motif Motif2 = new Motif(2L, "Contrôle");
+		Motif Motif3 = new Motif(3L, "Urgence");
+		Motif Motif4 = new Motif(4L, "Devis");
+		Motif Motif5 = new Motif(5L, "Autre");
+		Motif.add(Motif1);
+		Motif.add(Motif2);
+		Motif.add(Motif3);
+		Motif.add(Motif4);
+		Motif.add(Motif5);
+		this.motifRepository.saveAll(Motif);
 
-		// CREATION DES RENDEZ-VOUS
-//		RendezVous rdv = new RendezVous(
-//				medecins,
-//				patients,
-//				calendrier1,
-//				LocalDate.now(),
-//				true
-//		);
+		// CREATION DE RENDEZ VOUS
+		Set<RendezVous> RdvSet = new HashSet<>();
+		RendezVous RdvSet1 = new RendezVous(Motif1, medecins, patients, calendrier1, LocalDate.now(), true);
+		RendezVous RdvSet2 = new RendezVous(Motif2, medecins, patients, calendrier3, LocalDate.now(), false);
+		RdvSet.add(RdvSet1);
+		RdvSet.add(RdvSet2);
+		this.rendezVousRepository.saveAll(RdvSet);
 
 //		Set<RendezVous> RdvSet = new HashSet<>();
 //		RendezVous RdvSet1 = new RendezVous(medecins, patients, calendrier1, LocalDate.now(), true);
-////		RendezVous RdvSet2 = new RendezVous(medecin, patient, calendrier3, LocalDate.now(), true);
-////		RendezVous RdvSet3 = new RendezVous(medecin, patient, calendrier2, LocalDate.now(), true);
-////		RendezVous RdvSet4 = new RendezVous(medecin, patient, calendrier5, LocalDate.now(), false);
-//		//RdvSet.add(RdvSet1);
-////		RdvSet.add(RdvSet2);
-////		RdvSet.add(RdvSet3);
-////		RdvSet.add(RdvSet4);
-//		this.rendezVousRepository.save(RdvSet1);
+//		RendezVous RdvSet2 = new RendezVous(medecins, patients, calendrier3, LocalDate.now(), false);
+//		RendezVous RdvSet3 = new RendezVous(medecins, patients, calendrier2, LocalDate.now(), true);
+//		RendezVous RdvSet4 = new RendezVous(medecins, patients, calendrier5, LocalDate.now(), false);
+//		RdvSet.add(RdvSet1);
+//		RdvSet.add(RdvSet2);
+//		RdvSet.add(RdvSet3);
+//		RdvSet.add(RdvSet4);
+//		this.rendezVousRepository.saveAll(RdvSet);
+
+
+
 
 
 	}

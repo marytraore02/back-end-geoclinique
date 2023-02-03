@@ -9,8 +9,8 @@ import java.time.LocalTime;
 @Setter
 public class TodayRdvListDto {
     private Long rdvId;
-    private String NomPatient;
     private String PrenomPatient;
+    private String EnailPatient;
     private Long calendrier_id;
     private LocalTime heureDebut;
     private LocalTime heureFin;

@@ -9,16 +9,30 @@ public class JwtResponse {
   private String nomEtPrenom;
   private String contact;
   private String date;
+  private String image;
+
   private String username;
   private String email;
   private List<String> roles;
 
-  public JwtResponse(String accessToken, Long id, String nomEtPrenom, String contact, String date, String username, String email, List<String> roles) {
+//  public JwtResponse(String accessToken, Long id, String nomEtPrenom, String contact, String date, String username, String email, List<String> roles) {
+//    this.token = accessToken;
+//    this.id = id;
+//    this.nomEtPrenom = nomEtPrenom;
+//    this.contact = contact;
+//    this.date = date;
+//    this.username = username;
+//    this.email = email;
+//    this.roles = roles;
+//  }
+
+  public JwtResponse(String accessToken, Long id, String nomEtPrenom, String contact, String date, String image, String username, String email, List<String> roles) {
     this.token = accessToken;
     this.id = id;
     this.nomEtPrenom = nomEtPrenom;
     this.contact = contact;
     this.date = date;
+    this.image = image;
     this.username = username;
     this.email = email;
     this.roles = roles;
@@ -54,6 +68,14 @@ public class JwtResponse {
 
   public void setNomEtPrenom(String nomEtPrenom) {
     this.nomEtPrenom = nomEtPrenom;
+  }
+
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
   }
 
   public String getContact() {

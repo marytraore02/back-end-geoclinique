@@ -1,5 +1,6 @@
 package geoclinique.geoclinique.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,19 +17,22 @@ public class RendezVous {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "medecin_id", nullable = true)
+//    @JsonIgnore
+    @ManyToOne()
+//    @JoinColumn(name = "medecin_id", nullable = true)
     private Medecins medecins;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id", nullable = false)
+    @ManyToOne()
+//    @JoinColumn(name = "patient_id")
     private Patients patients;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "calendrier_id", nullable = false)
+//    @JsonIgnore
+    @ManyToOne()
+//    @JoinColumn(name = "calendrier_id", nullable = false)
     private Calendrier calendrier;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "motif", nullable = true)
+//    @JsonIgnore
+    @ManyToOne()
+//    @JoinColumn(name = "motif", nullable = true)
     private Motif motif;
 
     private LocalDate date;

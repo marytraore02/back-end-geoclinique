@@ -15,6 +15,8 @@ import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.CurrentUser;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
+import geoclinique.geoclinique.service.SpecialiteService;
+import geoclinique.geoclinique.service.UtilisateurService;
 import org.springframework.validation.BindingResult;
 import geoclinique.geoclinique.security.services.CrudService;
 import geoclinique.geoclinique.security.services.UserDetailsImpl;
@@ -56,6 +58,8 @@ public class CliniqueController {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    UtilisateurService utilisateurService;
+    @Autowired
     CliniqueRepository clinicsRepository;
     @Autowired
     PatientRepository patientRepository;
@@ -70,6 +74,8 @@ public class CliniqueController {
 
     @Autowired
     JwtUtils jwtUtils;
+    @Autowired
+    SpecialiteService specialiteService;
 
     @Autowired
     CliniqueServices clinicsServices;
@@ -82,15 +88,19 @@ public class CliniqueController {
 
 
     @ApiOperation(value = "Creation de compte clinique")
-    @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@RequestParam(value = "cliniqueRequest1") String cliniqueRequest1,
-                                          @Param("agrementClinic") MultipartFile agrementClinic)
+    @PostMapping("/signup/{idSpec}")
+    public ResponseEntity<?> registerUser(@RequestParam(value = "data") String cliniqueRequest1,
+                                          @PathVariable("idSpec") Long idSpec,
+                                          @RequestParam(value = "file", required = false) MultipartFile file,
+                                          @RequestParam(value = "fil", required = false) MultipartFile fil
+                                        )
+    //@Param("agrementClinic") MultipartFile agrementClinic
             throws IOException {
         //Conversion des donnees data en JSON
         CliniqueRequest cliniqueRequest = new JsonMapper().readValue(cliniqueRequest1, CliniqueRequest.class);
 
         //Verification si le nom exist ds la table clinics
-        if (userRepository.findByNomEtPrenom(cliniqueRequest.getNomEtPrenom())) {
+        if (userRepository.existsByNomEtPrenom(cliniqueRequest.getNomEtPrenom())){
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Une clinique du même nom exist, Veuillez donnez un autre nom!"));
@@ -113,6 +123,7 @@ public class CliniqueController {
                         cliniqueRequest.getNomEtPrenom(),
                         cliniqueRequest.getContact(),
                         cliniqueRequest.getDate(),
+                        cliniqueRequest.getImage(),
                         cliniqueRequest.getUsername(),
                         cliniqueRequest.getEmail(),
                         encoder.encode(cliniqueRequest.getPassword()),
@@ -120,15 +131,9 @@ public class CliniqueController {
                         cliniqueRequest.getAdresseClinique(),
                         cliniqueRequest.getVilleClinique(),
                         cliniqueRequest.getLongitudeClinique(),
-                        cliniqueRequest.getLatitudeClinique());
-
-
-        //Enregistrement de la photo
-        String img = StringUtils.cleanPath(agrementClinic.getOriginalFilename());
-        cliniqueRequest.setAgrementClinique(img);
-        String uploaDir = "\\Users\\siby\\Desktop\\geo-clinique\\src\\ressources\\static\\images\\clinics";
-        ImgConf.saveimg(uploaDir, img, agrementClinic);
-
+                        cliniqueRequest.getLatitudeClinique(),
+                cliniqueRequest.getListSpecialiteClinique()
+        );
 
         //Creation des roles
         Set<String> strRoles = cliniqueRequest.getRole();
@@ -151,11 +156,21 @@ public class CliniqueController {
                 }
             });
         }
+
+        Specialites specialites = specialiteService.GetOne(idSpec).get();
+        clinics.getListeSpecialiteCli().add(specialites);
         clinics.setRoles(roles);
         clinics.setStatusClinique(false);
-//        if (file != null) {
-//            clinics.setAgrementClinic(ImageConfig.save("clinic", file, clinics.getNomClinic()));
-//        }
+        //clinics.setListeSpecialiteCli(listSpecialite);
+
+        if (file != null) {
+            clinics.setAgrementClinique(ImageConfig.save("agrementclinique", file, clinics.getNomEtPrenom()));
+        }
+
+                if (fil != null) {
+                    clinics.setImage(ImageConfig.save("clinique", fil, clinics.getNomEtPrenom()));
+                }
+
         clinicsRepository.save(clinics);
         //mailSender.send(emailConstructor.constructNewUserEmail(clinics));
         return ResponseEntity.ok(new MessageResponse("Compte clinic creer avec succes!"));
@@ -163,19 +178,21 @@ public class CliniqueController {
 
 
     @ApiOperation(value = "Lister les comptes clinique")
-    @PreAuthorize("hasRole('PATIENT') or hasRole('CLINIC') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('PATIENT') or hasRole('CLINIC') or hasRole('ADMIN')")
     @GetMapping("/read")
     public ResponseEntity<List<Clinique>> Afficher(){
         List<Clinique> clinics = clinicsServices.read();
         return new ResponseEntity(clinics, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
     @ApiOperation(value = "Mise à jour de comptes clinique")
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> update(@RequestParam(value = "data") String acti,
                                          @PathVariable("id") Long id,
-                                         @RequestParam(value = "file", required = false) MultipartFile file)
+                                         @RequestParam(value = "file", required = false) MultipartFile file,
+                                         @RequestParam(value = "fil", required = false) MultipartFile fil
+    )
             throws IOException {
         Clinique clinics = null;
 
@@ -183,8 +200,11 @@ public class CliniqueController {
             clinics = new JsonMapper().readValue(acti, Clinique.class);
 //            Random e = new Random();
 //            e.nextInt(8);
+            if (fil != null) {
+                clinics.setImage(ImageConfig.save("clinique", fil, clinics.getNomEtPrenom()));
+            }
             if (file != null) {
-                clinics.setAgrementClinique(ImageConfig.save("clinic", file, clinics.getNomEtPrenom()));
+                clinics.setAgrementClinique(ImageConfig.save("agrementclinique", file, clinics.getNomEtPrenom()));
             }
             clinicsServices.modifier(id, clinics);
             return new ResponseEntity(new Message("Clinique modifié avec success"), HttpStatus.OK);
@@ -207,7 +227,7 @@ public class CliniqueController {
         }
     }
 
-    @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
     @ApiOperation(value = "Afficher une clinique")
     @GetMapping("/get/{id}")
     public ResponseEntity<Clinique> getById(@PathVariable("id") Long id){

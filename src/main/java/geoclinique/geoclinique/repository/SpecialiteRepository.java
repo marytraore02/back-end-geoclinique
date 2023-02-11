@@ -8,7 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface SpecialiteRepository extends JpaRepository<Specialites, Long> {
-        Optional<Specialites>  findByLibelleSpecialite(String name);
+        Optional<Specialites> findByLibelleSpecialite(String name);
         boolean existsByLibelleSpecialite(String name);
+
 
 }

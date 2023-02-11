@@ -16,10 +16,7 @@ import geoclinique.geoclinique.model.Utilisateur;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TimeZone;
+import java.util.*;
 
 @SpringBootApplication
 //@Import(JacksonConfig.class)
@@ -79,6 +76,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 					"Mary TRAORE",
 					"+223 93 77 15 53",
 					"1998/02/24",
+					"Image",
 					"mary",
 					"marytra292@gmail.com",
 					encoder.encode("mary123")
@@ -88,11 +86,32 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 		}
 
 
+
+		// CREATION DES SPECIALITES
+			Set<Specialites> specialites = new HashSet<>();
+			Specialites specialites1 = new Specialites("Santé Publique ", "Description de la sante publique");
+			Specialites specialites2 = new Specialites("Médecine générale", "Description du medecin generaliste");
+			Specialites specialites3 = new Specialites("Pédiatrie", "Description du pediatre");
+			Specialites specialites4 = new Specialites("Radiologie", "Description du radiologue");
+			Specialites specialites5 = new Specialites("Dentiste", "Description du dentiste");
+			specialites.add(specialites1);
+			specialites.add(specialites2);
+			specialites.add(specialites3);
+			specialites.add(specialites4);
+			specialites.add(specialites5);
+			this.specialiteRepository.saveAll(specialites);
+
+
 		// CREATION D'UNE CLINIC
-		if (clinicsRepository.findAll().size() == 0) {
 			Set<Role> roles = new HashSet<>();
 			Role role = roleRepository.findByName(ERole.ROLE_CLINIC).get();
 			roles.add(role);
+
+			List<Specialites> specialite = new ArrayList<>();
+			Specialites sp3 = specialites3;
+			Specialites sp4 = specialites4;
+			specialite.add(sp3);
+			specialite.add(sp4);
 			Clinique clinique = new Clinique(
 					"Clinique pastère",
 					"+223 93 77 15 53",
@@ -105,29 +124,30 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 					"Bamako Hamdalaye ACI 2000",
 					"longitude",
 					"latitude"
+
 			);
 			clinique.setRoles(roles);
+			clinique.setListeSpecialiteCli(specialite);
 			clinicsRepository.save(clinique);
 
-		}
 
 
 		// CREATION D'UN PATIENT
 		Patients patients = null;
 		if (patientRepository.findAll().size() == 0) {
-			Set<Role> roles = new HashSet<>();
-			Role role = roleRepository.findByName(ERole.ROLE_PATIENT).get();
-			roles.add(role);
+			Set<Role> roles1 = new HashSet<>();
+			Role rol = roleRepository.findByName(ERole.ROLE_PATIENT).get();
+			roles1.add(rol);
 			patients = new Patients(
 					"patient PATIENT",
 					"+223 93 77 15 53",
-					"2000/06/24",
+					"16/10/2022",
 					"patient",
 					"patient@gmail.com",
 					encoder.encode("patient123"),
 					"Homme"
 			);
-			patients.setRoles(roles);
+			patients.setRoles(roles1);
 			this.patientRepository.save(patients);
 		}
 
@@ -135,72 +155,72 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 		//CREATION D'UN MEDECIN
 		Medecins medecins = null;
 		if (medecinsRepository.findAll().size() == 0) {
+			List<Specialites> specialit = new ArrayList<>();
+			Specialites sp1 = specialites1;
+			specialit.add(sp1);
 			medecins = new Medecins(
 					"Medecin",
 					"MEDECIN",
 					"medecin@gmail.com",
 					"Homme",
 					"1998/02/24",
-					"+223 78 46 75 33"
+					"+223 78 46 75 33",
+					clinique
 			);
+			medecins.setListeSpecialiteMed(specialit);
 			this.medecinsRepository.save(medecins);
 		}
 
 		// HORAIRE DU CALENDRIER
-		Set<Calendrier> calendrierSet = new HashSet<>();
-		Calendrier calendrier1 = new Calendrier(1L, LocalTime.of(8, 0), LocalTime.of(9, 0));
-		Calendrier calendrier2 = new Calendrier(2L, LocalTime.of(9, 0), LocalTime.of(10, 0));
-		Calendrier calendrier3 = new Calendrier(3L, LocalTime.of(10, 0), LocalTime.of(11, 0));
-		Calendrier calendrier4 = new Calendrier(4L, LocalTime.of(11, 0), LocalTime.of(12, 0));
-		Calendrier calendrier5 = new Calendrier(5L, LocalTime.of(12, 0), LocalTime.of(13, 0));
-		Calendrier calendrier6 = new Calendrier(6L, LocalTime.of(13, 0), LocalTime.of(14, 0));
-		Calendrier calendrier7 = new Calendrier(7L, LocalTime.of(14, 0), LocalTime.of(15, 0));
-		Calendrier calendrier8 = new Calendrier(8L, LocalTime.of(15, 0), LocalTime.of(16, 0));
-		Calendrier calendrier9 = new Calendrier(9L, LocalTime.of(16, 0), LocalTime.of(17, 0));
-		calendrierSet.add(calendrier1);
-		calendrierSet.add(calendrier2);
-		calendrierSet.add(calendrier3);
-		calendrierSet.add(calendrier4);
-		calendrierSet.add(calendrier5);
-		calendrierSet.add(calendrier6);
-		calendrierSet.add(calendrier7);
-		calendrierSet.add(calendrier8);
-		calendrierSet.add(calendrier9);
-		this.calendrierRepository.saveAll(calendrierSet);
+			Set<Calendrier> calendrierSet = new HashSet<>();
+			Calendrier calendrier1 = new Calendrier(1L, LocalTime.of(8, 0), LocalTime.of(9, 0));
+			Calendrier calendrier2 = new Calendrier(2L, LocalTime.of(9, 0), LocalTime.of(10, 0));
+			Calendrier calendrier3 = new Calendrier(3L, LocalTime.of(10, 0), LocalTime.of(11, 0));
+			Calendrier calendrier4 = new Calendrier(4L, LocalTime.of(11, 0), LocalTime.of(12, 0));
+			Calendrier calendrier5 = new Calendrier(5L, LocalTime.of(12, 0), LocalTime.of(13, 0));
+			Calendrier calendrier6 = new Calendrier(6L, LocalTime.of(13, 0), LocalTime.of(14, 0));
+			Calendrier calendrier7 = new Calendrier(7L, LocalTime.of(14, 0), LocalTime.of(15, 0));
+			Calendrier calendrier8 = new Calendrier(8L, LocalTime.of(15, 0), LocalTime.of(16, 0));
+			Calendrier calendrier9 = new Calendrier(9L, LocalTime.of(16, 0), LocalTime.of(17, 0));
+			calendrierSet.add(calendrier1);
+			calendrierSet.add(calendrier2);
+			calendrierSet.add(calendrier3);
+			calendrierSet.add(calendrier4);
+			calendrierSet.add(calendrier5);
+			calendrierSet.add(calendrier6);
+			calendrierSet.add(calendrier7);
+			calendrierSet.add(calendrier8);
+			calendrierSet.add(calendrier9);
+			this.calendrierRepository.saveAll(calendrierSet);
+
+
 
 //
 //		// CREATION DE MOTIFS
-		Set<Motif> Motif = new HashSet<>();
-		Motif Motif1 = new Motif(1L, "Consultation");
-		Motif Motif2 = new Motif(2L, "Contrôle");
-		Motif Motif3 = new Motif(3L, "Urgence");
-		Motif Motif4 = new Motif(4L, "Devis");
-		Motif Motif5 = new Motif(5L, "Autre");
-		Motif.add(Motif1);
-		Motif.add(Motif2);
-		Motif.add(Motif3);
-		Motif.add(Motif4);
-		Motif.add(Motif5);
-		this.motifRepository.saveAll(Motif);
+			Set<Motif> Motif = new HashSet<>();
+			Motif Motif1 = new Motif(1L, "Consultation");
+			Motif Motif2 = new Motif(2L, "Contrôle");
+			Motif Motif3 = new Motif(3L, "Urgence");
+			Motif Motif4 = new Motif(4L, "Devis");
+			Motif Motif5 = new Motif(5L, "Autre");
+			Motif.add(Motif1);
+			Motif.add(Motif2);
+			Motif.add(Motif3);
+			Motif.add(Motif4);
+			Motif.add(Motif5);
+			this.motifRepository.saveAll(Motif);
+
 
 		// CREATION DE RENDEZ VOUS
-		Set<RendezVous> RdvSet = new HashSet<>();
-		RendezVous RdvSet1 = new RendezVous(Motif1, medecins, patients, calendrier1, LocalDate.now(), true);
-		RendezVous RdvSet2 = new RendezVous(Motif2, medecins, patients, calendrier3, LocalDate.now(), false);
-		RdvSet.add(RdvSet1);
-		RdvSet.add(RdvSet2);
-		this.rendezVousRepository.saveAll(RdvSet);
+		if(rendezVousRepository.findAll().size() == 0){
+			Set<RendezVous> RdvSet = new HashSet<>();
+			RendezVous RdvSet1 = new RendezVous(Motif1, medecins, patients, calendrier1, LocalDate.now(), true);
+			RendezVous RdvSet2 = new RendezVous(Motif2, medecins, patients, calendrier3, LocalDate.now(), false);
+			RdvSet.add(RdvSet1);
+			RdvSet.add(RdvSet2);
+			this.rendezVousRepository.saveAll(RdvSet);
+		}
 
-//		Set<RendezVous> RdvSet = new HashSet<>();
-//		RendezVous RdvSet1 = new RendezVous(medecins, patients, calendrier1, LocalDate.now(), true);
-//		RendezVous RdvSet2 = new RendezVous(medecins, patients, calendrier3, LocalDate.now(), false);
-//		RendezVous RdvSet3 = new RendezVous(medecins, patients, calendrier2, LocalDate.now(), true);
-//		RendezVous RdvSet4 = new RendezVous(medecins, patients, calendrier5, LocalDate.now(), false);
-//		RdvSet.add(RdvSet1);
-//		RdvSet.add(RdvSet2);
-//		RdvSet.add(RdvSet3);
-//		RdvSet.add(RdvSet4);
-//		this.rendezVousRepository.saveAll(RdvSet);
 
 
 

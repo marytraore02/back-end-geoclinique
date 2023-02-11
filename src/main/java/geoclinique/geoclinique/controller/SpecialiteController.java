@@ -30,7 +30,7 @@ public class SpecialiteController {
     SpecialiteService specialiteService;
 
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('CLINIC')")
+    //@PreAuthorize("hasRole('ADMIN') or hasRole('CLINIC')")
     @ApiOperation(value = "Creation de specialite")
     @PostMapping("/create/new")
     public ResponseEntity<?> create(@RequestParam(value = "data") String acti,

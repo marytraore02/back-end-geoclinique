@@ -50,8 +50,12 @@ public class Patients extends Utilisateur{
         this.sexePatient = sexePatient;
     }
 
+    public Patients(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 200) String image, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 100) @Email String email, @NotBlank @Size(max = 120) String password, String sexePatient) {
+        super(nomEtPrenom, contact, date, image, username, email, password);
+        this.sexePatient = sexePatient;
+    }
 
-//    public Patients(UtilisateurBuilder<?, ?> email, String nomPatient, String prenomPatient) {
+    //    public Patients(UtilisateurBuilder<?, ?> email, String nomPatient, String prenomPatient) {
 //        super(email);
 //        this.nomPatient = nomPatient;
 //        this.prenomPatient = prenomPatient;

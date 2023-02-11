@@ -6,6 +6,7 @@ import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
 import geoclinique.geoclinique.configuration.EmailConstructor;
+import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.payload.request.CliniqueRequest;
@@ -69,10 +70,9 @@ public class PatientController {
 
     @ApiOperation(value = "Creation de compte patient")
     @PostMapping("/signup")
-    public ResponseEntity<?> registerPatient(@RequestParam(value = "data") String patientsRequest1)
+    public ResponseEntity<?> registerPatient(@RequestParam(value = "data") String patientsRequest1,
+                                             @RequestParam(value = "file", required = false) MultipartFile file)
             throws IOException {
-
-        //@RequestParam(value = "file", required = false) MultipartFile file
 
 
         //Conversion des donnees data en JSON
@@ -96,6 +96,7 @@ public class PatientController {
                         patientRequest.getNomEtPrenom(),
                         patientRequest.getContact(),
                         patientRequest.getDate(),
+                        patientRequest.getImage(),
                         patientRequest.getUsername(),
                         patientRequest.getEmail(),
                         encoder.encode(patientRequest.getPassword()),
@@ -124,9 +125,9 @@ public class PatientController {
             });
         }
         patients.setRoles(roles);
-//        if (file != null) {
-//            patients.setImage(ImageConfig.save("patient", file, patients.getPrenomPatient()));
-//        }
+        if (file != null) {
+            patients.setImage(ImageConfig.save("patient", file, patients.getUsername()));
+        }
         patientRepository.save(patients);
         //mailSender.send(emailConstructor.constructNewUserEmail(patients));
         return ResponseEntity.ok(new MessageResponse("Compte patient creer avec succes!"));
@@ -217,11 +218,13 @@ public class PatientController {
     public ResponseEntity<?> save(@PathVariable Long id,
                                   @Valid @RequestBody NewRdvRequest newRdv)
             {
-
+                if(!userRepository.existsById(id))
+                    return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
         Utilisateur currentUser = userRepository.getReferenceById(id);
         //Motif modif = motifRepository.getReferenceById(idModif);
 //        try{
-//            UserDetailsImpl userVenant = new JsonMapper().readValue(currentUser, UserDetailsImpl.class);
+//            UserDetailsImpl
+//            userVenant = new JsonMapper().readValue(currentUser, UserDetailsImpl.class);
 //            NewRdvRequest rdvinfos = new JsonMapper().readValue(newRdv, NewRdvRequest.class);
 //            System.err.println(currentUser.getEmail());
 

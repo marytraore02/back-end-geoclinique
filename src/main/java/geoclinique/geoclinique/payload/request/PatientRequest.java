@@ -24,10 +24,13 @@ public class PatientRequest {
     @Size(max = 20)
     private String date;
     @NotBlank
+    @Size(max = 200)
+    private String image;
+    @NotBlank
     @Size(max = 20)
     private String username;
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 100)
     @Email
     private String email;
     @NotBlank

@@ -90,6 +90,7 @@ public class AuthController {
             userDetails.getNomEtPrenom(),
             userDetails.getContact(),
             userDetails.getDate(),
+            userDetails.getImage(),
             userDetails.getUsername(),
             userDetails.getEmail(),
             roles));
@@ -115,6 +116,7 @@ public class AuthController {
             signUpRequest.getNomEtPrenom(),
             signUpRequest.getContact(),
             signUpRequest.getDate(),
+            signUpRequest.getImage(),
             signUpRequest.getUsername(),
             signUpRequest.getEmail(),
             encoder.encode(signUpRequest.getPassword())

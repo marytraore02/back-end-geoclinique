@@ -22,7 +22,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "calendrier")
-public class Calendrier implements Serializable {
+public class Calendrier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

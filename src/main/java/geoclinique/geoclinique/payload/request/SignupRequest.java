@@ -17,11 +17,14 @@ public class SignupRequest {
   @Size(max = 20)
   private String date;
   @NotBlank
+  @Size(max = 200)
+  private String image;
+  @NotBlank
   @Size(min = 3, max = 20)
   private String username;
 
   @NotBlank
-  @Size(max = 50)
+  @Size(max = 100)
   @Email
   private String email;
 
@@ -55,6 +58,14 @@ public class SignupRequest {
     this.date = date;
   }
 
+  public String getImage() {
+    return image;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
   public String getUsername() {
     return username;
   }
@@ -71,19 +82,19 @@ public class SignupRequest {
     this.email = email;
   }
 
+  public Set<String> getRole() {
+    return role;
+  }
+
+  public void setRole(Set<String> role) {
+    this.role = role;
+  }
+
   public String getPassword() {
     return password;
   }
 
   public void setPassword(String password) {
     this.password = password;
-  }
-
-  public Set<String> getRole() {
-    return this.role;
-  }
-
-  public void setRole(Set<String> role) {
-    this.role = role;
   }
 }

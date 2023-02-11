@@ -58,6 +58,8 @@ public class Clinique extends Utilisateur{
     private String agrementClinique;
     private boolean statusClinique;
 
+
+
     public Clinique(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String descriptionClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique) {
         super(nomEtPrenom, contact, date, username, email, password);
         this.descriptionClinique = descriptionClinique;
@@ -67,19 +69,36 @@ public class Clinique extends Utilisateur{
         this.latitudeClinique = latitudeClinique;
     }
 
-//    public Clinique(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String nomClinique, String descriptionClinique, String contactClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique) {
-//        super(username, email, password);
-//        this.nomClinique = nomClinique;
+//    public Clinique(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 100) @Email String email, @NotBlank @Size(max = 120) String password, String descriptionClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique, List<Specialites> listeSpecialiteCli) {
+//        super(nomEtPrenom, contact, date, username, email, password);
 //        this.descriptionClinique = descriptionClinique;
-//        this.contactClinique = contactClinique;
 //        this.villeClinique = villeClinique;
 //        this.adresseClinique = adresseClinique;
 //        this.longitudeClinique = longitudeClinique;
 //        this.latitudeClinique = latitudeClinique;
+//        this.listeSpecialiteCli = listeSpecialiteCli;
 //    }
 
 
-    //Liste des RDV
+    public Clinique(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 200) String image, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 100) @Email String email, @NotBlank @Size(max = 120) String password, Set<Role> roles, String descriptionClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique) {
+        super(nomEtPrenom, contact, date, image, username, email, password, roles);
+        this.descriptionClinique = descriptionClinique;
+        this.villeClinique = villeClinique;
+        this.adresseClinique = adresseClinique;
+        this.longitudeClinique = longitudeClinique;
+        this.latitudeClinique = latitudeClinique;
+    }
+
+    public Clinique(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 200) String image, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 100) @Email String email, @NotBlank @Size(max = 120) String password, String descriptionClinique, String villeClinique, String adresseClinique, String longitudeClinique, String latitudeClinique, List<Specialites> listeSpecialiteCli) {
+        super(nomEtPrenom, contact, date, image, username, email, password);
+        this.descriptionClinique = descriptionClinique;
+        this.villeClinique = villeClinique;
+        this.adresseClinique = adresseClinique;
+        this.longitudeClinique = longitudeClinique;
+        this.latitudeClinique = latitudeClinique;
+        this.listeSpecialiteCli = listeSpecialiteCli;
+    }
+//Liste des RDV
 //    @JsonIgnore
 //    @OneToMany(cascade = CascadeType.ALL,
 //            fetch = FetchType.LAZY,
@@ -107,7 +126,14 @@ public class Clinique extends Utilisateur{
             @JoinColumn(name = "id_patients") })
     List<Patients> listeEvaluation = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "clinics")
-    List<Specialites> ListeSpecialite = new ArrayList<>();
+
+    //@JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "specialite_clinique", joinColumns = { @JoinColumn(name = "id_clinics") }, inverseJoinColumns = {
+            @JoinColumn(name = "id_specialite") })
+    List<Specialites> listeSpecialiteCli = new ArrayList<>();
+
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "clinics")
+//    List<Specialites> ListeSpecialite = new ArrayList<>();
 }

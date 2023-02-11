@@ -20,8 +20,8 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "medecins")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Medecins implements Serializable {
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Medecins {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMedecin;
@@ -56,17 +56,34 @@ public class Medecins implements Serializable {
             mappedBy = "medecins")
     List<RendezVous> ListeRdv = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "medecins")
-    List<Specialites> ListeSpecMedecins = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "medecins")
+//    List<Specialites> ListeSpecMedecins = new ArrayList<>();
+    //@JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "specialite_medecin", joinColumns = { @JoinColumn(name = "id_medecin") }, inverseJoinColumns = {
+            @JoinColumn(name = "id_specialite") })
+    List<Specialites> listeSpecialiteMed = new ArrayList<>();
 
-    public Medecins(String nomMedecin, String prenomMedecin, String emailMedecin, String sexeMedecin, String naissanceMedecin, String imageMedecin, String contactMedecin, Clinique clinique) {
+
+    public Medecins(String nomMedecin, String prenomMedecin, String emailMedecin, String sexeMedecin, String naissanceMedecin, String contactMedecin, Clinique clinique, List<Specialites> listeSpecialiteMed) {
         this.nomMedecin = nomMedecin;
         this.prenomMedecin = prenomMedecin;
         this.emailMedecin = emailMedecin;
         this.sexeMedecin = sexeMedecin;
         this.naissanceMedecin = naissanceMedecin;
-        this.imageMedecin = imageMedecin;
+        this.contactMedecin = contactMedecin;
+        this.clinique = clinique;
+        this.listeSpecialiteMed = listeSpecialiteMed;
+    }
+
+    public Medecins(String nomMedecin, String prenomMedecin, String emailMedecin, String sexeMedecin, String naissanceMedecin, String contactMedecin, Clinique clinique) {
+        this.nomMedecin = nomMedecin;
+        this.prenomMedecin = prenomMedecin;
+        this.emailMedecin = emailMedecin;
+        this.sexeMedecin = sexeMedecin;
+        this.naissanceMedecin = naissanceMedecin;
+        //this.imageMedecin = imageMedecin;
         this.contactMedecin = contactMedecin;
        // this.utilisateur = utilisateur;
         this.clinique = clinique;

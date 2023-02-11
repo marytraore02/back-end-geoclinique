@@ -12,16 +12,19 @@ public class ImageConfig {
 
     public static String localhost = "http://localhost/";
 
-    //Stockage photo clinique
-    public static String serverclinic = localhost + "geoclinique/images/clinics/";
-    public static String Cliniclocation = "/Applications/XAMPP/xamppfiles/htdocs/geoclinique/images/clinics/";
+    //Stockage photo de la clinique
+    public static String serverclinique = localhost + "geoclinique/images/cliniques/";
+    public static String Cliniquelocation = "/Applications/XAMPP/xamppfiles/htdocs/geoclinique/images/cliniques/";
+
+    //Stockage photo de l'agrement de la clinique
+    public static String serveragrementclinique = localhost + "geoclinique/images/agrements-clinique/";
+    public static String Agrementcliniquelocation = "/Applications/XAMPP/xamppfiles/htdocs/geoclinique/images/agrements-clinique/";
 
     //Stockage photo medecin
     public static String servermedecin = localhost + "geoclinique/images/medecins/";
     public static String Medecinlocation = "/Applications/XAMPP/xamppfiles/htdocs/geoclinique/images/medecins/";
 
-
-    //Stockage photo medecin
+    //Stockage photo specialite
     public static String serverspecialite = localhost + "geoclinique/images/specialites/";
     public static String Specialitelocation = "/Applications/XAMPP/xamppfiles/htdocs/geoclinique/images/specialites/";
 
@@ -37,9 +40,12 @@ public class ImageConfig {
         if (typeImage == "medecin") {
             location = Medecinlocation;
             server = servermedecin;
-        } else if (typeImage == "clinic"){
-            location = Cliniclocation;
-            server = serverclinic;
+        } else if (typeImage == "agrementclinique"){
+            location = Agrementcliniquelocation;
+            server = serveragrementclinique;
+        } else if (typeImage == "clinique"){
+            location = Cliniquelocation;
+            server = serverclinique;
         } else if (typeImage == "specialite"){
             location = Specialitelocation;
             server = serverspecialite;

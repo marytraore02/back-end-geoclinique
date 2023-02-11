@@ -5,6 +5,7 @@ import geoclinique.geoclinique.model.Medecins;
 import geoclinique.geoclinique.model.Motif;
 import geoclinique.geoclinique.repository.MedecinsRepository;
 import geoclinique.geoclinique.repository.MotifRepository;
+import geoclinique.geoclinique.repository.RendezVousRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class MedecinsService {
     MotifRepository motifRepository;
     @Autowired
     PasswordEncoder encoder;
+    @Autowired
+    RendezVousRepository rendezVousRepository;
     public Medecins creer(Medecins medecins){
         return medecinsRepository.save(medecins);
     }

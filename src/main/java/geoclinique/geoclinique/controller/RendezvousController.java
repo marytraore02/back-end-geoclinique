@@ -21,7 +21,6 @@ import java.util.List;
 @RequestMapping("/rendezvous")
 @Api(value = "hello", description = "CRUD RENDEZ-VOUS")
 public class RendezvousController {
-
     @Autowired
     RendezVousRepository rendezVousRepository;
     @Autowired
@@ -33,4 +32,13 @@ public class RendezvousController {
         List<RendezVous> rdv = rendezVousService.read();
         return rdv;
     }
+
+    @ApiOperation(value = "List des rendez-vous")
+    @GetMapping("/lire")
+    public Iterable<Object[]> getRdv(){
+        return rendezVousService.getListRdv();
+    }
+
+
+
 }

@@ -17,4 +17,8 @@ public class RendezVousService {
         return rendezVousRepository.findAll();
     }
 
+    public Iterable<Object[]> getListRdv() {
+        return rendezVousRepository.getListRdv();
+    }
+
 }

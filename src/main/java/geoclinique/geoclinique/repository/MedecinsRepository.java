@@ -4,6 +4,7 @@ import geoclinique.geoclinique.model.Clinique;
 import geoclinique.geoclinique.model.Medecins;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface MedecinsRepository extends JpaRepository<Medecins, Long> {
@@ -14,5 +15,7 @@ public interface MedecinsRepository extends JpaRepository<Medecins, Long> {
     boolean existsByContactMedecin(String contact);
     boolean existsByEmailMedecin(String email);
     boolean existsByNomMedecin(String name);
+
+    List<Medecins> findByClinique(Clinique clinique);
 
 }

@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -33,13 +35,21 @@ public class Specialites {
         this.descriptionSpecialite = descriptionSpecialite;
     }
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "clinics")
-    private Clinique clinics;
+//    @JsonIgnore
+//    @ManyToOne
+//    @JoinColumn(name = "clinics")
+//    private Clinique clinics;
 
     @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "medecins")
-    private Medecins medecins;
+    @ManyToMany(mappedBy = "listeSpecialiteCli")
+    List<Clinique> listeClinique = new ArrayList<>();
+    @JsonIgnore
+    @ManyToMany(mappedBy = "listeSpecialiteMed")
+    List<Medecins> listeMedecin = new ArrayList<>();
+
+
+//    @JsonIgnore
+//    @ManyToOne
+//    @JoinColumn(name = "medecins")
+//    private Medecins medecins;
 }

@@ -32,12 +32,15 @@ public class Utilisateur extends User{
     @Size(max = 20)
     private String date;
     @NotBlank
+    @Size(max = 200)
+    private String image;
+    @NotBlank
     @Size(max = 20)
     @Column(unique = true)
     private String username;
 
     @NotBlank
-    @Size(max = 50)
+    @Size(max = 100)
     @Email
     @Column(unique = true)
     private String email;
@@ -51,6 +54,17 @@ public class Utilisateur extends User{
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     Set<Role> roles = new HashSet<>();
+
+
+    public Utilisateur(String nomEtPrenom, String contact, String date, String image, String username, String email, String password) {
+        this.nomEtPrenom = nomEtPrenom;
+        this.contact = contact;
+        this.date = date;
+        this.image = image;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     public Utilisateur(String nomEtPrenom, String contact, String date, String username, String email, String password) {
         this.nomEtPrenom = nomEtPrenom;

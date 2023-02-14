@@ -86,25 +86,26 @@ public class CliniqueServices {
         return clinicsRepository.existsByEmail(email);
     }
     public Clinique modifier(Long id, Clinique clinique) {
-        Clinique cl = clinicsRepository.findById(id).get();
-        return clinicsRepository.save(cl);
+//        Clinique cl = clinicsRepository.findById(id).get();
+//        return clinicsRepository.save(cl);
 
-//        return clinicsRepository.findById(id)
-//                .map(p->{
-//                    p.setNomEtPrenom((clinique.getNomEtPrenom()));
-//                    p.setContact(clinique.getContact());
-//                    p.setDate(clinique.getDate());
-//                    p.setUsername(clinique.getUsername());
-//                    p.setEmail(clinique.getEmail());
-//                    p.setPassword(encoder.encode(clinique.getPassword()));
-//                    p.setDescriptionClinique(clinique.getDescriptionClinique());
-//                    p.setAdresseClinique(clinique.getAdresseClinique());
-//                    p.setVilleClinique(clinique.getVilleClinique());
-//                    p.setLongitudeClinique(clinique.getLongitudeClinique());
-//                    p.setLatitudeClinique(clinique.getLatitudeClinique());
-////                    p.setStatusClinic(clinique.isStatusClinic());
-//                    return clinicsRepository.save(p);
-//                }).orElseThrow(()-> new RuntimeException("Clinique non trouvé !"));
+        return clinicsRepository.findById(id)
+                .map(p->{
+                    p.setNomEtPrenom((clinique.getNomEtPrenom()));
+                    p.setContact(clinique.getContact());
+                    p.setDate(clinique.getDate());
+                    p.setUsername(clinique.getUsername());
+                    p.setEmail(clinique.getEmail());
+                    p.setPassword(encoder.encode(clinique.getPassword()));
+                    p.setDescriptionClinique(clinique.getDescriptionClinique());
+                    p.setAdresseClinique(clinique.getAdresseClinique());
+                    p.setVilleClinique(clinique.getVilleClinique());
+                    p.setLongitudeClinique(clinique.getLongitudeClinique());
+                    p.setLatitudeClinique(clinique.getLatitudeClinique());
+                    p.setStatusClinique(clinique.isStatusClinique());
+                    p.setListeSpecialiteCli(clinique.getListeSpecialiteCli());
+                    return clinicsRepository.save(p);
+                }).orElseThrow(()-> new RuntimeException("Clinique non trouvé !"));
     }
     public String delete(Long id){
         clinicsRepository.deleteById(id);

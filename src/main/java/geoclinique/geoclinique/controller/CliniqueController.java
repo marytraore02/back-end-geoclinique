@@ -185,7 +185,7 @@ public class CliniqueController {
         return new ResponseEntity(clinics, HttpStatus.OK);
     }
 
-    //@PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
     @ApiOperation(value = "Mise à jour de comptes clinique")
     @PutMapping("/update/{id}")
     public ResponseEntity<Object> update(@RequestParam(value = "data") String acti,

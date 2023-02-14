@@ -1,449 +1,468 @@
-2023-02-11 01:13:21.911  INFO 57198 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MacBook-Pro.local with PID 57198 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
-2023-02-11 01:13:21.978  INFO 57198 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-02-11 01:13:22.351  INFO 57198 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-02-11 01:13:22.352  INFO 57198 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-02-11 01:13:28.414  INFO 57198 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-11 01:13:28.809  INFO 57198 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 372 ms. Found 10 JPA repository interfaces.
-2023-02-11 01:13:34.597  INFO 57198 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
-2023-02-11 01:13:34.621  INFO 57198 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-02-11 01:13:34.628  INFO 57198 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-11 01:13:35.081  INFO 57198 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-02-11 01:13:35.082  INFO 57198 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 12728 ms
-2023-02-11 01:13:35.935  INFO 57198 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-02-11 01:13:36.722  INFO 57198 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-02-11 01:13:38.325  INFO 57198 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-02-11 01:13:39.275  INFO 57198 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-02-11 01:13:40.636  INFO 57198 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-02-11 01:13:40.688  INFO 57198 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-02-11 01:13:42.471  INFO 57198 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
-2023-02-11 01:13:51.348  INFO 57198 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-02-11 01:13:51.375  INFO 57198 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 01:14:02.200  WARN 57198 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-11 01:14:03.761  INFO 57198 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-11 01:14:09.157  INFO 57198 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@60ba2b1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b73e0ac, org.springframework.security.web.context.SecurityContextPersistenceFilter@57091317, org.springframework.security.web.header.HeaderWriterFilter@58376722, org.springframework.web.filter.CorsFilter@2e09c6ec, org.springframework.security.web.authentication.logout.LogoutFilter@ecf3d04, geoclinique.geoclinique.security.jwt.AuthTokenFilter@23d57617, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1880101a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@56712bd2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b505968, org.springframework.security.web.session.SessionManagementFilter@731499d1, org.springframework.security.web.access.ExceptionTranslationFilter@6dc499cd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4a9afffb]
-2023-02-11 01:14:10.218  INFO 57198 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-02-11 01:14:11.998  INFO 57198 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
-2023-02-11 01:14:12.003  INFO 57198 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2023-02-11 01:14:12.248  INFO 57198 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2023-02-11 01:14:12.513  INFO 57198 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2023-02-11 01:14:13.688  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
-2023-02-11 01:14:13.992  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
-2023-02-11 01:14:14.160  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
-2023-02-11 01:14:14.190  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
-2023-02-11 01:14:14.196  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
-2023-02-11 01:14:14.438  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
-2023-02-11 01:14:14.535  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
-2023-02-11 01:14:14.605  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
-2023-02-11 01:14:14.789  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
-2023-02-11 01:14:14.839  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
-2023-02-11 01:14:14.910  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
-2023-02-11 01:14:14.918  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
-2023-02-11 01:14:14.937  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
-2023-02-11 01:14:14.941  INFO 57198 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
-2023-02-11 01:14:15.272  INFO 57198 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 57.125 seconds (JVM running for 63.965)
-2023-02-11 01:25:20.764  INFO 57198 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-11 01:25:20.775  INFO 57198 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-02-11 01:25:20.801  INFO 57198 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
-2023-02-11 04:44:12.998  WARN 57198 --- [http-nio-9000-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1406, SQLState: 22001
-2023-02-11 04:44:13.021 ERROR 57198 --- [http-nio-9000-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : Data truncation: Data too long for column 'description_clinique' at row 1
-2023-02-11 04:44:13.070  INFO 57198 --- [http-nio-9000-exec-8] o.h.e.j.b.internal.AbstractBatchImpl     : HHH000010: On release of batch it still contained JDBC statements
-2023-02-11 04:44:13.275 ERROR 57198 --- [http-nio-9000-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.DataException: could not execute statement] with root cause
-
-com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'description_clinique' at row 1
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:104) ~[mysql-connector-j-8.0.32.jar:8.0.32]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:916) ~[mysql-connector-j-8.0.32.jar:8.0.32]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1061) ~[mysql-connector-j-8.0.32.jar:8.0.32]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1009) ~[mysql-connector-j-8.0.32.jar:8.0.32]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1320) ~[mysql-connector-j-8.0.32.jar:8.0.32]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:994) ~[mysql-connector-j-8.0.32.jar:8.0.32]
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-4.0.3.jar:na]
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-4.0.3.jar:na]
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3375) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3937) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721) ~[na:na]
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1407) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:489) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3303) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2438) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:449) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-5.6.14.Final.jar:5.6.14.Final]
-	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562) ~[spring-orm-5.3.25.jar:5.3.25]
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743) ~[spring-tx-5.3.25.jar:5.3.25]
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711) ~[spring-tx-5.3.25.jar:5.3.25]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654) ~[spring-tx-5.3.25.jar:5.3.25]
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407) ~[spring-tx-5.3.25.jar:5.3.25]
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-5.3.25.jar:5.3.25]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
-	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.25.jar:5.3.25]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
-	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174) ~[spring-data-jpa-2.7.7.jar:2.7.7]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
-	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-5.3.25.jar:5.3.25]
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.25.jar:5.3.25]
-	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.25.jar:5.3.25]
-	at jdk.proxy4/jdk.proxy4.$Proxy146.save(Unknown Source) ~[na:na]
-	at geoclinique.geoclinique.controller.CliniqueController.registerUser(CliniqueController.java:204) ~[classes/:na]
-	at geoclinique.geoclinique.controller.CliniqueController$$FastClassBySpringCGLIB$$7abb45c6.invoke(<generated>) ~[classes/:na]
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218) ~[spring-core-5.3.25.jar:5.3.25]
-	at org.springframework.aop.framework.CglibAopProxy.invokeMethod(CglibAopProxy.java:386) ~[spring-aop-5.3.25.jar:5.3.25]
-	at org.springframework.aop.framework.CglibAopProxy.access$000(CglibAopProxy.java:85) ~[spring-aop-5.3.25.jar:5.3.25]
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:704) ~[spring-aop-5.3.25.jar:5.3.25]
-	at geoclinique.geoclinique.controller.CliniqueController$$EnhancerBySpringCGLIB$$2a450021.registerUser(<generated>) ~[classes/:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696) ~[tomcat-embed-core-9.0.71.jar:4.0.FR]
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779) ~[tomcat-embed-core-9.0.71.jar:4.0.FR]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.springframework.web.servlet.resource.ResourceUrlEncodingFilter.doFilter(ResourceUrlEncodingFilter.java:67) ~[spring-webmvc-5.3.25.jar:5.3.25]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:337) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at geoclinique.geoclinique.security.jwt.AuthTokenFilter.doFilterInternal(AuthTokenFilter.java:53) ~[classes/:na]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:346) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:221) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186) ~[spring-security-web-5.7.6.jar:5.7.6]
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117) ~[spring-web-5.3.25.jar:5.3.25]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.71.jar:9.0.71]
-	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
-
-2023-02-11 04:48:22.515  INFO 57198 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:48:22.632  INFO 57198 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-02-11 04:48:22.671  INFO 57198 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-02-11 04:48:53.201  INFO 15652 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MacBook-Pro.local with PID 15652 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
-2023-02-11 04:48:53.258  INFO 15652 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-02-11 04:48:53.552  INFO 15652 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-02-11 04:48:53.553  INFO 15652 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-02-11 04:48:57.601  INFO 15652 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-11 04:48:57.754  INFO 15652 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 138 ms. Found 10 JPA repository interfaces.
-2023-02-11 04:49:01.110  INFO 15652 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
-2023-02-11 04:49:01.139  INFO 15652 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-02-11 04:49:01.141  INFO 15652 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-11 04:49:01.355  INFO 15652 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-02-11 04:49:01.356  INFO 15652 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7801 ms
-2023-02-11 04:49:01.837  INFO 15652 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-02-11 04:49:01.958  INFO 15652 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-02-11 04:49:02.262  INFO 15652 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-02-11 04:49:02.499  INFO 15652 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-02-11 04:49:02.813  INFO 15652 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-02-11 04:49:02.844  INFO 15652 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-02-11 04:49:03.357  INFO 15652 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
-2023-02-11 04:49:05.718  INFO 15652 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-02-11 04:49:05.732  INFO 15652 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:49:09.743  WARN 15652 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-11 04:49:10.400  INFO 15652 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-11 04:49:11.564  INFO 15652 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7a44aa52, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ea06f8e, org.springframework.security.web.context.SecurityContextPersistenceFilter@48e6e054, org.springframework.security.web.header.HeaderWriterFilter@14f6e175, org.springframework.web.filter.CorsFilter@3f2d228, org.springframework.security.web.authentication.logout.LogoutFilter@2880c685, geoclinique.geoclinique.security.jwt.AuthTokenFilter@7c4d301e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@778865fd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6c580c21, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@22170493, org.springframework.security.web.session.SessionManagementFilter@44c4b3fe, org.springframework.security.web.access.ExceptionTranslationFilter@3b9e7c49, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@48638a6e]
-2023-02-11 04:49:11.896  INFO 15652 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-02-11 04:49:12.674  INFO 15652 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
-2023-02-11 04:49:12.683  INFO 15652 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2023-02-11 04:49:12.810  INFO 15652 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2023-02-11 04:49:12.896  INFO 15652 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2023-02-11 04:49:13.272  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
-2023-02-11 04:49:13.334  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
-2023-02-11 04:49:13.342  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
-2023-02-11 04:49:13.349  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
-2023-02-11 04:49:13.354  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
-2023-02-11 04:49:13.366  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
-2023-02-11 04:49:13.377  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
-2023-02-11 04:49:13.392  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
-2023-02-11 04:49:13.412  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
-2023-02-11 04:49:13.422  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
-2023-02-11 04:49:13.425  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
-2023-02-11 04:49:13.427  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
-2023-02-11 04:49:13.429  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
-2023-02-11 04:49:13.432  INFO 15652 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
-2023-02-11 04:49:13.465  INFO 15652 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 24.929 seconds (JVM running for 29.87)
-2023-02-11 04:50:18.121  INFO 15652 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:50:18.135  INFO 15652 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-02-11 04:50:18.160  INFO 15652 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-02-11 04:50:37.162  INFO 16084 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MacBook-Pro.local with PID 16084 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
-2023-02-11 04:50:37.165  INFO 16084 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-02-11 04:50:37.326  INFO 16084 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-02-11 04:50:37.327  INFO 16084 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-02-11 04:50:41.371  INFO 16084 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-11 04:50:41.778  INFO 16084 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 385 ms. Found 10 JPA repository interfaces.
-2023-02-11 04:50:43.863  INFO 16084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
-2023-02-11 04:50:43.881  INFO 16084 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-02-11 04:50:43.881  INFO 16084 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-11 04:50:44.035  INFO 16084 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-02-11 04:50:44.035  INFO 16084 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6707 ms
-2023-02-11 04:50:44.382  INFO 16084 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-02-11 04:50:44.462  INFO 16084 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-02-11 04:50:44.756  INFO 16084 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-02-11 04:50:44.961  INFO 16084 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-02-11 04:50:45.391  INFO 16084 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-02-11 04:50:45.416  INFO 16084 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-02-11 04:50:45.832  INFO 16084 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
-2023-02-11 04:50:47.672  INFO 16084 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-02-11 04:50:47.684  INFO 16084 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:50:50.894  WARN 16084 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-11 04:50:51.262  INFO 16084 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-11 04:50:52.991  INFO 16084 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6190a288, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3653c034, org.springframework.security.web.context.SecurityContextPersistenceFilter@305e9002, org.springframework.security.web.header.HeaderWriterFilter@11baf4b3, org.springframework.web.filter.CorsFilter@28d2dd13, org.springframework.security.web.authentication.logout.LogoutFilter@6bea03da, geoclinique.geoclinique.security.jwt.AuthTokenFilter@3296b9a2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@166f8e5c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@317610e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ab3288c, org.springframework.security.web.session.SessionManagementFilter@54caf31c, org.springframework.security.web.access.ExceptionTranslationFilter@bef15c0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@49c3daf4]
-2023-02-11 04:50:53.510  INFO 16084 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-02-11 04:50:53.873  INFO 16084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
-2023-02-11 04:50:53.874  INFO 16084 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2023-02-11 04:50:53.920  INFO 16084 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2023-02-11 04:50:53.954  INFO 16084 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2023-02-11 04:50:54.200  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
-2023-02-11 04:50:54.257  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
-2023-02-11 04:50:54.267  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
-2023-02-11 04:50:54.274  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
-2023-02-11 04:50:54.278  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
-2023-02-11 04:50:54.289  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
-2023-02-11 04:50:54.308  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
-2023-02-11 04:50:54.325  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
-2023-02-11 04:50:54.355  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
-2023-02-11 04:50:54.368  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
-2023-02-11 04:50:54.374  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
-2023-02-11 04:50:54.378  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
-2023-02-11 04:50:54.381  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
-2023-02-11 04:50:54.387  INFO 16084 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
-2023-02-11 04:50:54.552  INFO 16084 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 18.243 seconds (JVM running for 20.4)
-2023-02-11 04:51:07.397  INFO 16084 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-11 04:51:07.403  INFO 16084 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-02-11 04:51:07.427  INFO 16084 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 22 ms
-2023-02-11 04:51:11.199 ERROR 16084 --- [http-nio-9000-exec-3] g.geoclinique.security.jwt.JwtUtils      : JWT token is expired: JWT expired at 2023-02-05T01:07:36Z. Current time: 2023-02-11T04:51:11Z, a difference of 531815198 milliseconds.  Allowed clock skew: 0 milliseconds.
-2023-02-11 04:52:31.055  INFO 16084 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:52:31.071  INFO 16084 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-02-11 04:52:31.088  INFO 16084 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-02-11 04:52:44.768  INFO 16538 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MacBook-Pro.local with PID 16538 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
-2023-02-11 04:52:44.772  INFO 16538 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-02-11 04:52:45.059  INFO 16538 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-02-11 04:52:45.060  INFO 16538 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-02-11 04:52:47.830  INFO 16538 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-11 04:52:47.990  INFO 16538 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 147 ms. Found 10 JPA repository interfaces.
-2023-02-11 04:52:49.965  INFO 16538 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
-2023-02-11 04:52:49.985  INFO 16538 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-02-11 04:52:49.985  INFO 16538 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-11 04:52:50.143  INFO 16538 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-02-11 04:52:50.144  INFO 16538 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5083 ms
-2023-02-11 04:52:50.602  INFO 16538 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-02-11 04:52:50.680  INFO 16538 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-02-11 04:52:50.974  INFO 16538 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-02-11 04:52:51.112  INFO 16538 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-02-11 04:52:51.596  INFO 16538 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-02-11 04:52:51.631  INFO 16538 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-02-11 04:52:52.036  INFO 16538 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
-2023-02-11 04:52:54.196  INFO 16538 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-02-11 04:52:54.209  INFO 16538 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:52:56.924  WARN 16538 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-11 04:52:57.349  INFO 16538 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-11 04:52:58.346  INFO 16538 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@aa93ab8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@278ee86d, org.springframework.security.web.context.SecurityContextPersistenceFilter@2ed2aacf, org.springframework.security.web.header.HeaderWriterFilter@61f958a7, org.springframework.web.filter.CorsFilter@3327f041, org.springframework.security.web.authentication.logout.LogoutFilter@6d5b967b, geoclinique.geoclinique.security.jwt.AuthTokenFilter@4f7ea17a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4a9df89d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3aefa806, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77ade7a, org.springframework.security.web.session.SessionManagementFilter@53c7378a, org.springframework.security.web.access.ExceptionTranslationFilter@3cebfc4c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@90491d9]
-2023-02-11 04:52:58.519  INFO 16538 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-02-11 04:52:58.857  INFO 16538 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
-2023-02-11 04:52:58.859  INFO 16538 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2023-02-11 04:52:58.897  INFO 16538 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2023-02-11 04:52:58.931  INFO 16538 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2023-02-11 04:52:59.168  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
-2023-02-11 04:52:59.223  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
-2023-02-11 04:52:59.231  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
-2023-02-11 04:52:59.238  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
-2023-02-11 04:52:59.242  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
-2023-02-11 04:52:59.255  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
-2023-02-11 04:52:59.265  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
-2023-02-11 04:52:59.280  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
-2023-02-11 04:52:59.298  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
-2023-02-11 04:52:59.306  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
-2023-02-11 04:52:59.309  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
-2023-02-11 04:52:59.312  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
-2023-02-11 04:52:59.315  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
-2023-02-11 04:52:59.320  INFO 16538 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
-2023-02-11 04:52:59.359  INFO 16538 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 17.686 seconds (JVM running for 20.568)
-2023-02-11 04:55:48.469  INFO 16538 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:55:48.477  INFO 16538 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-02-11 04:55:48.496  INFO 16538 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-02-11 04:56:06.699  INFO 17284 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MacBook-Pro.local with PID 17284 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
-2023-02-11 04:56:06.713  INFO 17284 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-02-11 04:56:06.858  INFO 17284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-02-11 04:56:06.859  INFO 17284 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-02-11 04:56:08.583  INFO 17284 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-11 04:56:08.753  INFO 17284 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 157 ms. Found 10 JPA repository interfaces.
-2023-02-11 04:56:10.069  INFO 17284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
-2023-02-11 04:56:10.108  INFO 17284 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-02-11 04:56:10.109  INFO 17284 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-11 04:56:10.297  INFO 17284 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-02-11 04:56:10.298  INFO 17284 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3438 ms
-2023-02-11 04:56:10.752  INFO 17284 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-02-11 04:56:10.829  INFO 17284 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-02-11 04:56:11.156  INFO 17284 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-02-11 04:56:11.311  INFO 17284 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-02-11 04:56:11.626  INFO 17284 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-02-11 04:56:11.652  INFO 17284 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-02-11 04:56:12.011  INFO 17284 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
-2023-02-11 04:56:13.936  INFO 17284 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-02-11 04:56:13.948  INFO 17284 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 04:56:16.424  WARN 17284 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-11 04:56:16.717  INFO 17284 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-11 04:56:17.519  INFO 17284 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7b053c12, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@610b3718, org.springframework.security.web.context.SecurityContextPersistenceFilter@79ea638d, org.springframework.security.web.header.HeaderWriterFilter@273fcea8, org.springframework.web.filter.CorsFilter@198302f, org.springframework.security.web.authentication.logout.LogoutFilter@61f7ab1, geoclinique.geoclinique.security.jwt.AuthTokenFilter@6daff4f7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51790799, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c5f3228, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@222f135d, org.springframework.security.web.session.SessionManagementFilter@6ec941c1, org.springframework.security.web.access.ExceptionTranslationFilter@8033b9d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2417c07a]
-2023-02-11 04:56:17.655  INFO 17284 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-02-11 04:56:17.976  INFO 17284 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
-2023-02-11 04:56:17.977  INFO 17284 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2023-02-11 04:56:18.007  INFO 17284 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2023-02-11 04:56:18.041  INFO 17284 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2023-02-11 04:56:18.262  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
-2023-02-11 04:56:18.318  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
-2023-02-11 04:56:18.326  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
-2023-02-11 04:56:18.333  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
-2023-02-11 04:56:18.337  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
-2023-02-11 04:56:18.350  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
-2023-02-11 04:56:18.364  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
-2023-02-11 04:56:18.378  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
-2023-02-11 04:56:18.397  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
-2023-02-11 04:56:18.404  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
-2023-02-11 04:56:18.407  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
-2023-02-11 04:56:18.409  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
-2023-02-11 04:56:18.411  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
-2023-02-11 04:56:18.413  INFO 17284 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
-2023-02-11 04:56:18.443  INFO 17284 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 13.706 seconds (JVM running for 15.891)
-2023-02-11 04:56:36.467  INFO 17284 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-11 04:56:36.467  INFO 17284 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-02-11 04:56:36.468  INFO 17284 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-02-11 04:56:36.626 ERROR 17284 --- [http-nio-9000-exec-1] g.geoclinique.security.jwt.JwtUtils      : JWT token is expired: JWT expired at 2023-02-05T01:43:46Z. Current time: 2023-02-11T04:56:36Z, a difference of 529970626 milliseconds.  Allowed clock skew: 0 milliseconds.
-2023-02-11 04:58:01.721 ERROR 17284 --- [http-nio-9000-exec-5] g.geoclinique.security.jwt.JwtUtils      : JWT token is expired: JWT expired at 2023-02-05T01:43:46Z. Current time: 2023-02-11T04:58:01Z, a difference of 530055720 milliseconds.  Allowed clock skew: 0 milliseconds.
-2023-02-11 05:00:02.613  INFO 17284 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 05:00:02.620  INFO 17284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-02-11 05:00:02.635  INFO 17284 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-02-11 05:00:23.238  INFO 18246 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MacBook-Pro.local with PID 18246 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
-2023-02-11 05:00:23.242  INFO 18246 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-02-11 05:00:23.515  INFO 18246 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-02-11 05:00:23.516  INFO 18246 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-02-11 05:00:26.867  INFO 18246 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-11 05:00:27.108  INFO 18246 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 219 ms. Found 10 JPA repository interfaces.
-2023-02-11 05:00:30.253  INFO 18246 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
-2023-02-11 05:00:30.275  INFO 18246 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-02-11 05:00:30.275  INFO 18246 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-02-11 05:00:30.718  INFO 18246 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-02-11 05:00:30.719  INFO 18246 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7202 ms
-2023-02-11 05:00:31.654  INFO 18246 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-02-11 05:00:31.808  INFO 18246 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-02-11 05:00:32.182  INFO 18246 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-02-11 05:00:32.531  INFO 18246 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-02-11 05:00:33.052  INFO 18246 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-02-11 05:00:33.088  INFO 18246 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-02-11 05:00:33.641  INFO 18246 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
-2023-02-11 05:00:35.578  INFO 18246 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-02-11 05:00:35.592  INFO 18246 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 05:00:37.592  WARN 18246 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-11 05:00:37.856  INFO 18246 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-02-11 05:00:38.743  INFO 18246 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6190a288, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3653c034, org.springframework.security.web.context.SecurityContextPersistenceFilter@632882c6, org.springframework.security.web.header.HeaderWriterFilter@3f77db22, org.springframework.web.filter.CorsFilter@28d2dd13, org.springframework.security.web.authentication.logout.LogoutFilter@3875e4c, geoclinique.geoclinique.security.jwt.AuthTokenFilter@6e69270d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@338fd706, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@166f8e5c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ab3288c, org.springframework.security.web.session.SessionManagementFilter@1c79eb9a, org.springframework.security.web.access.ExceptionTranslationFilter@9c1e64, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@49c3daf4]
-2023-02-11 05:00:38.898  INFO 18246 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-02-11 05:00:39.335  INFO 18246 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
-2023-02-11 05:00:39.337  INFO 18246 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2023-02-11 05:00:39.377  INFO 18246 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2023-02-11 05:00:39.411  INFO 18246 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2023-02-11 05:00:39.642  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
-2023-02-11 05:00:39.720  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
-2023-02-11 05:00:39.728  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
-2023-02-11 05:00:39.736  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
-2023-02-11 05:00:39.740  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
-2023-02-11 05:00:39.754  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
-2023-02-11 05:00:39.767  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
-2023-02-11 05:00:39.783  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
-2023-02-11 05:00:39.864  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
-2023-02-11 05:00:39.898  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
-2023-02-11 05:00:39.904  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
-2023-02-11 05:00:39.913  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
-2023-02-11 05:00:39.920  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
-2023-02-11 05:00:39.924  INFO 18246 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
-2023-02-11 05:00:40.004  INFO 18246 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 18.577 seconds (JVM running for 22.194)
-2023-02-11 05:01:11.417  INFO 18246 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-11 05:01:11.418  INFO 18246 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-02-11 05:01:11.420  INFO 18246 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2023-02-11 05:01:34.559  INFO 18246 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-11 05:01:34.565  INFO 18246 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2023-02-11 05:01:34.575  INFO 18246 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 00:01:19.471  INFO 14079 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MacBook-Pro.local with PID 14079 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 00:01:19.494  INFO 14079 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 00:01:19.750  INFO 14079 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 00:01:19.752  INFO 14079 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 00:01:21.290  INFO 14079 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 00:01:21.434  INFO 14079 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 130 ms. Found 10 JPA repository interfaces.
+2023-02-14 00:01:23.257  INFO 14079 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 00:01:23.273  INFO 14079 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 00:01:23.274  INFO 14079 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 00:01:23.398  INFO 14079 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 00:01:23.399  INFO 14079 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3642 ms
+2023-02-14 00:01:23.814  INFO 14079 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 00:01:24.348  INFO 14079 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 00:01:24.677  INFO 14079 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 00:01:24.866  INFO 14079 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 00:01:25.288  INFO 14079 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 00:01:25.317  INFO 14079 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 00:01:25.680  INFO 14079 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 00:01:29.991  INFO 14079 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 00:01:30.023  INFO 14079 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 00:01:32.683  WARN 14079 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 00:01:33.046  INFO 14079 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 00:01:35.274  INFO 14079 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56500b2c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@79c3c2f1, org.springframework.security.web.context.SecurityContextPersistenceFilter@52340840, org.springframework.security.web.header.HeaderWriterFilter@4d5aa2b3, org.springframework.web.filter.CorsFilter@2a663ac4, org.springframework.security.web.authentication.logout.LogoutFilter@658c23fd, geoclinique.geoclinique.security.jwt.AuthTokenFilter@35a0e281, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7242911f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7cb3ff78, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4cb57e21, org.springframework.security.web.session.SessionManagementFilter@81ef911, org.springframework.security.web.access.ExceptionTranslationFilter@2818e327, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@32c3bfe8]
+2023-02-14 00:01:36.341  INFO 14079 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 00:01:37.049  INFO 14079 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 00:01:37.052  INFO 14079 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 00:01:37.112  INFO 14079 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 00:01:37.218  INFO 14079 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 00:01:37.538  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 00:01:37.778  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 00:01:37.892  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 00:01:37.998  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 00:01:38.156  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 00:01:38.213  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 00:01:38.288  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 00:01:38.434  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 00:01:38.734  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 00:01:38.878  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 00:01:38.930  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 00:01:38.996  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 00:01:39.001  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 00:01:39.006  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 00:01:39.122  INFO 14079 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 00:01:39.511  INFO 14079 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 21.317 seconds (JVM running for 23.955)
+2023-02-14 00:05:02.018  INFO 14079 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 00:05:02.026  INFO 14079 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 00:05:02.151  INFO 14079 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 125 ms
+2023-02-14 00:05:13.406  WARN 14079 --- [http-nio-9000-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]
+2023-02-14 00:25:55.102  WARN 14079 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s598ms), soft-evicting connections from pool.
+2023-02-14 00:32:24.755  WARN 14079 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s273ms), soft-evicting connections from pool.
+2023-02-14 03:06:19.862  INFO 14079 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 03:06:20.547  INFO 14079 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 03:06:20.862  INFO 14079 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 10:38:36.041  INFO 70403 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 70403 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 10:38:36.046  INFO 70403 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 10:38:36.533  INFO 70403 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 10:38:36.534  INFO 70403 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 10:38:46.054  INFO 70403 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 10:38:46.771  INFO 70403 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 618 ms. Found 10 JPA repository interfaces.
+2023-02-14 10:38:52.260  INFO 70403 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 10:38:52.288  INFO 70403 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 10:38:52.288  INFO 70403 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 10:38:52.842  INFO 70403 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 10:38:52.842  INFO 70403 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 16305 ms
+2023-02-14 10:38:54.938  INFO 70403 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 10:38:55.226  INFO 70403 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 10:38:56.178  INFO 70403 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 10:38:56.838  INFO 70403 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 10:38:57.691  INFO 70403 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 10:38:57.743  INFO 70403 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 10:38:59.488  INFO 70403 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 10:39:05.601  INFO 70403 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 10:39:05.626  INFO 70403 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 10:39:16.116  WARN 70403 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 10:39:16.958  INFO 70403 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 10:39:19.325  INFO 70403 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@47ee525c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f284c85, org.springframework.security.web.context.SecurityContextPersistenceFilter@8ae63d, org.springframework.security.web.header.HeaderWriterFilter@57ac0fdc, org.springframework.web.filter.CorsFilter@294e8faa, org.springframework.security.web.authentication.logout.LogoutFilter@7bbdb006, geoclinique.geoclinique.security.jwt.AuthTokenFilter@1680217a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6eb7929f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6b88a6c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ffe7272, org.springframework.security.web.session.SessionManagementFilter@2966ca3b, org.springframework.security.web.access.ExceptionTranslationFilter@2fb7279d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@efed81c]
+2023-02-14 10:39:20.025  INFO 70403 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 10:39:22.983  INFO 70403 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 10:39:23.006  INFO 70403 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 10:39:23.118  INFO 70403 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 10:39:23.396  INFO 70403 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 10:39:25.273  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 10:39:25.645  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 10:39:25.716  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 10:39:25.724  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 10:39:25.729  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 10:39:25.746  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 10:39:25.763  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 10:39:25.953  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 10:39:25.989  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 10:39:26.001  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 10:39:26.136  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 10:39:26.142  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 10:39:26.172  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 10:39:26.183  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 10:39:26.206  INFO 70403 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 10:39:26.530  INFO 70403 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 54.498 seconds (JVM running for 61.078)
+2023-02-14 10:42:09.460  INFO 70403 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 10:42:09.466  INFO 70403 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 10:42:09.540  INFO 70403 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 67 ms
+2023-02-14 10:54:11.582  INFO 70403 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 10:54:11.809  INFO 70403 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 10:54:11.901  INFO 70403 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 10:54:28.172  INFO 73985 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 73985 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 10:54:28.174  INFO 73985 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 10:54:28.291  INFO 73985 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 10:54:28.292  INFO 73985 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 10:54:30.356  INFO 73985 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 10:54:30.508  INFO 73985 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 137 ms. Found 10 JPA repository interfaces.
+2023-02-14 10:54:32.090  INFO 73985 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 10:54:32.106  INFO 73985 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 10:54:32.107  INFO 73985 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 10:54:32.230  INFO 73985 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 10:54:32.231  INFO 73985 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3936 ms
+2023-02-14 10:54:32.587  INFO 73985 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 10:54:32.679  INFO 73985 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 10:54:32.972  INFO 73985 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 10:54:33.155  INFO 73985 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 10:54:33.522  INFO 73985 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 10:54:33.560  INFO 73985 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 10:54:34.122  INFO 73985 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 10:54:36.400  INFO 73985 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 10:54:36.414  INFO 73985 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 10:54:38.295  WARN 73985 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 10:54:38.620  INFO 73985 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 10:54:39.734  INFO 73985 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@495dd5f9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@14bc66f, org.springframework.security.web.context.SecurityContextPersistenceFilter@4428959f, org.springframework.security.web.header.HeaderWriterFilter@293c38f9, org.springframework.web.filter.CorsFilter@77dbfe51, org.springframework.security.web.authentication.logout.LogoutFilter@4443b3f8, geoclinique.geoclinique.security.jwt.AuthTokenFilter@21340701, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15af264e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4fe939ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@69e44d6a, org.springframework.security.web.session.SessionManagementFilter@38968605, org.springframework.security.web.access.ExceptionTranslationFilter@24f5d705, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b91ce9]
+2023-02-14 10:54:39.965  INFO 73985 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 10:54:40.311  INFO 73985 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 10:54:40.312  INFO 73985 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 10:54:40.348  INFO 73985 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 10:54:40.389  INFO 73985 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 10:54:40.614  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 10:54:40.669  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 10:54:40.677  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 10:54:40.683  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 10:54:40.687  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 10:54:40.698  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 10:54:40.706  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 10:54:40.722  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 10:54:40.749  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 10:54:40.757  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 10:54:40.763  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 10:54:40.766  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 10:54:40.768  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 10:54:40.770  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 10:54:40.773  INFO 73985 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 10:54:40.815  INFO 73985 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 13.263 seconds (JVM running for 18.556)
+2023-02-14 10:58:19.622  INFO 73985 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 10:58:19.622  INFO 73985 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 10:58:19.625  INFO 73985 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-02-14 11:01:40.740  INFO 73985 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 11:01:40.761  INFO 73985 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 11:01:40.810  INFO 73985 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 11:02:03.232  INFO 75755 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 75755 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 11:02:03.235  INFO 75755 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 11:02:03.387  INFO 75755 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 11:02:03.387  INFO 75755 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 11:02:06.881  INFO 75755 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 11:02:07.016  INFO 75755 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 117 ms. Found 10 JPA repository interfaces.
+2023-02-14 11:02:08.596  INFO 75755 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 11:02:08.619  INFO 75755 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 11:02:08.620  INFO 75755 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 11:02:08.763  INFO 75755 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 11:02:08.764  INFO 75755 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5375 ms
+2023-02-14 11:02:09.308  INFO 75755 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 11:02:09.422  INFO 75755 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 11:02:09.774  INFO 75755 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 11:02:09.974  INFO 75755 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 11:02:10.294  INFO 75755 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 11:02:10.319  INFO 75755 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 11:02:10.754  INFO 75755 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 11:02:13.146  INFO 75755 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 11:02:13.161  INFO 75755 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 11:02:16.224  WARN 75755 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 11:02:16.593  INFO 75755 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 11:02:17.996  INFO 75755 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c99f082, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2525a8e6, org.springframework.security.web.context.SecurityContextPersistenceFilter@70b0e320, org.springframework.security.web.header.HeaderWriterFilter@5b055d55, org.springframework.web.filter.CorsFilter@71cddb97, org.springframework.security.web.authentication.logout.LogoutFilter@4c692d0c, geoclinique.geoclinique.security.jwt.AuthTokenFilter@29537cec, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2e115707, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ea78e71, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30d22027, org.springframework.security.web.session.SessionManagementFilter@46b34ba6, org.springframework.security.web.access.ExceptionTranslationFilter@3b4ba689, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@31b5021d]
+2023-02-14 11:02:18.165  INFO 75755 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 11:02:18.594  INFO 75755 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 11:02:18.596  INFO 75755 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 11:02:18.638  INFO 75755 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 11:02:18.707  INFO 75755 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 11:02:19.629  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 11:02:20.592  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 11:02:20.739  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 11:02:20.846  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 11:02:20.956  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 11:02:21.255  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 11:02:21.299  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 11:02:21.579  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 11:02:21.659  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 11:02:21.784  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 11:02:21.863  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 11:02:21.900  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 11:02:21.908  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 11:02:21.932  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 11:02:21.944  INFO 75755 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 11:02:22.381  INFO 75755 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 20.468 seconds (JVM running for 22.721)
+2023-02-14 11:02:30.557  INFO 75755 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 11:02:30.558  INFO 75755 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 11:02:30.597  INFO 75755 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 38 ms
+2023-02-14 12:46:11.749  WARN 75755 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h10m31s215ms).
+2023-02-14 13:24:34.358  WARN 75755 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=38m21s996ms).
+2023-02-14 13:38:34.663  WARN 75755 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s774ms), soft-evicting connections from pool.
+2023-02-14 13:42:04.347  WARN 75755 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s497ms), soft-evicting connections from pool.
+2023-02-14 13:46:07.005  WARN 75755 --- [http-nio-9000-exec-5] o.h.e.i.StatefulPersistenceContext       : HHH000179: Narrowing proxy to class geoclinique.geoclinique.model.Patients - this operation breaks ==
+2023-02-14 14:01:01.898  INFO 75755 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 14:01:02.116  INFO 75755 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 14:01:02.405  INFO 75755 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 14:01:34.170  INFO 93746 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 93746 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 14:01:34.187  INFO 93746 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 14:01:34.674  INFO 93746 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 14:01:34.675  INFO 93746 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 14:01:38.429  INFO 93746 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 14:01:38.605  INFO 93746 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 162 ms. Found 10 JPA repository interfaces.
+2023-02-14 14:01:41.857  INFO 93746 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 14:01:41.913  INFO 93746 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 14:01:41.914  INFO 93746 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 14:01:42.261  INFO 93746 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 14:01:42.262  INFO 93746 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7583 ms
+2023-02-14 14:01:42.700  INFO 93746 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 14:01:42.797  INFO 93746 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 14:01:43.304  INFO 93746 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 14:01:43.531  INFO 93746 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 14:01:43.879  INFO 93746 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 14:01:43.928  INFO 93746 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 14:01:44.710  INFO 93746 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 14:01:47.094  INFO 93746 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 14:01:47.107  INFO 93746 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 14:01:51.714  WARN 93746 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 14:01:52.111  INFO 93746 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 14:01:53.305  INFO 93746 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1eaa2f5e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53920a20, org.springframework.security.web.context.SecurityContextPersistenceFilter@2e2c2eb6, org.springframework.security.web.header.HeaderWriterFilter@21ac0c1e, org.springframework.web.filter.CorsFilter@48cd4eab, org.springframework.security.web.authentication.logout.LogoutFilter@79d7a477, geoclinique.geoclinique.security.jwt.AuthTokenFilter@5c1513ff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6929b3e3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@68806b96, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e0e4a17, org.springframework.security.web.session.SessionManagementFilter@1b2fa948, org.springframework.security.web.access.ExceptionTranslationFilter@5530f246, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1d6a03e8]
+2023-02-14 14:01:53.522  INFO 93746 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 14:01:53.847  INFO 93746 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 14:01:53.849  INFO 93746 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 14:01:53.885  INFO 93746 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 14:01:53.936  INFO 93746 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 14:01:54.230  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 14:01:54.305  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 14:01:54.331  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 14:01:54.337  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 14:01:54.341  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 14:01:54.357  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 14:01:54.370  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 14:01:54.386  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 14:01:54.450  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 14:01:54.485  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 14:01:54.530  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 14:01:54.536  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 14:01:54.541  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 14:01:54.546  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 14:01:54.550  INFO 93746 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 14:01:54.593  INFO 93746 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 22.098 seconds (JVM running for 27.482)
+2023-02-14 14:03:08.379  INFO 93746 --- [http-nio-9000-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 14:03:08.384  INFO 93746 --- [http-nio-9000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 14:03:08.418  INFO 93746 --- [http-nio-9000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 33 ms
+2023-02-14 15:26:07.376  INFO 93746 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:26:08.043  INFO 93746 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 15:26:08.160  INFO 93746 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 15:26:29.294  INFO 13556 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 13556 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 15:26:29.298  INFO 13556 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 15:26:29.551  INFO 13556 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 15:26:29.551  INFO 13556 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 15:26:31.710  INFO 13556 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 15:26:31.939  INFO 13556 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 204 ms. Found 10 JPA repository interfaces.
+2023-02-14 15:26:33.453  INFO 13556 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 15:26:33.473  INFO 13556 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 15:26:33.473  INFO 13556 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 15:26:33.606  INFO 13556 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 15:26:33.607  INFO 13556 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4053 ms
+2023-02-14 15:26:34.250  INFO 13556 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 15:26:34.361  INFO 13556 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 15:26:34.690  INFO 13556 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 15:26:34.898  INFO 13556 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 15:26:35.325  INFO 13556 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 15:26:35.425  INFO 13556 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 15:26:36.914  INFO 13556 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 15:26:41.976  INFO 13556 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 15:26:41.998  INFO 13556 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:26:44.805  WARN 13556 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 15:26:45.301  INFO 13556 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 15:26:46.749  INFO 13556 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3c99f082, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2525a8e6, org.springframework.security.web.context.SecurityContextPersistenceFilter@3979dd66, org.springframework.security.web.header.HeaderWriterFilter@5f40c91e, org.springframework.web.filter.CorsFilter@71cddb97, org.springframework.security.web.authentication.logout.LogoutFilter@2acbc223, geoclinique.geoclinique.security.jwt.AuthTokenFilter@4b522e4f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@220ee92a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50282f1c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30d22027, org.springframework.security.web.session.SessionManagementFilter@2c8268eb, org.springframework.security.web.access.ExceptionTranslationFilter@63ccbac4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@31b5021d]
+2023-02-14 15:26:47.034  INFO 13556 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 15:26:47.598  INFO 13556 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 15:26:47.599  INFO 13556 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 15:26:47.638  INFO 13556 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 15:26:47.679  INFO 13556 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 15:26:48.099  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 15:26:48.255  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 15:26:48.267  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 15:26:48.293  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 15:26:48.301  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 15:26:48.324  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 15:26:48.346  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 15:26:48.371  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 15:26:48.402  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 15:26:48.411  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 15:26:48.421  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 15:26:48.428  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 15:26:48.433  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 15:26:48.436  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 15:26:48.446  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 15:26:48.450  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_4
+2023-02-14 15:26:48.453  INFO 13556 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_3
+2023-02-14 15:26:48.488  INFO 13556 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 20.734 seconds (JVM running for 23.364)
+2023-02-14 15:28:11.253  INFO 13556 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 15:28:11.255  INFO 13556 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 15:28:11.266  INFO 13556 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 11 ms
+2023-02-14 15:37:51.615  INFO 13556 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:37:51.706  INFO 13556 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 15:37:51.770  INFO 13556 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 15:38:18.007  INFO 16196 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 16196 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 15:38:18.012  INFO 16196 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 15:38:18.460  INFO 16196 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 15:38:18.462  INFO 16196 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 15:38:22.916  INFO 16196 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 15:38:23.096  INFO 16196 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 165 ms. Found 10 JPA repository interfaces.
+2023-02-14 15:38:25.591  INFO 16196 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 15:38:25.623  INFO 16196 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 15:38:25.624  INFO 16196 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 15:38:25.984  INFO 16196 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 15:38:25.987  INFO 16196 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7523 ms
+2023-02-14 15:38:26.371  INFO 16196 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 15:38:26.641  INFO 16196 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 15:38:27.316  INFO 16196 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 15:38:27.621  INFO 16196 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 15:38:28.043  INFO 16196 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 15:38:28.103  INFO 16196 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 15:38:28.497  INFO 16196 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 15:38:31.965  INFO 16196 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 15:38:31.985  INFO 16196 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:38:34.296  WARN 16196 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 15:38:34.558  INFO 16196 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 15:38:35.697  INFO 16196 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@19628837, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58b5d316, org.springframework.security.web.context.SecurityContextPersistenceFilter@5530f246, org.springframework.security.web.header.HeaderWriterFilter@1d8d9504, org.springframework.web.filter.CorsFilter@61d92846, org.springframework.security.web.authentication.logout.LogoutFilter@4eb44371, geoclinique.geoclinique.security.jwt.AuthTokenFilter@1b439966, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21ac0c1e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@798a6e37, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d12fb38, org.springframework.security.web.session.SessionManagementFilter@1cd75153, org.springframework.security.web.access.ExceptionTranslationFilter@b6ef89d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6724c653]
+2023-02-14 15:38:36.289  INFO 16196 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 15:38:36.811  INFO 16196 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 15:38:36.812  INFO 16196 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 15:38:36.897  INFO 16196 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 15:38:36.946  INFO 16196 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 15:38:37.285  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 15:38:37.368  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 15:38:37.375  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 15:38:37.380  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 15:38:37.384  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 15:38:37.395  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 15:38:37.409  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 15:38:37.423  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 15:38:37.439  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 15:38:37.444  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 15:38:37.454  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 15:38:37.457  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 15:38:37.462  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 15:38:37.465  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 15:38:37.470  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 15:38:37.475  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_4
+2023-02-14 15:38:37.478  INFO 16196 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_3
+2023-02-14 15:38:37.518  INFO 16196 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 21.461 seconds (JVM running for 30.12)
+2023-02-14 15:39:31.519  INFO 16196 --- [http-nio-9000-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 15:39:31.522  INFO 16196 --- [http-nio-9000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 15:39:31.525  INFO 16196 --- [http-nio-9000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-02-14 15:40:18.995  INFO 16196 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:40:19.008  INFO 16196 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 15:40:19.029  INFO 16196 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 15:40:30.781  INFO 16716 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 16716 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 15:40:30.787  INFO 16716 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 15:40:30.963  INFO 16716 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 15:40:30.964  INFO 16716 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 15:40:32.611  INFO 16716 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 15:40:32.740  INFO 16716 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 111 ms. Found 10 JPA repository interfaces.
+2023-02-14 15:40:33.878  INFO 16716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 15:40:33.899  INFO 16716 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 15:40:33.899  INFO 16716 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 15:40:34.023  INFO 16716 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 15:40:34.024  INFO 16716 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3059 ms
+2023-02-14 15:40:34.348  INFO 16716 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 15:40:34.509  INFO 16716 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 15:40:34.745  INFO 16716 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 15:40:34.983  INFO 16716 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 15:40:35.350  INFO 16716 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 15:40:35.589  INFO 16716 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 15:40:36.999  INFO 16716 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 15:40:39.005  INFO 16716 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 15:40:39.020  INFO 16716 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:40:41.298  WARN 16716 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 15:40:41.610  INFO 16716 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 15:40:42.693  INFO 16716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1760b255, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f6bd400, org.springframework.security.web.context.SecurityContextPersistenceFilter@2afbea9b, org.springframework.security.web.header.HeaderWriterFilter@46d02ab0, org.springframework.web.filter.CorsFilter@5f317eed, org.springframework.security.web.authentication.logout.LogoutFilter@2c204fe2, geoclinique.geoclinique.security.jwt.AuthTokenFilter@6d81485f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@bf3d454, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d88a385, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2226aa8b, org.springframework.security.web.session.SessionManagementFilter@b2a4ab8, org.springframework.security.web.access.ExceptionTranslationFilter@48e04748, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2fcae72e]
+2023-02-14 15:40:42.938  INFO 16716 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 15:40:43.334  INFO 16716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 15:40:43.336  INFO 16716 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 15:40:43.369  INFO 16716 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 15:40:43.410  INFO 16716 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 15:40:43.632  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 15:40:43.690  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 15:40:43.701  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 15:40:43.710  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 15:40:43.715  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 15:40:43.736  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 15:40:43.748  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 15:40:43.764  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 15:40:43.788  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 15:40:43.795  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 15:40:43.802  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 15:40:43.806  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 15:40:43.811  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 15:40:43.815  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 15:40:43.820  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 15:40:43.824  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_4
+2023-02-14 15:40:43.828  INFO 16716 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_3
+2023-02-14 15:40:43.896  INFO 16716 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 14.369 seconds (JVM running for 16.04)
+2023-02-14 15:40:57.895  INFO 16716 --- [http-nio-9000-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 15:40:57.896  INFO 16716 --- [http-nio-9000-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 15:40:57.901  INFO 16716 --- [http-nio-9000-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-02-14 15:41:22.224  INFO 16716 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:41:22.249  INFO 16716 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-02-14 15:41:22.276  INFO 16716 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-02-14 15:41:48.536  INFO 16951 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 16951 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
+2023-02-14 15:41:48.547  INFO 16951 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2023-02-14 15:41:49.242  INFO 16951 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-14 15:41:49.242  INFO 16951 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-14 15:41:58.767  INFO 16951 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-14 15:41:59.553  INFO 16951 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 706 ms. Found 10 JPA repository interfaces.
+2023-02-14 15:42:08.169  INFO 16951 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2023-02-14 15:42:08.398  INFO 16951 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-02-14 15:42:08.401  INFO 16951 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-02-14 15:42:09.935  INFO 16951 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-02-14 15:42:09.936  INFO 16951 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 20691 ms
+2023-02-14 15:42:13.716  INFO 16951 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-14 15:42:14.850  INFO 16951 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-14 15:42:19.646  INFO 16951 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-14 15:42:22.180  INFO 16951 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-02-14 15:42:25.116  INFO 16951 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-02-14 15:42:25.153  INFO 16951 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-02-14 15:42:29.395  INFO 16951 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2023-02-14 15:42:49.285  INFO 16951 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-14 15:42:49.324  INFO 16951 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-14 15:43:29.469  WARN 16951 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-14 15:43:32.784  INFO 16951 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2023-02-14 15:43:40.809  INFO 16951 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7d5a3d41, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@56595753, org.springframework.security.web.context.SecurityContextPersistenceFilter@5042abb6, org.springframework.security.web.header.HeaderWriterFilter@55f5e675, org.springframework.web.filter.CorsFilter@39505469, org.springframework.security.web.authentication.logout.LogoutFilter@12977a1, geoclinique.geoclinique.security.jwt.AuthTokenFilter@5b80e58, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@248201d5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@fe00dcb, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@168bce96, org.springframework.security.web.session.SessionManagementFilter@52a95982, org.springframework.security.web.access.ExceptionTranslationFilter@10124064, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@10c77de4]
+2023-02-14 15:43:41.861  INFO 16951 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-02-14 15:43:45.032  INFO 16951 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2023-02-14 15:43:45.034  INFO 16951 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2023-02-14 15:43:45.276  INFO 16951 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2023-02-14 15:43:45.909  INFO 16951 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2023-02-14 15:43:48.844  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2023-02-14 15:43:49.206  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2023-02-14 15:43:49.251  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2023-02-14 15:43:49.277  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2023-02-14 15:43:49.292  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2023-02-14 15:43:49.452  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2023-02-14 15:43:49.566  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2023-02-14 15:43:49.600  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2023-02-14 15:43:49.767  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2023-02-14 15:43:49.848  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2023-02-14 15:43:49.866  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2023-02-14 15:43:49.877  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2023-02-14 15:43:49.927  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2023-02-14 15:43:49.949  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2023-02-14 15:43:49.962  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2023-02-14 15:43:49.965  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_4
+2023-02-14 15:43:50.008  INFO 16951 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_3
+2023-02-14 15:43:50.237  INFO 16951 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 126.407 seconds (JVM running for 137.352)
+2023-02-14 15:44:38.945  INFO 16951 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-14 15:44:38.950  INFO 16951 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-14 15:44:38.971  INFO 16951 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
+2023-02-14 15:54:24.306  WARN 16951 --- [http-nio-9000-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-02-14 15:55:28.017  WARN 16951 --- [http-nio-9000-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-02-14 15:57:09.590  WARN 16951 --- [http-nio-9000-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-02-14 16:36:47.426  WARN 16951 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m51s971ms).
+2023-02-14 17:30:06.568  WARN 16951 --- [http-nio-9000-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: "undefined"]

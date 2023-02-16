@@ -251,16 +251,19 @@ public class CliniqueController {
 
     // LA METHODE POUR VOIR LA LISTE DES RENDEZ-VOUS D'UN MEDECIN
 //    @PreAuthorize("hasRole('CLINIC')")
-    @PostMapping("rdv/list")
+    @PostMapping("rdv/list/{id}")
     @ApiOperation(value = "Afficher les rendez-vous d'un medecin par date")
-    public ResponseEntity<? extends Object> today(@CurrentUser UserDetailsImpl currentUser, @Valid @RequestBody TodayRdvRequest rdvMedecinRequest, BindingResult bindingResult){
+    public ResponseEntity<? extends Object> today(@PathVariable("id") Long id, @Valid @RequestBody TodayRdvRequest rdvMedecinRequest, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             throw new ValidationException("Appointment has errors; Can not update the status of the appointment;");
         }
-        var date = LocalDate.parse(rdvMedecinRequest.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        var response = this.cliniqueServices.AllRdvMedecin(currentUser, rdvMedecinRequest);
-        if(response==null)
-            return ResponseEntity.ok(new TodayRdvResponse(date, 0, null));
+        if(!medecinsService.existsById(id))
+            return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
+        Long medecins = rdvMedecinRequest.getMedecinId();
+       // var date = LocalDate.parse(rdvMedecinRequest.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        var response = this.cliniqueServices.AllRdvMedecin(medecins, rdvMedecinRequest);
+//        if(response==null)
+//            return ResponseEntity.ok(new TodayRdvResponse(date, 0, null));
         return ResponseEntity.ok(response);
 
     }
@@ -284,7 +287,12 @@ public class CliniqueController {
         return ResponseEntity.ok(response);
     }
 
-
+//    @ApiOperation(value = "Changer le status du rendez-vous d'un medecin par date")
+//    @PostMapping("change/status/{rdvId}")
+//    public ResponseEntity<?> Changestatus(@PathVariable("rdvId") Long rdvId){
+//        Clinique response = this.clinicsRepository.findById(rdvId.);
+//        return ResponseEntity.ok(response);
+//    }
 
 
 }

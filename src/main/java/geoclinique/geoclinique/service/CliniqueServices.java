@@ -1,12 +1,10 @@
 package geoclinique.geoclinique.service;
 
 import geoclinique.geoclinique.Api.DtoMapper.RendezVousMapper;
-import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.TodayRdvRequest;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.repository.*;
-import geoclinique.geoclinique.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -114,8 +112,8 @@ public class CliniqueServices {
 
 
     // Afficher la liste des RDV quotidiens d'un médecin (privé car il contient des données privées sur le patient)
-    public Object AllRdvMedecin(UserDetailsImpl currentUser, @RequestBody TodayRdvRequest RdvMedecin){
-        var medecin = this.medecinsRepository.findById(currentUser.getId());
+    public Object AllRdvMedecin(Long medecins, @RequestBody TodayRdvRequest RdvMedecin){
+        var medecin = this.medecinsRepository.findById(RdvMedecin.getMedecinId());
         var date = LocalDate.parse(RdvMedecin.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if(medecin.isEmpty()){
             return new ResponseEntity<>(new ApiResponse(false,"Medecin not found."),

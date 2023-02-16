@@ -19,6 +19,9 @@ public class RendezVousService {
     public List<RendezVous> read(){
         return rendezVousRepository.findAll();
     }
+//    public List<RendezVous> readRdvByStatus(){
+//        return rendezVousRepository.findByIsActive();
+//    }
     public Optional<RendezVous> GetOne(Long id){
         return rendezVousRepository.findById(id);
     }

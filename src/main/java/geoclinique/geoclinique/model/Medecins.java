@@ -45,7 +45,7 @@ public class Medecins {
     @NotBlank
     @Size(max = 20)
     private String contactMedecin;
-    @JsonIgnore
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_clinics")
     private Clinique clinique;

@@ -12,6 +12,7 @@ import java.util.Optional;
 @Repository
 public interface RendezVousRepository extends JpaRepository<RendezVous, Long> {
     List<RendezVous> findAllByMedecins(Medecins medecins);
+    //List<RendezVous> findByIsActive();
     List<RendezVous> findAllByPatients(Patients patients);
     List<RendezVous> findAllByMedecinsAndDate(Medecins medecins, LocalDate date);
     Optional<RendezVous> findByMedecinsAndDateAndCalendrier(Medecins medecins, LocalDate date, Calendrier calendrier);

@@ -89,7 +89,7 @@ public class MedecinController {
             }
         } catch (Exception e) {
             System.out.println(medecins);
-            return new ResponseEntity(new Message("Erreur"), HttpStatus.OK);
+            return new ResponseEntity( e.getMessage(), HttpStatus.OK);
         }
     }
 

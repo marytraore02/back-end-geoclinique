@@ -38,6 +38,12 @@ public class RendezvousController {
         List<RendezVous> rdv = rendezVousService.read();
         return rdv;
     }
+//    @ApiOperation(value = "Afficher la liste des rendez-vous par status")
+//    @GetMapping("/read/confirmer")
+//    public List<RendezVous> ReadConfirmer(){
+//        List<RendezVous> rdv = rendezVousService.readRdvByStatus();
+//        return rdv;
+//    }
 
     @ApiOperation(value = "Afficher un rendez-vous")
     @GetMapping("/get/{id}")

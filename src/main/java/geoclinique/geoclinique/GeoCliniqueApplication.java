@@ -1,6 +1,7 @@
 package geoclinique.geoclinique;
 
 //import geoclinique.geoclinique.configuration.JacksonConfig;
+import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import geoclinique.geoclinique.model.Utilisateur;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.annotation.PostConstruct;
@@ -78,7 +80,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 					"1998/02/24",
 					"Image",
 					"mary",
-					"marytra292@gmail.com",
+					"marytra17@gmail.com",
 					encoder.encode("mary123")
 			);
 			user.setRoles(roles);
@@ -102,7 +104,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 			this.specialiteRepository.saveAll(specialites);
 
 
-		// CREATION D'UNE CLINIC
+		// CREATION D'UNE CLINIQUE
 			Set<Role> roles = new HashSet<>();
 			Role role = roleRepository.findByName(ERole.ROLE_CLINIC).get();
 			roles.add(role);
@@ -122,10 +124,15 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 					"Une court description de la que pastere",
 					"Bamako",
 					"Bamako Hamdalaye ACI 2000",
-					"longitude",
-					"latitude"
+					12.6370293,
+					-8.0335354
 
 			);
+//			MultipartFile file = null;
+//			clinique.setAgrementClinique(ImageConfig.save("agrementclinique", file, clinique.getNomEtPrenom()));
+//			clinique.setImage(ImageConfig.save("clinique", fil, clinique.getNomEtPrenom()));
+
+			clinique.setStatusClinique(true);
 			clinique.setRoles(roles);
 			clinique.setListeSpecialiteCli(specialite);
 			clinicsRepository.save(clinique);
@@ -143,7 +150,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 					"+223 93 77 15 53",
 					"16/10/2022",
 					"patient",
-					"patient@gmail.com",
+					"marytra292@gmail.com",
 					encoder.encode("patient123"),
 					"Homme"
 			);

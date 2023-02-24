@@ -38,7 +38,7 @@ public class MailSenderImpl implements IMailSender {
         SimpleMailMessage message = new SimpleMailMessage();
         var reponse = (status)? "confirmer" : "annuler";
         message.setTo(patientMail);
-        message.setFrom("marytra17@gmail.com");
+        message.setFrom("marytra292@gmail.com");
         message.setSubject("Rendez-vous "+ reponse +" par Dr."+ prenomMdecin +" "+ nomMedecin);
         message.setText("Le docteur. "+ prenomMdecin +" "+ nomMedecin+" a " + reponse +
                 " votre demande de rendez-vous pour le "+date+" de "+ heureDebut+ " à "+heureFin+".");

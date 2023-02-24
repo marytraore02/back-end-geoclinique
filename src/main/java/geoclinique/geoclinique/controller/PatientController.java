@@ -33,6 +33,7 @@ import javax.validation.ValidationException;
 
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -216,23 +217,11 @@ public class PatientController {
 //        }
 //    }
     public ResponseEntity<?> save(@PathVariable Long id,
-                                  @Valid @RequestBody NewRdvRequest newRdv)
-            {
+                                  @Valid @RequestBody NewRdvRequest newRdv) throws ParseException {
                 if(!userRepository.existsById(id))
                     return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
         Utilisateur currentUser = userRepository.getReferenceById(id);
-        //Motif modif = motifRepository.getReferenceById(idModif);
-//        try{
-//            UserDetailsImpl
-//            userVenant = new JsonMapper().readValue(currentUser, UserDetailsImpl.class);
-//            NewRdvRequest rdvinfos = new JsonMapper().readValue(newRdv, NewRdvRequest.class);
-//            System.err.println(currentUser.getEmail());
-
-            var save = this.patientSevice.save(currentUser, newRdv);
-            return ResponseEntity.ok(save);
-//        } catch (Exception e){
-//            return new ResponseEntity(new Message("Erreur de sauvagarde"), HttpStatus.OK);
-//        }
+            return this.patientSevice.save(currentUser, newRdv);
     }
 
     // Obtenir la liste des disponibites d'un medecin par jour

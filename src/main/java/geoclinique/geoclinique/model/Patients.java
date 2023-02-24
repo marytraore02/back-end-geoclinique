@@ -13,7 +13,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -27,24 +26,9 @@ import java.util.Set;
 @SuperBuilder
 @AllArgsConstructor
 public class Patients extends Utilisateur{
-//    @NotBlank
-//    @Size(max = 20)
-//    private String nomPatient;
-//    @NotBlank
-//    @Size(max = 20)
-//    private String prenomPatient;
     @NotBlank
     @Size(max = 20)
     private String sexePatient;
-//    @NotBlank
-//    @Size(max = 20)
-//    private String naissancePatient;
-//    @NotBlank
-//    @Size(max = 20)
-//    private String contactPatient;
-
-    //private String image;
-
     public Patients(@NotBlank @Size(max = 20) String nomEtPrenom, @NotBlank @Size(max = 20) String contact, @NotBlank @Size(max = 20) String date, @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email, @NotBlank @Size(max = 120) String password, String sexePatient) {
         super(nomEtPrenom, contact, date, username, email, password);
         this.sexePatient = sexePatient;
@@ -72,8 +56,8 @@ public class Patients extends Utilisateur{
 //    @ManyToMany(mappedBy = "listePatients")
 //    List<Clinics> listeClinics = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "patients")
-    List<Messages> ListeMesagePatient = new ArrayList<>();
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "patients")
+//    List<FeedBack> ListeMesagePatient = new ArrayList<>();
 
 }

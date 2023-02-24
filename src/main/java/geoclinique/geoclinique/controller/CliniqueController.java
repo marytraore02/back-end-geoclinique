@@ -15,13 +15,10 @@ import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.CurrentUser;
 import geoclinique.geoclinique.security.jwt.JwtUtils;
-import geoclinique.geoclinique.service.SpecialiteService;
-import geoclinique.geoclinique.service.UtilisateurService;
+import geoclinique.geoclinique.service.*;
 import org.springframework.validation.BindingResult;
 import geoclinique.geoclinique.security.services.CrudService;
 import geoclinique.geoclinique.security.services.UserDetailsImpl;
-import geoclinique.geoclinique.service.CliniqueServices;
-import geoclinique.geoclinique.service.MedecinsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 //import org.apache.commons.lang3.StringUtils;
@@ -54,7 +51,6 @@ public class CliniqueController {
     private CrudService crudService;
     @Autowired
     AuthenticationManager authenticationManager;
-
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -64,6 +60,10 @@ public class CliniqueController {
     @Autowired
     PatientRepository patientRepository;
     @Autowired
+    RendezVousRepository rendezVousRepository;
+    @Autowired
+    NotificationService notificationService;
+    @Autowired
     RoleRepository roleRepository;
     @Autowired
     MedecinsService medecinsService;
@@ -71,12 +71,10 @@ public class CliniqueController {
     CliniqueServices cliniqueServices;
     @Autowired
     PasswordEncoder encoder;
-
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
     SpecialiteService specialiteService;
-
     @Autowired
     CliniqueServices clinicsServices;
     @Autowired
@@ -161,8 +159,6 @@ public class CliniqueController {
         clinics.getListeSpecialiteCli().add(specialites);
         clinics.setRoles(roles);
         clinics.setStatusClinique(false);
-        //clinics.setListeSpecialiteCli(listSpecialite);
-
         if (file != null) {
             clinics.setAgrementClinique(ImageConfig.save("agrementclinique", file, clinics.getNomEtPrenom()));
         }
@@ -171,8 +167,13 @@ public class CliniqueController {
                     clinics.setImage(ImageConfig.save("clinique", fil, clinics.getNomEtPrenom()));
                 }
 
-        clinicsRepository.save(clinics);
-        //mailSender.send(emailConstructor.constructNewUserEmail(clinics));
+        Clinique cli = clinicsRepository.save(clinics);
+                Notification notif = new Notification();
+                notif.setClinique(cli);
+                notif.setDatenotif(new Date());
+                notif.setTitre("Un nouveau compte clinique vient d'être créer");
+                notificationService.creer(notif);
+        mailSender.send(emailConstructor.constructNewUserEmail(clinics));
         return ResponseEntity.ok(new MessageResponse("Compte clinic creer avec succes!"));
     }
 
@@ -183,6 +184,12 @@ public class CliniqueController {
     public ResponseEntity<List<Clinique>> Afficher(){
         List<Clinique> clinics = clinicsServices.read();
         return new ResponseEntity(clinics, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "List des clinique valider")
+    @GetMapping("/cliniquevalide")
+    public Iterable<List<Clinique>> getRdvValide(){
+        return clinicsRepository.getListCliniqueValide();
     }
 
     @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
@@ -213,7 +220,7 @@ public class CliniqueController {
         }
     }
 
-    @PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('CLINIC') or hasRole('ADMIN')")
     @ApiOperation(value = "Suppression de comptes clinique")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Object> supprimer(@PathVariable long id) {
@@ -248,14 +255,13 @@ public class CliniqueController {
     }
 
 
-
     // LA METHODE POUR VOIR LA LISTE DES RENDEZ-VOUS D'UN MEDECIN
 //    @PreAuthorize("hasRole('CLINIC')")
     @PostMapping("rdv/list/{id}")
     @ApiOperation(value = "Afficher les rendez-vous d'un medecin par date")
     public ResponseEntity<? extends Object> today(@PathVariable("id") Long id, @Valid @RequestBody TodayRdvRequest rdvMedecinRequest, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            throw new ValidationException("Appointment has errors; Can not update the status of the appointment;");
+            throw new ValidationException("Erreur lors de l'affichage des rendez-vous du medecin");
         }
         if(!medecinsService.existsById(id))
             return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
@@ -283,7 +289,25 @@ public class CliniqueController {
     @ApiOperation(value = "Changer le status du rendez-vous d'un medecin par date")
     @PostMapping("rdv/status/{rdvId}")
     public ResponseEntity<?> status(@PathVariable String rdvId){
+        RendezVous rdv = rendezVousRepository.getReferenceById(Long.parseLong(rdvId));
         var response = this.cliniqueServices.changeEventStatus(rdvId);
+
+//        Notification notification = new Notification();
+//        notification.setClinique((Clinique) response);
+//        notification.setDatenotif(new Date());
+//        notification.setTitre("Rendez-vous accepter");
+//        notification.setDescription("Votre rendez-vous a été accepter avec success");
+//        notificationService.creer(notification);
+
+        //return new ResponseEntity(response, HttpStatus.OK);
+        return ResponseEntity.ok(response);
+
+    }
+
+    @ApiOperation(value = "Changer le status de la clinique")
+    @PostMapping("status/{id}")
+    public ResponseEntity<?> ChangeStatus(@PathVariable String id){
+        var response = this.cliniqueServices.changeStatusClinique(id);
         return ResponseEntity.ok(response);
     }
 

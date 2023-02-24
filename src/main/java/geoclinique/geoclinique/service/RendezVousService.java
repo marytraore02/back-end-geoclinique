@@ -28,6 +28,13 @@ public class RendezVousService {
     public Iterable<Object[]> getListRdv() {
         return rendezVousRepository.getListRdv();
     }
+    public Iterable<List<RendezVous>> getListRdvValide() {
+        return rendezVousRepository.getListRdvValide();
+    }
+    public Iterable<List<RendezVous>> getListRdvValideNonValide() {
+        return rendezVousRepository.getListRdvNonValide();
+    }
+
     public String delete(Long id){
         rendezVousRepository.deleteById(id);
         return "Supprimer avec succes";

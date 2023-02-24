@@ -49,12 +49,10 @@ public class CliniqueRequest {
     @NotBlank
     @Size(max = 50)
     private String adresseClinique;
-    @NotBlank
-    @Size(max = 50)
-    private String longitudeClinique;
-    @NotBlank
-    @Size(max = 50)
-    private String latitudeClinique;
+
+    private Double longitudeClinique;
+
+    private Double latitudeClinique;
     @NotBlank
     @Size(max = 20)
     private String agrementClinique;

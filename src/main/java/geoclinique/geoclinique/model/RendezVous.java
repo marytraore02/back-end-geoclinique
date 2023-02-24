@@ -7,6 +7,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,6 +41,11 @@ public class RendezVous {
     private LocalDate date;
 
     private boolean isActive;
+//    @JsonIgnore
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "evaluation", joinColumns = { @JoinColumn(name = "id_rdv") }, inverseJoinColumns = {
+//            @JoinColumn(name = "id_patients") })
+//    List<Evaluation> listeEvaluation = new ArrayList<>();
 
     public RendezVous() {
     }

@@ -56,19 +56,19 @@ public class MedecinsService {
         return medecinsRepository.findByNomMedecin(nom);
     }
     public Medecins modifier(Long id, Medecins medecins) {
-        Medecins dt = medecinsRepository.findById(id).get();
-            return medecinsRepository.save(dt);
+//        Medecins dt = medecinsRepository.findById(id).get();
+//            return medecinsRepository.save(dt);
 
-//                medecinsRepository.findById(id)
-//                .map(p->{
-//                    p.setNomMedecin(medecins.getNomMedecin());
-//                    p.setPrenomMedecin(medecins.getPrenomMedecin());
-//                    p.setEmailMedecin(medecins.getEmailMedecin());
-//                    p.setNaissanceMedecin(medecins.getNaissanceMedecin());
-//                    p.setSexeMedecin(medecins.getSexeMedecin());
-//                    p.setContactMedecin(medecins.getContactMedecin());
-//                    return medecinsRepository.save(p);
-//                }).orElseThrow(()-> new RuntimeException("Medecin non trouvé !"));
+        return  medecinsRepository.findById(id)
+                .map(p->{
+                    p.setNomMedecin(medecins.getNomMedecin());
+                    p.setPrenomMedecin(medecins.getPrenomMedecin());
+                    p.setEmailMedecin(medecins.getEmailMedecin());
+                    p.setNaissanceMedecin(medecins.getNaissanceMedecin());
+                    p.setSexeMedecin(medecins.getSexeMedecin());
+                    p.setContactMedecin(medecins.getContactMedecin());
+                    return medecinsRepository.save(p);
+                }).orElseThrow(()-> new RuntimeException("Medecin non trouvé !"));
     }
     public String delete(Long id){
         medecinsRepository.deleteById(id);

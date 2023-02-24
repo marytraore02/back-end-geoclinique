@@ -5,9 +5,11 @@ import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.Clinique;
 import geoclinique.geoclinique.model.Medecins;
+import geoclinique.geoclinique.model.RendezVous;
 import geoclinique.geoclinique.model.Specialites;
 import geoclinique.geoclinique.repository.CliniqueRepository;
 import geoclinique.geoclinique.repository.MedecinsRepository;
+import geoclinique.geoclinique.repository.RendezVousRepository;
 import geoclinique.geoclinique.repository.SpecialiteRepository;
 import geoclinique.geoclinique.service.CliniqueServices;
 import geoclinique.geoclinique.service.MedecinsService;
@@ -33,6 +35,8 @@ public class MedecinController {
     MedecinsRepository medecinsRepository;
     @Autowired
     CliniqueRepository cliniqueRepository;
+    @Autowired
+    RendezVousRepository rendezVousRepository;
     @Autowired
     CliniqueServices cliniqueServices;
     @Autowired
@@ -155,5 +159,7 @@ public class MedecinController {
         List<Medecins> medecins = medecinsRepository.findByClinique(clinique);
         return new ResponseEntity(medecins, HttpStatus.OK);
     }
+
+
 
 }

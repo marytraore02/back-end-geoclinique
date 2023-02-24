@@ -1,8 +1,10 @@
 package geoclinique.geoclinique.controller;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
 import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
+import geoclinique.geoclinique.payload.response.MessageResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import geoclinique.geoclinique.model.Specialites;
@@ -80,10 +82,9 @@ public class SpecialiteController {
                                          @PathVariable("id") Long id,
                                    @RequestParam(value = "file", required = false) MultipartFile file)
             throws IOException {
-        Specialites specialites = null;
+         //specialites = null;
 
-        try {
-            specialites = new JsonMapper().readValue(acti, Specialites.class);
+        Specialites specialites = new JsonMapper().readValue(acti, Specialites.class);
 //            Random e = new Random();
 //            e.nextInt(8);
             if (file != null) {
@@ -91,9 +92,15 @@ public class SpecialiteController {
             }
             specialiteService.modifier(id, specialites);
             return new ResponseEntity(new Message("Specialite modifie"), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity(new Message("Erreur de modification"), HttpStatus.OK);
-        }
+
+//        return ResponseEntity
+//                .badRequest()
+//                .body(new MessageResponse("Erreur de modification"));
+
+//            return new ResponseEntity<>(new ApiResponse(false,"Erreur de modification"),
+//                    HttpStatus.NOT_FOUND);
+//            return ResponseEntity.ok(new MessageResponse("Erreur de modification"));
+
     }
 
 

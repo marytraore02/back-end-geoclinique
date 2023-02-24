@@ -2,6 +2,8 @@ package geoclinique.geoclinique.service;
 
 import geoclinique.geoclinique.Api.DtoMapper.RendezVousMapper;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.TodayRdvRequest;
+import geoclinique.geoclinique.Mail.IMailSender;
+import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.repository.*;
@@ -34,6 +36,8 @@ public class CliniqueServices {
     @Autowired
     RendezVousMapper rendezVousMapper;
     @Autowired
+    CliniqueRepository cliniqueRepository;
+    @Autowired
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
@@ -48,6 +52,7 @@ public class CliniqueServices {
 
     @Autowired
     private JavaMailSender mailSender;
+    private IMailSender emailSender;
 
 
 
@@ -120,8 +125,9 @@ public class CliniqueServices {
                     HttpStatus.NOT_FOUND);
         }
         var isAvailable = this.rendezVousRepository.findAllByMedecinsAndDate(medecin.get(), date);
+
         if(isAvailable.isEmpty()){
-            return null;
+            return new ResponseEntity(new Message("Pas de rendez-vous à cette date"), HttpStatus.BAD_REQUEST);
         }
         int size = isAvailable.size();
         var response = this.rendezVousMapper.toDto(isAvailable, isAvailable.get(0), size);
@@ -148,6 +154,7 @@ public class CliniqueServices {
     // Modifier status de RDV :
     public Object changeEventStatus(String rdvId){
         var rdv = this.rendezVousRepository.findById(Long.parseLong(rdvId));
+        System.err.println("Email"+rdv.get().getPatients().getEmail());
 
         if(rdv.isEmpty()){
             return new ResponseEntity<>(new ApiResponse(false,"Rendez vous not found."),
@@ -159,9 +166,36 @@ public class CliniqueServices {
         this.rendezVousRepository.save(rdv.get());
 
         // Send Email
-//        this.mailSender.notifyPatient(newAppointmentStatus, appointment.get().getMedecin().getFullName() ,appointment.get().getPatient().getEmail(), appointment.get().getDate(), appointment.get().getShiftHoraire().getTimeStart(), appointment.get().getShiftHoraire().getTimeEnd());
+        mailSender.send(emailConstructor.NotificationPatient(newRdvStatus, rdv.get().getMedecins().getPrenomMedecin(), rdv.get().getMedecins().getNomMedecin(),
+        rdv.get().getPatients().getEmail(), rdv.get().getDate(), rdv.get().getCalendrier().getHeureDebut(), rdv.get().getCalendrier().getHeureFin()));
+
         return new ResponseEntity<>(new ApiResponse(true,"Rendez-vous modifier avec success"),
                 HttpStatus.OK);
     }
+
+    public Object changeStatusClinique(String id){
+        var clinique = this.clinicsRepository.findById(Long.parseLong(id));
+
+        if(clinique.isEmpty()){
+            return new ResponseEntity<>(new ApiResponse(false,"Clinique not found."),
+                    HttpStatus.NOT_FOUND);
+        }
+        var newStatus = !clinique.get().isStatusClinique();
+        clinique.get().setStatusClinique(newStatus);
+
+        this.clinicsRepository.save(clinique.get());
+
+        // Send Email
+        mailSender.send(emailConstructor.constructValidationCompteEmail(clinique.get()));
+
+//      this.mailSender.notifyPatient(newAppointmentStatus, appointment.get().getMedecin().getFullName() ,appointment.get().getPatient().getEmail(), appointment.get().getDate(), appointment.get().getShiftHoraire().getTimeStart(), appointment.get().getShiftHoraire().getTimeEnd());
+        return new ResponseEntity<>(new ApiResponse(true,"Clinique activer avec success"),
+                HttpStatus.OK);
+    }
+
+    public Iterable<List<Clinique>> getListcliniqueValide() {
+        return clinicsRepository.getListCliniqueValide();
+    }
+
 
 }

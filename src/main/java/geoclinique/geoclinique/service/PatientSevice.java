@@ -5,11 +5,13 @@ import geoclinique.geoclinique.Api.DtoViewModel.Request.RdvMedecinRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteMedecinResponse;
+import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.Motif;
 import geoclinique.geoclinique.model.Patients;
 import geoclinique.geoclinique.model.RendezVous;
 import geoclinique.geoclinique.model.Utilisateur;
 import geoclinique.geoclinique.payload.response.JwtResponse;
+import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.services.UserDetailsImpl;
 import geoclinique.geoclinique.util.TweakResponse;
@@ -23,8 +25,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -167,12 +172,26 @@ public class PatientSevice {
 
 
      //Ajouter une RDV
-    public Object save(Utilisateur currentUser, NewRdvRequest newRdv){
+    public ResponseEntity<?> save(Utilisateur currentUser, NewRdvRequest newRdv) throws ParseException {
 
         var medecin = this.medecinsRepository.findById(newRdv.getMedecinId());
         var calendrier = this.calendrierRepository.findById(newRdv.getCalendrierId());
         var motif = this.motifRepository.findById(newRdv.getMotifId());
         var date = LocalDate.parse(newRdv.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            System.out.println("Date request: " +
+                    date);
+        String sDate1="1998/12/31";
+        Date date1=new SimpleDateFormat("yyyy-MM-dd").parse(newRdv.getDate());
+        System.out.println(sDate1+"t"+date1);
+
+            if(date1.before(new Date())){
+                return ResponseEntity
+                        .ok()
+                        .body(new MessageResponse("Vous ne pouvez pas prendre une date ultérieur pour votre rendez-vous"));
+                /*return ResponseEntity.badRequest().body(new ApiResponse(false,"Vous ne pouvez pas prendre une date ultérieur pour votre rendez-vous")
+                        );*/
+            }
 
         if(medecin.isEmpty()){
             return new ResponseEntity<>(new ApiResponse(false,"Medecin non trouvé."),
@@ -190,8 +209,12 @@ public class PatientSevice {
         var isAvailable = this.rendezVousRepository.findByMedecinsAndDateAndCalendrier(medecin.get(), date, calendrier.get());
         // Check if not already take.
         if(isAvailable.isPresent()){
-            return new ResponseEntity<>(new ApiResponse(false,"Heure occupé, Veuillez choisir un autre heure."),
-                    HttpStatus.BAD_REQUEST);
+//            return new ResponseEntity(new Message("Ce email existe déjà"), HttpStatus.BAD_REQUEST);
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Heure occupé, Veuillez choisir un autre heure."));
+//            return new ResponseEntity(new Message("Heure occupé, Veuillez choisir un autre heure."),
+//                    HttpStatus.BAD_REQUEST);
         }
 
         var curentPatient = this.patientRepository.findById(currentUser.getId());
@@ -201,17 +224,14 @@ public class PatientSevice {
             return new ResponseEntity<>(new ApiResponse(false,"Patient not found."),
                     HttpStatus.NOT_FOUND);
         }
-//        var patientPrenom = newRdv.getPrenom();
-//        var patientEmail = newRdv.getEmail();
-
-        // Finally perform the save operation
-        //Patients patient = new Patients(patientPrenom, patientEmail);
-        //Patients savedPatient = this.patientRepository.save(patient);
-        //System.out.println(patient);
         RendezVous rdv = new RendezVous(motif.get(), medecin.get(), curentPatient.get(), calendrier.get(), date, false);
         this.rendezVousRepository.save(rdv);
 
-        return rdv;
+        return ResponseEntity
+                .ok()
+                .body(new MessageResponse("Ok"));
+
+
     }
 
 

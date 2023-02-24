@@ -1,12 +1,18 @@
 package geoclinique.geoclinique.controller;
 
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.EvaluationRequest;
+import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
 import geoclinique.geoclinique.configuration.ImageConfig;
 import geoclinique.geoclinique.dto.Message;
 import geoclinique.geoclinique.model.*;
+import geoclinique.geoclinique.repository.CliniqueRepository;
+import geoclinique.geoclinique.repository.MedecinsRepository;
 import geoclinique.geoclinique.repository.PatientRepository;
 import geoclinique.geoclinique.repository.RendezVousRepository;
 import geoclinique.geoclinique.service.RendezVousService;
+import geoclinique.geoclinique.security.CurrentUser;
+import geoclinique.geoclinique.security.services.UserDetailsImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +22,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @CrossOrigin(origins ={ "http://localhost:4200/", "http://localhost:8100/", "http://localhost:8200/"  }, maxAge = 3600, allowCredentials="true")
@@ -27,9 +35,13 @@ public class RendezvousController {
     @Autowired
     RendezVousRepository rendezVousRepository;
     @Autowired
+    MedecinsRepository medecinsRepository;
+    @Autowired
     RendezVousService rendezVousService;
     @Autowired
     PatientRepository patientRepository;
+    @Autowired
+    CliniqueRepository cliniqueRepository;
 
     //@PreAuthorize("hasRole('PATIENT')")
     @ApiOperation(value = "Afficher la liste des rendez-vous")
@@ -38,12 +50,6 @@ public class RendezvousController {
         List<RendezVous> rdv = rendezVousService.read();
         return rdv;
     }
-//    @ApiOperation(value = "Afficher la liste des rendez-vous par status")
-//    @GetMapping("/read/confirmer")
-//    public List<RendezVous> ReadConfirmer(){
-//        List<RendezVous> rdv = rendezVousService.readRdvByStatus();
-//        return rdv;
-//    }
 
     @ApiOperation(value = "Afficher un rendez-vous")
     @GetMapping("/get/{id}")
@@ -58,6 +64,20 @@ public class RendezvousController {
     @GetMapping("/lire")
     public Iterable<Object[]> getRdv(){
         return rendezVousService.getListRdv();
+    }
+
+    // Lire les rendez-vous valider
+    @ApiOperation(value = "List des rendez-vous valider")
+    @GetMapping("/rendezvousvalide")
+    public Iterable<List<RendezVous>> getRdvValide(){
+        return rendezVousService.getListRdvValide();
+    }
+
+    // Lire les rendez-vous non valider
+    @ApiOperation(value = "List des rendez-vous non valider")
+    @GetMapping("/rendezvousnonvalide")
+    public Iterable<List<RendezVous>> getRdvNonValide(){
+        return rendezVousService.getListRdvValideNonValide();
     }
 
     @ApiOperation(value = "Suppression rendez-vous")
@@ -90,6 +110,26 @@ public class RendezvousController {
         }
     }
 
+
+    @ApiOperation(value = "Affichager les rendez-vous d'un medecin")
+    @GetMapping("/getRdvMedecin/{idMedecin}")
+    public ResponseEntity<List<Medecins>> getByRdvMedecin(@CurrentUser UserDetailsImpl currentUser,
+                                                          @PathVariable("idMedecin") Long idMedecin){
+        System.err.println(currentUser.getEmail());
+        var curentClinique = this.cliniqueRepository.findById(currentUser.getId());
+        System.err.println("id current => "+curentClinique);
+
+        if(!medecinsRepository.existsById(idMedecin))
+            return new ResponseEntity(new Message("Le medecin n'existe pas"), HttpStatus.NOT_FOUND);
+//        if(!cliniqueRepository.existsById(idClinique))
+//            return new ResponseEntity(new Message("Clinique n'existe pas"), HttpStatus.NOT_FOUND);
+        Medecins medecins = medecinsRepository.findById(idMedecin).get();
+        //Clinique clinique = cliniqueRepository.findById(idClinique).get();
+        List<RendezVous> rendezVous = rendezVousRepository.findByMedecins(medecins);
+        return new ResponseEntity(rendezVous, HttpStatus.OK);
+    }
+
+    //  Ajouter RDV
 
 
 }

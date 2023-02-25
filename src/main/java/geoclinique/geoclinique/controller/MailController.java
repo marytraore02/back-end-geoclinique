@@ -6,10 +6,7 @@ import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
 import geoclinique.geoclinique.Mail.IMailSender;
 import geoclinique.geoclinique.configuration.EmailConstructor;
 import geoclinique.geoclinique.dto.Message;
-import geoclinique.geoclinique.model.Evaluation;
-import geoclinique.geoclinique.model.FeedBack;
-import geoclinique.geoclinique.model.Medecins;
-import geoclinique.geoclinique.model.RendezVous;
+import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.repository.*;
 import geoclinique.geoclinique.security.CurrentUser;
 import geoclinique.geoclinique.security.services.UserDetailsImpl;
@@ -69,20 +66,29 @@ public class MailController {
 
 
     @PostMapping("/feedback")
-    public ResponseEntity<?> sendFeedback(@RequestBody FeedbackRequest feedback, BindingResult bindingResult){
+    public ResponseEntity<?> sendFeedback(@RequestBody FeedbackRequest feedback,
+                                          BindingResult bindingResult){
+
+//        var current = this.patientRepository.findById(currentUser.getId());
+//        if(current.isEmpty()){
+//            return new ResponseEntity<>(new ApiResponse(false,"User non trouvé."),
+//                    HttpStatus.BAD_REQUEST);
+//        }
+        //var image = String.valueOf(this.userRepository.findByImage(currentUser.getImage()));
         var name = String.valueOf(feedback.getName());
         var email = String.valueOf(feedback.getEmail());
-        //var date = LocalDate.parse(feedback.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        var date = new Date();
         var contenue = String.valueOf(feedback.getContenue());
-//        System.err.println(name);
-//        System.err.println(email);
-//        System.err.println(contenue);
+        var date = new Date();
+
+//        System.err.println("id current => "+current);
+        System.err.println("Name => "+name);
+        System.err.println("Email => "+email);
+
         try{
             FeedBack feedBack = new FeedBack(name,email,feedback.getContenue(),date);
             this.feedbackRepository.save(feedBack);
             // Send Email
-            mailSender.send(emailConstructor.Feedback(feedback.getEmail(), feedback.getName(), feedback.getContenue()));
+            mailSender.send(emailConstructor.Feedback(email, name, contenue));
             return ResponseEntity.ok(
                     new ApiResponse(true, "Feedback envoyer avec success.")
             );

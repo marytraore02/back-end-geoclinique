@@ -24,7 +24,6 @@ public class FeedBack {
     private String contenue;
     private Date date;
 
-
     public FeedBack(String name, String email, String contenue, Date date) {
         this.name = name;
         this.email = email;

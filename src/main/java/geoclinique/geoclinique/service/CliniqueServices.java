@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
 
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +50,8 @@ public class CliniqueServices {
     private EmailConstructor emailConstructor;
     @Autowired
     SpecialiteService specialiteService;
+    @Autowired
+    MessagesRepository messagesRepository;
 
     @Autowired
     private JavaMailSender mailSender;
@@ -115,7 +118,6 @@ public class CliniqueServices {
         return "Supprimer avec succes";
     }
 
-
     // Afficher la liste des RDV quotidiens d'un médecin (privé car il contient des données privées sur le patient)
     public Object AllRdvMedecin(Long medecins, @RequestBody TodayRdvRequest RdvMedecin){
         var medecin = this.medecinsRepository.findById(RdvMedecin.getMedecinId());
@@ -151,6 +153,13 @@ public class CliniqueServices {
     }
 
 
+//    public List<geoclinique.geoclinique.model.Message>messageNotification(boolean status, String prenomMdecin,
+//                                                                          String nomMedecin, String PatientEmail,
+//                                                                          LocalDate date, LocalTime heureDebut, LocalTime heureFin){
+//
+//
+//
+//    }
     // Modifier status de RDV :
     public Object changeEventStatus(String rdvId){
         var rdv = this.rendezVousRepository.findById(Long.parseLong(rdvId));
@@ -162,12 +171,23 @@ public class CliniqueServices {
         }
         var newRdvStatus = !rdv.get().isActive();
         rdv.get().setActive(newRdvStatus);
-
         this.rendezVousRepository.save(rdv.get());
+
+        Messages message = new Messages();
+        message.setMessage("Rendez-vous accepter avec success");
+        message.setNom(rdv.get().getMedecins().getNomMedecin());
+        message.setPrenom(rdv.get().getMedecins().getPrenomMedecin());
+        message.setEmailPatient(rdv.get().getPatients().getEmail());
+        message.setHeureDebut(rdv.get().getCalendrier().getHeureDebut());
+        message.setHeureFin(rdv.get().getCalendrier().getHeureFin());
+        message.setDate(rdv.get().getDate());
+        message.setStatus(newRdvStatus);
+        messagesRepository.save(message);
 
         // Send Email
         mailSender.send(emailConstructor.NotificationPatient(newRdvStatus, rdv.get().getMedecins().getPrenomMedecin(), rdv.get().getMedecins().getNomMedecin(),
         rdv.get().getPatients().getEmail(), rdv.get().getDate(), rdv.get().getCalendrier().getHeureDebut(), rdv.get().getCalendrier().getHeureFin()));
+
 
         return new ResponseEntity<>(new ApiResponse(true,"Rendez-vous modifier avec success"),
                 HttpStatus.OK);

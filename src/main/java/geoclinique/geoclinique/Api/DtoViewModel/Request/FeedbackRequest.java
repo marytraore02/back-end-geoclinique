@@ -12,7 +12,6 @@ public class FeedbackRequest {
 
     private String name;
     private String email;
-
     private String contenue;
     //private String date;
 }

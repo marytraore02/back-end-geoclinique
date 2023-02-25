@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import geoclinique.geoclinique.model.Role;
 import geoclinique.geoclinique.model.Utilisateur;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -80,6 +81,7 @@ public class UserDetailsImpl implements UserDetails {
   public String getDate() {
     return date;
   }
+
   public String getImage() {
     return image;
   }

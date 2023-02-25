@@ -110,7 +110,6 @@ public class PatientSevice {
         return "Supprimer avec succes";
     }
 
-
     // List de disponibilite d'un medecin par jour
     public List<DisponibiliteMedecinResponse> listAllRdvMedecin(RdvMedecinRequest medecinRdv){
     //System.err.print(medecinRdv.getMedecinId());
@@ -169,7 +168,6 @@ public class PatientSevice {
 
         return MedecinRdvList;
     }
-
 
      //Ajouter une RDV
     public ResponseEntity<?> save(Utilisateur currentUser, NewRdvRequest newRdv) throws ParseException {
@@ -233,7 +231,6 @@ public class PatientSevice {
 
 
     }
-
 
 
 }

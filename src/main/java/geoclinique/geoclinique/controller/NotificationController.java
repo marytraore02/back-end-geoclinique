@@ -1,8 +1,9 @@
 package geoclinique.geoclinique.controller;
 
-import geoclinique.geoclinique.model.Medecins;
+import geoclinique.geoclinique.model.Messages;
 import geoclinique.geoclinique.model.Notification;
 import geoclinique.geoclinique.repository.NotificationRepository;
+import geoclinique.geoclinique.service.MessageService;
 import geoclinique.geoclinique.service.NotificationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,12 +23,21 @@ public class NotificationController {
     NotificationRepository notificationRepository;
     @Autowired
     NotificationService notificationService;
+    @Autowired
+    MessageService messageService;
 
     @ApiOperation(value = "Afficher les notifications")
     @GetMapping("/read")
     public ResponseEntity<List<Notification>> Afficher(){
         List<Notification> notifications = notificationService.Afficher();
         return new ResponseEntity(notifications, HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Afficher les messages")
+    @GetMapping("/readmessage")
+    public ResponseEntity<List<Messages>> AfficherMessage(){
+        List<Messages> messages = messageService.Afficher();
+        return new ResponseEntity(messages, HttpStatus.OK);
     }
 
 }

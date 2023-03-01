@@ -41,7 +41,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/auth")
 @Api(value = "hello", description = "AUTHENTIFICATION")
 public class AuthController {
-
   @Autowired
   private CrudService crudService;
   @Autowired

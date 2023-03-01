@@ -144,7 +144,7 @@ public class GeoCliniqueApplication implements CommandLineRunner{
 		if (patientRepository.findAll().size() == 0) {
 			Set<Role> roles1 = new HashSet<>();
 			Role rol = roleRepository.findByName(ERole.ROLE_PATIENT).get();
-			roles1.add(rol);
+				roles1.add(rol);
 			patients = new Patients(
 					"patient PATIENT",
 					"+223 93 77 15 53",

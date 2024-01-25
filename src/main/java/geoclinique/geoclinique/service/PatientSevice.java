@@ -6,10 +6,7 @@ import geoclinique.geoclinique.Api.DtoViewModel.Request.NewRdvRequest;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.ApiResponse;
 import geoclinique.geoclinique.Api.DtoViewModel.Response.DisponibiliteMedecinResponse;
 import geoclinique.geoclinique.dto.Message;
-import geoclinique.geoclinique.model.Motif;
-import geoclinique.geoclinique.model.Patients;
-import geoclinique.geoclinique.model.RendezVous;
-import geoclinique.geoclinique.model.Utilisateur;
+import geoclinique.geoclinique.model.*;
 import geoclinique.geoclinique.payload.response.JwtResponse;
 import geoclinique.geoclinique.payload.response.MessageResponse;
 import geoclinique.geoclinique.repository.*;
@@ -65,6 +62,13 @@ public class PatientSevice {
     public List<Motif> readMotif(){
         return motifRepository.findAll();
     }
+    public boolean existsByIdMotif(Long id){
+        return motifRepository.existsById(id);
+    }
+    public Optional<Motif> GetOneMotif(Long id){
+        return motifRepository.findById(id);
+    }
+
     public Optional<Patients> GetOne(Long id){
         return patientRepository.findById(id);
     }

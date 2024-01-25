@@ -45,6 +45,7 @@ public class Clinique extends Utilisateur{
     @NotBlank
     @Size(max = 20)
     private String agrementClinique;
+
     private boolean statusClinique;
 
     @JsonIgnore
@@ -80,6 +81,7 @@ public class Clinique extends Utilisateur{
         this.latitudeClinique = latitudeClinique;
         this.listeSpecialiteCli = listeSpecialiteCli;
     }
+
 //Liste des RDV
 //    @JsonIgnore
 //    @OneToMany(cascade = CascadeType.ALL,
@@ -111,6 +113,8 @@ public class Clinique extends Utilisateur{
     @JoinTable(name = "specialite_clinique", joinColumns = { @JoinColumn(name = "id_clinics") }, inverseJoinColumns = {
             @JoinColumn(name = "id_specialite") })
     List<Specialites> listeSpecialiteCli = new ArrayList<>();
+
+
 
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "clinics")

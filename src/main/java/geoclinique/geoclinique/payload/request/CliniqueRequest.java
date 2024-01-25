@@ -56,6 +56,7 @@ public class CliniqueRequest {
     @NotBlank
     @Size(max = 20)
     private String agrementClinique;
+
     private boolean statusClinique;
 
     List<Specialites> listSpecialiteClinique = new ArrayList<>();

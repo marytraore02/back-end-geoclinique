@@ -130,7 +130,7 @@ public class CliniqueController {
                         cliniqueRequest.getVilleClinique(),
                         cliniqueRequest.getLongitudeClinique(),
                         cliniqueRequest.getLatitudeClinique(),
-                cliniqueRequest.getListSpecialiteClinique()
+                        cliniqueRequest.getListSpecialiteClinique()
         );
 
         //Creation des roles

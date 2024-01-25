@@ -1,48 +1,51 @@
-2023-03-01 18:28:35.315  INFO 15166 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.5 on marys-MBP.mshome.net with PID 15166 (/Users/siby/Desktop/geo-clinique/target/classes started by siby in /Users/siby/Desktop/geo-clinique)
-2023-03-01 18:28:35.331  INFO 15166 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
-2023-03-01 18:28:35.746  INFO 15166 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-03-01 18:28:35.748  INFO 15166 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-03-01 18:28:39.053  INFO 15166 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-03-01 18:28:39.359  INFO 15166 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 278 ms. Found 14 JPA repository interfaces.
-2023-03-01 18:28:41.267  INFO 15166 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
-2023-03-01 18:28:41.301  INFO 15166 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-03-01 18:28:41.311  INFO 15166 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
-2023-03-01 18:28:41.528  INFO 15166 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-03-01 18:28:41.534  INFO 15166 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5781 ms
-2023-03-01 18:28:41.973  INFO 15166 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-03-01 18:28:42.128  INFO 15166 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-03-01 18:28:42.385  INFO 15166 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-03-01 18:28:42.552  INFO 15166 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2023-03-01 18:28:42.952  INFO 15166 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2023-03-01 18:28:42.977  INFO 15166 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-03-01 18:28:43.361  INFO 15166 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
-2023-03-01 18:28:45.986  INFO 15166 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-03-01 18:28:46.004  INFO 15166 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-03-01 18:28:48.691  WARN 15166 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-03-01 18:28:49.119  INFO 15166 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2023-03-01 18:28:50.390  INFO 15166 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d7497fb, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3fc21d7b, org.springframework.security.web.context.SecurityContextPersistenceFilter@30f86b9e, org.springframework.security.web.header.HeaderWriterFilter@5595558a, org.springframework.web.filter.CorsFilter@1e244489, org.springframework.security.web.authentication.logout.LogoutFilter@2b184a04, geoclinique.geoclinique.security.jwt.AuthTokenFilter@583711f9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@11fe51bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52c49f7e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@265a2d77, org.springframework.security.web.session.SessionManagementFilter@63e3dda3, org.springframework.security.web.access.ExceptionTranslationFilter@793ae6a6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4a3d1523]
-2023-03-01 18:28:50.562  INFO 15166 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-03-01 18:28:50.990  INFO 15166 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
-2023-03-01 18:28:50.993  INFO 15166 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2023-03-01 18:28:51.062  INFO 15166 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2023-03-01 18:28:51.128  INFO 15166 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2023-03-01 18:28:51.434  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
-2023-03-01 18:28:51.520  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
-2023-03-01 18:28:51.548  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
-2023-03-01 18:28:51.572  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
-2023-03-01 18:28:51.594  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
-2023-03-01 18:28:51.609  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
-2023-03-01 18:28:51.656  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
-2023-03-01 18:28:51.686  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
-2023-03-01 18:28:51.720  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
-2023-03-01 18:28:51.755  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
-2023-03-01 18:28:51.785  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
-2023-03-01 18:28:51.856  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getRdvValideUsingGET_1
-2023-03-01 18:28:51.865  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
-2023-03-01 18:28:51.871  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
-2023-03-01 18:28:51.889  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_4
-2023-03-01 18:28:51.908  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
-2023-03-01 18:28:51.925  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
-2023-03-01 18:28:51.943  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_4
-2023-03-01 18:28:51.956  INFO 15166 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_3
-2023-03-01 18:28:52.021  INFO 15166 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 18.069 seconds (JVM running for 19.302)
+2024-01-25 00:10:22.928  INFO 1682 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Starting GeoCliniqueApplication using Java 17.0.6 on MacBook-Pro-de-Macbook.local with PID 1682 (/Users/marytraore/SPRING-BOOT_PROJECTS/back-end-geoclinique/target/classes started by marytraore in /Users/marytraore/SPRING-BOOT_PROJECTS/back-end-geoclinique)
+2024-01-25 00:10:22.943  INFO 1682 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-01-25 00:10:23.635  INFO 1682 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-01-25 00:10:23.641  INFO 1682 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-01-25 00:10:31.848  INFO 1682 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-25 00:10:32.423  INFO 1682 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 545 ms. Found 14 JPA repository interfaces.
+2024-01-25 00:10:36.896  INFO 1682 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9000 (http)
+2024-01-25 00:10:36.924  INFO 1682 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-25 00:10:36.925  INFO 1682 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2024-01-25 00:10:37.250  INFO 1682 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-25 00:10:37.250  INFO 1682 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 13605 ms
+2024-01-25 00:10:38.213  INFO 1682 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-25 00:10:38.430  INFO 1682 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.14.Final
+2024-01-25 00:10:39.209  INFO 1682 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2024-01-25 00:10:39.862  INFO 1682 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-25 00:10:40.894  INFO 1682 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-25 00:10:40.968  INFO 1682 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2024-01-25 00:10:41.881  INFO 1682 --- [restartedMain] o.hibernate.id.enhanced.TableGenerator   : HHH000398: Explicit segment value for id generator [hibernate_sequences.sequence_name] suggested; using default [default]
+2024-01-25 00:10:54.049  INFO 1682 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-01-25 00:10:54.157  INFO 1682 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-25 00:10:57.566  WARN 1682 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-25 00:10:58.002  INFO 1682 --- [restartedMain] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-01-25 00:10:59.436  INFO 1682 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1024ec3a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@57bc338d, org.springframework.security.web.context.SecurityContextPersistenceFilter@4bf2dbc9, org.springframework.security.web.header.HeaderWriterFilter@37ffac28, org.springframework.web.filter.CorsFilter@2fd06c56, org.springframework.security.web.authentication.logout.LogoutFilter@28ab23fd, geoclinique.geoclinique.security.jwt.AuthTokenFilter@6966c2e8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@212aaa86, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21e4f76c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@27764039, org.springframework.security.web.session.SessionManagementFilter@7dca2b40, org.springframework.security.web.access.ExceptionTranslationFilter@2116a333, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@370e0a31]
+2024-01-25 00:10:59.630  INFO 1682 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-01-25 00:11:00.179  INFO 1682 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9000 (http) with context path ''
+2024-01-25 00:11:00.203  INFO 1682 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2024-01-25 00:11:00.243  INFO 1682 --- [restartedMain] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2024-01-25 00:11:00.293  INFO 1682 --- [restartedMain] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2024-01-25 00:11:00.724  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: registerUserUsingPOST_1
+2024-01-25 00:11:00.782  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_1
+2024-01-25 00:11:00.795  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_1
+2024-01-25 00:11:00.803  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_1
+2024-01-25 00:11:00.810  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_1
+2024-01-25 00:11:00.827  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_2
+2024-01-25 00:11:00.871  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_3
+2024-01-25 00:11:00.888  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_2
+2024-01-25 00:11:00.911  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_2
+2024-01-25 00:11:00.948  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: ReadUsingGET_1
+2024-01-25 00:11:00.970  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_3
+2024-01-25 00:11:01.089  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getRdvValideUsingGET_1
+2024-01-25 00:11:01.093  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_3
+2024-01-25 00:11:01.098  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_2
+2024-01-25 00:11:01.106  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: AfficherUsingGET_4
+2024-01-25 00:11:01.111  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: createUsingPOST_1
+2024-01-25 00:11:01.115  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: getByIdUsingGET_4
+2024-01-25 00:11:01.119  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: supprimerUsingDELETE_4
+2024-01-25 00:11:01.124  INFO 1682 --- [restartedMain] .d.s.w.r.o.CachingOperationNameGenerator : Generating unique operation named: updateUsingPUT_3
+2024-01-25 00:11:01.191  INFO 1682 --- [restartedMain] g.geoclinique.GeoCliniqueApplication     : Started GeoCliniqueApplication in 42.239 seconds (JVM running for 47.307)
+2024-01-25 00:11:23.550  INFO 1682 --- [http-nio-9000-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-01-25 00:11:23.677  INFO 1682 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-01-25 00:11:23.681  INFO 1682 --- [http-nio-9000-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms

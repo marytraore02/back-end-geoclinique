@@ -153,6 +153,15 @@ public class PatientController {
         return new ResponseEntity(motif, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Afficher un motif")
+    @GetMapping("/getMotif/{id}")
+    public ResponseEntity<Motif> getByIdMotif(@PathVariable("id") Long id){
+        if(!patientSevice.existsByIdMotif(id))
+            return new ResponseEntity(new Message("Id n'existe pas"), HttpStatus.NOT_FOUND);
+        Motif motif = patientSevice.GetOneMotif(id).get();
+        return new ResponseEntity(motif, HttpStatus.OK);
+    }
+
 
     //@PreAuthorize("hasRole('PATIENT') or hasRole('ADMIN')")
     @ApiOperation(value = "Mise à jour du comptes patient")
